@@ -35,6 +35,7 @@ declare module 'lucide-react' {
   export const Terminal: Icon;
   export const Lock: Icon;
   export const Check: Icon;
+  export const Copy: Icon;
   export const FileCheck: Icon;
   export const Sparkles: Icon;
   export const Eye: Icon;
