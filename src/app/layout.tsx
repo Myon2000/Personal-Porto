@@ -45,12 +45,21 @@ export const metadata: Metadata = {
     title: "Oktavian Ramadhani | Web Developer & Applied ML",
     description:
       "Portofolio profesional Oktavian Ramadhani. Full-Stack Web Developer dan Pengembang Model Machine Learning.",
+    images: [
+      {
+        url: "/profile.jpg",
+        width: 1200,
+        height: 1500,
+        alt: "Oktavian Ramadhani",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Oktavian Ramadhani | Web Developer & Applied ML",
     description:
       "Portofolio profesional Oktavian Ramadhani. Full-Stack Web Developer dan Pengembang Model Machine Learning.",
+    images: ["/profile.jpg"],
   },
 };
 

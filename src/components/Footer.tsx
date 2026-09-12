@@ -39,7 +39,7 @@ export default function Footer() {
             <GithubIcon className="w-5 h-5" />
           </a>
           <a
-            href="mailto:oktavian.work@gmail.com"
+            href="mailto:oktavianramadhani25@gmail.com"
             className="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-sky-500"
             aria-label="Kirim Email"
           >

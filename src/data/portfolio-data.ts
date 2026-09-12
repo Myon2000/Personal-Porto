@@ -67,7 +67,7 @@ export const PERSONAL_INFO = {
   domain: "myon.my.id",
   githubUsername: "Myon2000",
   githubUrl: "https://github.com/Myon2000",
-  email: "oktavian.work@gmail.com",
+  email: "oktavianramadhani25@gmail.com",
   location: "Jember, Indonesia",
   university: "Universitas Jember",
   faculty: "Fakultas Ilmu Komputer (Fasilkom)",
