@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useLanguage } from "@/context/language-context";
-import { FEATURED_PROJECTS, ProjectItem } from "@/data/portfolio-data";
+import { FEATURED_PROJECTS } from "@/data/portfolio-data";
 import { GithubIcon } from "@/components/icons";
 import { ExternalLink, Brain, Layers, CheckCircle, ArrowRight, FolderGit2 } from "lucide-react";
 
@@ -48,7 +48,7 @@ export default function ProjectsSection() {
             <button
               key={tab.key}
               type="button"
-              onClick={() => setActiveFilter(tab.key as any)}
+              onClick={() => setActiveFilter(tab.key as "all" | "ml" | "web" | "system")}
               className={`px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-sky-500 min-h-[40px] ${
                 activeFilter === tab.key
                   ? "bg-sky-600 text-white shadow-xs"

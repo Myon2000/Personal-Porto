@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 
 export type Language = "id" | "en";
 
@@ -12,17 +12,18 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguageState] = useState<Language>("id");
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    const saved = localStorage.getItem("myon_portfolio_lang") as Language | null;
+function getInitialLanguage(): Language {
+  if (typeof window !== "undefined") {
+    const saved = localStorage.getItem("myon_portfolio_lang");
     if (saved === "id" || saved === "en") {
-      setLanguageState(saved);
+      return saved;
     }
-    setMounted(true);
-  }, []);
+  }
+  return "id";
+}
+
+export function LanguageProvider({ children }: { children: React.ReactNode }) {
+  const [language, setLanguageState] = useState<Language>(getInitialLanguage);
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
@@ -32,7 +33,8 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   };
 
   const toggleLanguage = () => {
-    setLanguage(language === "id" ? "en" : "id");
+    const next = language === "id" ? "en" : "id";
+    setLanguage(next);
   };
 
   return (

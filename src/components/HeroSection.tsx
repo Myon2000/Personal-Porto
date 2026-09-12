@@ -3,7 +3,7 @@
 import { useLanguage } from "@/context/language-context";
 import { PERSONAL_INFO } from "@/data/portfolio-data";
 import { GithubIcon } from "@/components/icons";
-import { ArrowRight, Mail, Terminal, Sparkles, MapPin, GraduationCap } from "lucide-react";
+import { ArrowRight, Mail, Terminal, MapPin, GraduationCap } from "lucide-react";
 
 export default function HeroSection() {
   const { language } = useLanguage();
@@ -101,7 +101,7 @@ export default function HeroSection() {
               {/* Code-like presentation */}
               <div className="p-6 space-y-4 font-mono text-xs sm:text-sm">
                 <div className="space-y-1">
-                  <p className="text-slate-400">// Personal Profile Core</p>
+                  <p className="text-slate-400">{"// Personal Profile Core"}</p>
                   <p className="text-slate-900 dark:text-slate-100">
                     <span className="text-sky-600 dark:text-sky-400 font-semibold">const</span> engineer = &#123;
                   </p>

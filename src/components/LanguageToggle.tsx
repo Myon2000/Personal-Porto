@@ -1,16 +1,12 @@
 "use client";
 
 import { useLanguage } from "@/context/language-context";
-import { useEffect, useState } from "react";
+import { useMounted } from "@/hooks/use-mounted";
 import { Globe } from "lucide-react";
 
 export default function LanguageToggle() {
   const { language, toggleLanguage } = useLanguage();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useMounted();
 
   if (!mounted) {
     return (

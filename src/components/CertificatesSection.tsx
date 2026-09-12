@@ -2,7 +2,7 @@
 
 import { useLanguage } from "@/context/language-context";
 import { ACHIEVEMENTS } from "@/data/portfolio-data";
-import { Award, Trophy, Shield, Calendar, ShieldCheck, FileCheck } from "lucide-react";
+import { Award, Trophy, Calendar, ShieldCheck, FileCheck } from "lucide-react";
 
 export default function CertificatesSection() {
   const { language } = useLanguage();

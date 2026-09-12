@@ -1,8 +1,7 @@
 "use client";
 
 import { useLanguage } from "@/context/language-context";
-import { PERSONAL_INFO } from "@/data/portfolio-data";
-import { GraduationCap, ShieldCheck, BrainCircuit, Users, Award } from "lucide-react";
+import { GraduationCap, ShieldCheck, BrainCircuit, Users } from "lucide-react";
 
 export default function AboutSection() {
   const { language } = useLanguage();

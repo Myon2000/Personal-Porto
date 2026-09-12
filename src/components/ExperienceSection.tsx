@@ -2,7 +2,7 @@
 
 import { useLanguage } from "@/context/language-context";
 import { EXPERIENCES } from "@/data/portfolio-data";
-import { Users, Calendar, Award } from "lucide-react";
+import { Calendar } from "lucide-react";
 
 export default function ExperienceSection() {
   const { language } = useLanguage();
@@ -27,7 +27,7 @@ export default function ExperienceSection() {
 
         {/* Timeline Stack */}
         <div className="max-w-3xl mx-auto space-y-6">
-          {EXPERIENCES.map((exp, idx) => (
+          {EXPERIENCES.map((exp) => (
             <div
               key={exp.id}
               className="p-6 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xs hover:border-sky-500/40 transition-all duration-200"
