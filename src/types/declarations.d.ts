@@ -13,18 +13,20 @@ declare module 'lucide-react' {
   export const Globe: Icon;
   export const Menu: Icon;
   export const X: Icon;
-  export const Github: Icon;
   export const Mail: Icon;
   export const ArrowUp: Icon;
   export const ExternalLink: Icon;
   export const Code: Icon;
   export const Brain: Icon;
+  export const BrainCircuit: Icon;
   export const Shield: Icon;
+  export const ShieldCheck: Icon;
   export const Award: Icon;
   export const Users: Icon;
   export const Calendar: Icon;
   export const Download: Icon;
   export const CheckCircle: Icon;
+  export const CheckCircle2: Icon;
   export const ArrowRight: Icon;
   export const Database: Icon;
   export const Cpu: Icon;
@@ -37,8 +39,12 @@ declare module 'lucide-react' {
   export const Eye: Icon;
   export const Activity: Icon;
   export const HeartPulse: Icon;
-  export const Stethoscope: Icon;
+  export const GraduationCap: Icon;
+  export const MapPin: Icon;
+  export const FolderGit2: Icon;
   export const Layers: Icon;
-  export const UserCheck: Icon;
-  export const Sparkle: Icon;
+  export const Briefcase: Icon;
+  export const Trophy: Icon;
+  export const Star: Icon;
+  export const CheckSquare: Icon;
 }
