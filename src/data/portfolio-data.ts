@@ -27,7 +27,10 @@ export interface SkillCategory {
   iconName: string;
   skills: {
     name: string;
-    level: string;
+    level: {
+      id: string;
+      en: string;
+    };
   }[];
 }
 
@@ -39,7 +42,10 @@ export interface AchievementItem {
   };
   organizer: string;
   year: string;
-  field: string;
+  field: {
+    id: string;
+    en: string;
+  };
   description: {
     id: string;
     en: string;
@@ -54,7 +60,10 @@ export interface ExperienceItem {
     en: string;
   };
   organization: string;
-  period: string;
+  period: {
+    id: string;
+    en: string;
+  };
   description: {
     id: string;
     en: string;
@@ -93,11 +102,11 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     },
     iconName: "Code",
     skills: [
-      { name: "TypeScript & JavaScript", level: "Mahir" },
-      { name: "Next.js & React", level: "Mahir" },
-      { name: "PHP & Laravel / Blade", level: "Kompeten" },
-      { name: "Tailwind CSS & Responsive UI", level: "Mahir" },
-      { name: "RESTful API Architecture", level: "Kompeten" },
+      { name: "TypeScript & JavaScript", level: { id: "Mahir", en: "Proficient" } },
+      { name: "Next.js & React", level: { id: "Mahir", en: "Proficient" } },
+      { name: "PHP & Laravel / Blade", level: { id: "Kompeten", en: "Skilled" } },
+      { name: "Tailwind CSS & Responsive UI", level: { id: "Mahir", en: "Proficient" } },
+      { name: "RESTful API Architecture", level: { id: "Kompeten", en: "Skilled" } },
     ],
   },
   {
@@ -107,11 +116,11 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     },
     iconName: "Brain",
     skills: [
-      { name: "Python", level: "Mahir" },
-      { name: "PyTorch & Deep Learning", level: "Kompeten" },
-      { name: "Convolutional Networks (DenseNet)", level: "Kompeten" },
-      { name: "Medical Image Classification", level: "Spesialisasi" },
-      { name: "Data Preprocessing & Evaluation", level: "Kompeten" },
+      { name: "Python", level: { id: "Mahir", en: "Proficient" } },
+      { name: "PyTorch & Deep Learning", level: { id: "Kompeten", en: "Skilled" } },
+      { name: "Convolutional Networks (DenseNet)", level: { id: "Kompeten", en: "Skilled" } },
+      { name: "Medical Image Classification", level: { id: "Spesialisasi", en: "Specialized" } },
+      { name: "Data Preprocessing & Evaluation", level: { id: "Kompeten", en: "Skilled" } },
     ],
   },
   {
@@ -121,11 +130,11 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     },
     iconName: "Shield",
     skills: [
-      { name: "Server Security & DDOS Mitigation", level: "Juara 1 LAOS" },
-      { name: "Linux Server Management", level: "Kompeten" },
-      { name: "Git & GitHub Collaboration", level: "Mahir" },
-      { name: "MySQL & Relational Databases", level: "Kompeten" },
-      { name: "Cloud Deployment (Vercel)", level: "Mahir" },
+      { name: "Server Security & DDOS Mitigation", level: { id: "Juara 1 LAOS", en: "1st Place LAOS" } },
+      { name: "Linux Server Management", level: { id: "Kompeten", en: "Skilled" } },
+      { name: "Git & GitHub Collaboration", level: { id: "Mahir", en: "Proficient" } },
+      { name: "MySQL & Relational Databases", level: { id: "Kompeten", en: "Skilled" } },
+      { name: "Cloud Deployment (Vercel)", level: { id: "Mahir", en: "Proficient" } },
     ],
   },
 ];
@@ -310,7 +319,10 @@ export const ACHIEVEMENTS: AchievementItem[] = [
     },
     organizer: "UKM LAOS (Linux and Open Source) Universitas Jember",
     year: "2024",
-    field: "Cyber Security & Server Defense",
+    field: {
+      id: "Keamanan Siber & Pertahanan Server",
+      en: "Cyber Security & Server Defense",
+    },
     description: {
       id: "Meraih Juara 1 pada kompetisi pertahanan server Linux dari serangan simulasi Denial of Service (DDOS), konfigurasi firewall, serta mitigasi gangguan performa sistem.",
       en: "Awarded 1st Place in server defense competition focusing on Linux hardening, firewall tuning, and mitigating live Denial of Service (DDOS) simulations.",
@@ -325,7 +337,10 @@ export const ACHIEVEMENTS: AchievementItem[] = [
     },
     organizer: "BEM Fakultas Ilmu Komputer Universitas Jember",
     year: "2024",
-    field: "Algorithms & Competitive Programming",
+    field: {
+      id: "Algoritma & Pemrograman Kompetitif",
+      en: "Algorithms & Competitive Programming",
+    },
     description: {
       id: "Penghargaan atas penyelesaian tantangan algoritma kompleks, analisis kompleksitas waktu, dan pengoptimalan struktur data di ajang tahunan Friendship Fasilkom UNEJ.",
       en: "Recognized for solving complex algorithmic challenges, time complexity optimization, and robust data structures at the annual Friendship event.",
@@ -340,7 +355,10 @@ export const ACHIEVEMENTS: AchievementItem[] = [
     },
     organizer: "Distribusi Pupuk Bersubsidi",
     year: "2025",
-    field: "Software Engineering & System Delivery",
+    field: {
+      id: "Rekayasa Perangkat Lunak & Sistem",
+      en: "Software Engineering & System Delivery",
+    },
     description: {
       id: "Sertifikat bukti resmi atas implementasi dan pengelolaan perangkat lunak Sistem Pengelolaan Distribusi Pupuk Bersubsidi (SIPUBI).",
       en: "Official credential certifying the development and operational delivery of the Subsidized Fertilizer Distribution System (SIPUBI).",
@@ -355,7 +373,10 @@ export const ACHIEVEMENTS: AchievementItem[] = [
     },
     organizer: "Himpunan Mahasiswa Informatika (HMIF) Universitas Jember",
     year: "2024",
-    field: "Informatics Challenge",
+    field: {
+      id: "Tantangan Informatika",
+      en: "Informatics Challenge",
+    },
     description: {
       id: "Partisipasi aktif dalam kompetisi bidang teknologi informasi tingkat mahasiswa yang menguji kapabilitas pemecahan masalah teknis.",
       en: "Active participation in academic computing competition testing technical problem-solving and software innovation.",
@@ -372,7 +393,10 @@ export const EXPERIENCES: ExperienceItem[] = [
       en: "Project Lead - Informatics Olympiad 2025",
     },
     organization: "Universitas Jember",
-    period: "2025",
+    period: {
+      id: "2025",
+      en: "2025",
+    },
     description: {
       id: "Memimpin perencanaan strategis, manajemen puluhan panitia, penyusunan anggaran, serta koordinasi teknis pelaksanaan olimpiade informatika.",
       en: "Directed strategic planning, managed cross-functional committee members, allocated resources, and supervised technical execution for the regional olympiad.",
@@ -385,7 +409,10 @@ export const EXPERIENCES: ExperienceItem[] = [
       en: "Executive Board - Informatics Student Association",
     },
     organization: "HMIF Universitas Jember",
-    period: "2023 - 2025 (2 Periode)",
+    period: {
+      id: "2023 - 2025 (2 Periode)",
+      en: "2023 - 2025 (2 Terms)",
+    },
     description: {
       id: "Berperan aktif selama dua periode berturut-turut dalam merancang program kerja teknologi, kaderisasi mahasiswa, dan tata kelola kegiatan fakultas.",
       en: "Served for two consecutive terms driving technology work programs, student mentoring initiatives, and organizational governance at the faculty level.",
@@ -398,7 +425,10 @@ export const EXPERIENCES: ExperienceItem[] = [
       en: "Logistics Committee: I-COM 2024",
     },
     organization: "HMIF Universitas Jember",
-    period: "2024",
+    period: {
+      id: "2024",
+      en: "2024",
+    },
     description: {
       id: "Bertanggung jawab atas kesiapan sarana teknis, inventaris perangkat keras, dan kelancaran infrastruktur penunjang kompetisi informatika.",
       en: "Managed technical equipment readiness, hardware inventory, and infrastructure stability supporting hundreds of competition participants.",

@@ -44,7 +44,7 @@ export default function ExperienceSection() {
 
                 <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-600 dark:text-slate-300 self-start sm:self-auto">
                   <Calendar className="w-3.5 h-3.5" />
-                  <span>{exp.period}</span>
+                  <span>{exp.period[language]}</span>
                 </div>
               </div>
 

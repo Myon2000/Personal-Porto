@@ -83,7 +83,7 @@ export default function CertificatesSection() {
               </div>
 
               <div className="mt-4 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
-                <span className="font-mono">{item.field}</span>
+                <span className="font-mono">{item.field[language]}</span>
                 <span className="inline-flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-medium">
                   <FileCheck className="w-3.5 h-3.5" />
                   <span>{language === "id" ? "Terverifikasi" : "Verified Record"}</span>

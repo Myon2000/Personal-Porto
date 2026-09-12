@@ -69,7 +69,7 @@ export default function ProjectsSection() {
                 <span>{spotlightProject.badge[language]}</span>
               </div>
               <span className="text-xs font-mono text-slate-500 dark:text-slate-400">
-                Deep Learning Research Track
+                {language === "id" ? "Riset Deep Learning Terapan" : "Deep Learning Research Track"}
               </span>
             </div>
 
@@ -112,13 +112,15 @@ export default function ProjectsSection() {
                 <div className="space-y-3">
                   <div className="flex items-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400">
                     <Layers className="w-4 h-4 text-sky-500" />
-                    <span>Model Architecture: DenseNet-169</span>
+                    <span>{language === "id" ? "Arsitektur Model: DenseNet-169" : "Model Architecture: DenseNet-169"}</span>
                   </div>
                   <div className="p-4 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300 space-y-1">
-                    <p className="text-sky-600 dark:text-sky-400 font-semibold">Input: Brain MRI Scans (axial/coronal)</p>
-                    <p>&gt; Dense Blocks: 4 layers with dense links</p>
-                    <p>&gt; Transition Layers: Conv (1x1) + AvgPool (2x2)</p>
-                    <p>&gt; Output: Multi-class Alzheimer progression</p>
+                    <p className="text-sky-600 dark:text-sky-400 font-semibold">
+                      {language === "id" ? "Input: Citra MRI Otak (axial/coronal)" : "Input: Brain MRI Scans (axial/coronal)"}
+                    </p>
+                    <p>{language === "id" ? "> Blok Dense: 4 layer dengan tautan padat" : "> Dense Blocks: 4 layers with dense links"}</p>
+                    <p>{language === "id" ? "> Lapisan Transisi: Conv (1x1) + AvgPool (2x2)" : "> Transition Layers: Conv (1x1) + AvgPool (2x2)"}</p>
+                    <p>{language === "id" ? "> Output: Multi-kelas perkembangan Alzheimer" : "> Output: Multi-class Alzheimer progression"}</p>
                   </div>
                 </div>
 

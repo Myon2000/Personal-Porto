@@ -65,7 +65,7 @@ export default function SkillsSection() {
                           <span>{skill.name}</span>
                         </div>
                         <span className="text-xs px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-mono">
-                          {skill.level}
+                          {skill.level[language]}
                         </span>
                       </li>
                     ))}
@@ -73,8 +73,10 @@ export default function SkillsSection() {
                 </div>
 
                 <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400 font-mono flex items-center justify-between">
-                  <span>Category {idx + 1}/3</span>
-                  <span className="text-sky-600 dark:text-sky-400 font-semibold">Active Track</span>
+                  <span>{language === "id" ? `Kategori ${idx + 1}/3` : `Category ${idx + 1}/3`}</span>
+                  <span className="text-sky-600 dark:text-sky-400 font-semibold">
+                    {language === "id" ? "Fokus Aktif" : "Active Track"}
+                  </span>
                 </div>
               </div>
             );

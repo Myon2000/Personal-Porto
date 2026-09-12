@@ -62,7 +62,9 @@ export default function ContactSection() {
                     <Mail className="w-4 h-4" />
                   </div>
                   <div>
-                    <p className="text-xs text-slate-500 dark:text-slate-400">Email Utama</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">
+                      {language === "id" ? "Email Utama" : "Primary Email"}
+                    </p>
                     <p className="font-mono text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200">
                       {PERSONAL_INFO.email}
                     </p>
@@ -79,7 +81,9 @@ export default function ContactSection() {
                     <GithubIcon className="w-4 h-4" />
                   </div>
                   <div className="flex-1">
-                    <p className="text-xs text-slate-500 dark:text-slate-400">GitHub Profile</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">
+                      {language === "id" ? "Profil GitHub" : "GitHub Profile"}
+                    </p>
                     <p className="font-mono text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200">
                       github.com/{PERSONAL_INFO.githubUsername}
                     </p>
@@ -92,7 +96,9 @@ export default function ContactSection() {
                     <Globe className="w-4 h-4" />
                   </div>
                   <div>
-                    <p className="text-xs text-slate-500 dark:text-slate-400">Domain Pribadi</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">
+                      {language === "id" ? "Domain Pribadi" : "Personal Domain"}
+                    </p>
                     <p className="font-mono text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200">
                       https://{PERSONAL_INFO.domain}
                     </p>
@@ -104,7 +110,9 @@ export default function ContactSection() {
                     <MapPin className="w-4 h-4" />
                   </div>
                   <div>
-                    <p className="text-xs text-slate-500 dark:text-slate-400">Lokasi Domisili</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">
+                      {language === "id" ? "Lokasi Domisili" : "Location"}
+                    </p>
                     <p className="text-xs sm:text-sm font-medium text-slate-800 dark:text-slate-200">
                       {PERSONAL_INFO.location}
                     </p>
