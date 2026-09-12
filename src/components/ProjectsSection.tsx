@@ -2,13 +2,25 @@
 
 import { useState } from "react";
 import { useLanguage } from "@/context/language-context";
-import { FEATURED_PROJECTS } from "@/data/portfolio-data";
+import { FEATURED_PROJECTS, ProjectItem } from "@/data/portfolio-data";
 import { GithubIcon } from "@/components/icons";
-import { ExternalLink, Brain, Layers, CheckCircle, ArrowRight, FolderGit2 } from "lucide-react";
+import AlzheimerSimulator from "@/components/AlzheimerSimulator";
+import ProjectModal from "@/components/ProjectModal";
+import {
+  ExternalLink,
+  Brain,
+  Layers,
+  CheckCircle,
+  ArrowRight,
+  FolderGit2,
+  Eye,
+} from "lucide-react";
 
 export default function ProjectsSection() {
   const { language } = useLanguage();
   const [activeFilter, setActiveFilter] = useState<"all" | "ml" | "web" | "system">("all");
+  const [selectedModalProject, setSelectedModalProject] = useState<ProjectItem | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const filterTabs = [
     { key: "all", label: language === "id" ? "Semua Proyek" : "All Projects" },
@@ -17,15 +29,31 @@ export default function ProjectsSection() {
     { key: "system", label: language === "id" ? "Sistem Informasi" : "Information Systems" },
   ];
 
-  const filteredProjects = activeFilter === "all"
-    ? FEATURED_PROJECTS
-    : FEATURED_PROJECTS.filter((p) => p.category === activeFilter);
+  const filteredProjects =
+    activeFilter === "all"
+      ? FEATURED_PROJECTS
+      : FEATURED_PROJECTS.filter((p) => p.category === activeFilter);
 
   const spotlightProject = FEATURED_PROJECTS.find((p) => p.id === "alzheimer-densenet");
-  const otherProjects = filteredProjects.filter((p) => activeFilter === "all" ? p.id !== "alzheimer-densenet" : true);
+  const otherProjects = filteredProjects.filter((p) =>
+    activeFilter === "all" ? p.id !== "alzheimer-densenet" : true
+  );
+
+  const handleOpenModal = (project: ProjectItem) => {
+    setSelectedModalProject(project);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedModalProject(null);
+  };
 
   return (
-    <section id="projects" className="py-16 md:py-24 border-t border-slate-200/80 dark:border-slate-800/80 bg-slate-50/50 dark:bg-slate-900/30">
+    <section
+      id="projects"
+      className="py-16 md:py-24 border-t border-slate-200/80 dark:border-slate-800/80 bg-slate-50/50 dark:bg-slate-900/30"
+    >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-12 space-y-3">
@@ -84,11 +112,16 @@ export default function ProjectsSection() {
 
                 <div className="space-y-2 pt-2">
                   <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                    {language === "id" ? "Sorotan Teknis & Metodologi:" : "Technical Highlights & Methodology:"}
+                    {language === "id"
+                      ? "Sorotan Teknis & Metodologi:"
+                      : "Technical Highlights & Methodology:"}
                   </h4>
                   <ul className="space-y-1.5">
                     {spotlightProject.highlights[language].map((item, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+                      <li
+                        key={idx}
+                        className="flex items-start gap-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300"
+                      >
                         <CheckCircle className="w-4 h-4 text-sky-500 shrink-0 mt-0.5" />
                         <span>{item}</span>
                       </li>
@@ -112,15 +145,33 @@ export default function ProjectsSection() {
                 <div className="space-y-3">
                   <div className="flex items-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400">
                     <Layers className="w-4 h-4 text-sky-500" />
-                    <span>{language === "id" ? "Arsitektur Model: DenseNet-169" : "Model Architecture: DenseNet-169"}</span>
+                    <span>
+                      {language === "id"
+                        ? "Arsitektur Model: DenseNet-169"
+                        : "Model Architecture: DenseNet-169"}
+                    </span>
                   </div>
                   <div className="p-4 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300 space-y-1">
                     <p className="text-sky-600 dark:text-sky-400 font-semibold">
-                      {language === "id" ? "Input: Citra MRI Otak (axial/coronal)" : "Input: Brain MRI Scans (axial/coronal)"}
+                      {language === "id"
+                        ? "Input: Citra MRI Otak (axial/coronal)"
+                        : "Input: Brain MRI Scans (axial/coronal)"}
                     </p>
-                    <p>{language === "id" ? "> Blok Dense: 4 layer dengan tautan padat" : "> Dense Blocks: 4 layers with dense links"}</p>
-                    <p>{language === "id" ? "> Lapisan Transisi: Conv (1x1) + AvgPool (2x2)" : "> Transition Layers: Conv (1x1) + AvgPool (2x2)"}</p>
-                    <p>{language === "id" ? "> Output: Multi-kelas perkembangan Alzheimer" : "> Output: Multi-class Alzheimer progression"}</p>
+                    <p>
+                      {language === "id"
+                        ? "> Blok Dense: 4 layer dengan tautan padat"
+                        : "> Dense Blocks: 4 layers with dense links"}
+                    </p>
+                    <p>
+                      {language === "id"
+                        ? "> Lapisan Transisi: Conv (1x1) + AvgPool (2x2)"
+                        : "> Transition Layers: Conv (1x1) + AvgPool (2x2)"}
+                    </p>
+                    <p>
+                      {language === "id"
+                        ? "> Output: Multi-kelas perkembangan Alzheimer"
+                        : "> Output: Multi-class Alzheimer progression"}
+                    </p>
                   </div>
                 </div>
 
@@ -131,11 +182,18 @@ export default function ProjectsSection() {
                   className="inline-flex items-center justify-center gap-2 w-full px-4 py-3 rounded-lg bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-slate-100 text-white dark:text-slate-900 font-medium text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-sky-500 min-h-[44px]"
                 >
                   <GithubIcon className="w-4 h-4" />
-                  <span>{language === "id" ? "Buka Repositori Kode di GitHub" : "View Code Repository on GitHub"}</span>
+                  <span>
+                    {language === "id"
+                      ? "Buka Repositori Kode di GitHub"
+                      : "View Code Repository on GitHub"}
+                  </span>
                   <ExternalLink className="w-4 h-4" />
                 </a>
               </div>
             </div>
+
+            {/* Live Interactive Alzheimer Simulator */}
+            <AlzheimerSimulator />
           </div>
         )}
 
@@ -165,17 +223,22 @@ export default function ProjectsSection() {
                   </p>
                 </div>
 
+                {/* Highlights preview */}
                 <div className="space-y-1 pt-1">
-                  {project.highlights[language].slice(0, 2).map((h, i) => (
-                    <div key={i} className="flex items-start gap-1.5 text-xs text-slate-600 dark:text-slate-400">
+                  {project.highlights[language].slice(0, 2).map((item, hIdx) => (
+                    <div
+                      key={hIdx}
+                      className="flex items-start gap-1.5 text-xs text-slate-600 dark:text-slate-400"
+                    >
                       <span className="text-sky-500 font-bold">•</span>
-                      <span>{h}</span>
+                      <span className="line-clamp-1">{item}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
               <div className="pt-6 mt-4 border-t border-slate-100 dark:border-slate-800 space-y-4">
+                {/* Tech Tags */}
                 <div className="flex flex-wrap gap-1.5">
                   {project.tags.slice(0, 4).map((tag) => (
                     <span
@@ -187,18 +250,28 @@ export default function ProjectsSection() {
                   ))}
                 </div>
 
-                <a
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-between w-full px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 text-xs font-medium text-slate-700 dark:text-slate-300 transition-colors focus:outline-none focus:ring-2 focus:ring-sky-500 min-h-[38px]"
-                >
-                  <span className="flex items-center gap-1.5">
+                {/* Dual Action Buttons: Overview Modal & GitHub Link */}
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => handleOpenModal(project)}
+                    className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-sky-50 dark:bg-sky-950/60 hover:bg-sky-100 dark:hover:bg-sky-900/60 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800/80 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-sky-500 min-h-[38px]"
+                  >
+                    <Eye className="w-3.5 h-3.5" />
+                    <span>{language === "id" ? "Alur Sistem" : "System Flow"}</span>
+                  </button>
+
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 text-xs font-medium text-slate-700 dark:text-slate-300 transition-colors focus:outline-none focus:ring-2 focus:ring-sky-500 min-h-[38px]"
+                    title={language === "id" ? "Buka GitHub" : "View on GitHub"}
+                  >
                     <GithubIcon className="w-3.5 h-3.5" />
-                    <span>{language === "id" ? "Lihat Source Code" : "Inspect Code"}</span>
-                  </span>
-                  <ExternalLink className="w-3.5 h-3.5 text-slate-400" />
-                </a>
+                    <ExternalLink className="w-3.5 h-3.5 text-slate-400" />
+                  </a>
+                </div>
               </div>
             </div>
           ))}
@@ -211,7 +284,9 @@ export default function ProjectsSection() {
           </div>
           <div className="space-y-1">
             <h3 className="text-lg font-bold text-slate-900 dark:text-white">
-              {language === "id" ? "Mencari Eksplorasi Kode Lainnya?" : "Looking for More Repositories?"}
+              {language === "id"
+                ? "Mencari Eksplorasi Kode Lainnya?"
+                : "Looking for More Repositories?"}
             </h3>
             <p className="text-sm text-slate-600 dark:text-slate-400 max-w-md mx-auto">
               {language === "id"
@@ -227,12 +302,23 @@ export default function ProjectsSection() {
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-slate-100 text-white dark:text-slate-900 text-xs sm:text-sm font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-sky-500 min-h-[42px]"
             >
               <GithubIcon className="w-4 h-4" />
-              <span>{language === "id" ? "Buka Arsip GitHub @Myon2000" : "Open GitHub Archive @Myon2000"}</span>
+              <span>
+                {language === "id"
+                  ? "Buka Arsip GitHub @Myon2000"
+                  : "Open GitHub Archive @Myon2000"}
+              </span>
               <ArrowRight className="w-4 h-4" />
             </a>
           </div>
         </div>
       </div>
+
+      {/* Interactive Project Architecture Modal */}
+      <ProjectModal
+        project={selectedModalProject}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      />
     </section>
   );
 }

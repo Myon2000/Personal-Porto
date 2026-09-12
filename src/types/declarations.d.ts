@@ -49,4 +49,8 @@ declare module 'lucide-react' {
   export const Trophy: Icon;
   export const Star: Icon;
   export const CheckSquare: Icon;
+  export const Play: Icon;
+  export const RotateCw: Icon;
+  export const Info: Icon;
+  export const Sliders: Icon;
 }
