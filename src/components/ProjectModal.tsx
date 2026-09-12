@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import Image from "next/image";
 import { useLanguage } from "@/context/language-context";
 import { ProjectItem } from "@/data/portfolio-data";
 import { GithubIcon } from "@/components/icons";
@@ -14,6 +15,7 @@ import {
   Users,
   Calendar,
   Activity,
+  Eye,
 } from "lucide-react";
 
 interface ProjectModalProps {
@@ -22,8 +24,64 @@ interface ProjectModalProps {
   onClose: () => void;
 }
 
+const SIPUBI_SCREENSHOTS = [
+  {
+    id: "dashboard",
+    title: {
+      id: "Dashboard Petani",
+      en: "Farmer Dashboard",
+    },
+    url: "127.0.0.1:8000/dashboard",
+    image: "/projects/sipubi/dashboard.png",
+    description: {
+      id: "Ringkasan metrik kuota pupuk aktif, total pengajuan, status persetujuan, dan notifikasi kegiatan pertanian.",
+      en: "Overview of active fertilizer quota metrics, total requests, approval status, and agricultural notifications.",
+    },
+  },
+  {
+    id: "kuota",
+    title: {
+      id: "Detail Kuota Pribadi",
+      en: "Personal Quota Detail",
+    },
+    url: "127.0.0.1:8000/quotas",
+    image: "/projects/sipubi/kuota-pribadi.png",
+    description: {
+      id: "Monitoring sisa alokasi kuota pupuk bersubsidi (Urea 600 kg, NPK 450 kg, Organik) dan stok gudang terdekat.",
+      en: "Real-time monitoring of subsidized fertilizer quotas (Urea 600kg, NPK 450kg, Organic) and warehouse stocks.",
+    },
+  },
+  {
+    id: "stok",
+    title: {
+      id: "Stok Pupuk Gudang",
+      en: "Warehouse Fertilizer Stock",
+    },
+    url: "127.0.0.1:8000/fertilizers",
+    image: "/projects/sipubi/stok-gudang.png",
+    description: {
+      id: "Informasi ketersediaan riil pupuk bersubsidi dengan indikator batas aman minimum dan tombol alur penebusan.",
+      en: "Real-time warehouse inventory levels with safe minimum threshold indicators and purchase redemption flows.",
+    },
+  },
+  {
+    id: "lahan",
+    title: {
+      id: "Peta & Verifikasi Lahan",
+      en: "GIS Map & Land Verification",
+    },
+    url: "127.0.0.1:8000/profile",
+    image: "/projects/sipubi/profile-map.png",
+    description: {
+      id: "Pemetaan spasial koordinat lahan tani via Leaflet/OpenStreetMap dan verifikasi dokumen KTP sebelum kuota cair.",
+      en: "Geographic spatial mapping of farm coordinates via Leaflet/OpenStreetMap and citizen ID verification.",
+    },
+  },
+];
+
 export default function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
   const { language } = useLanguage();
+  const [activeSipubiTab, setActiveSipubiTab] = useState(SIPUBI_SCREENSHOTS[0].id);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -48,16 +106,19 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
   const isKlinik = project.id === "web-klinik-gigi";
   const isLeaveSystem = project.id === "leave-system";
 
+  const currentSipubiScreen =
+    SIPUBI_SCREENSHOTS.find((s) => s.id === activeSipubiTab) || SIPUBI_SCREENSHOTS[0];
+
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-slate-950/70 backdrop-blur-sm animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto bg-slate-950/75 backdrop-blur-sm animate-in fade-in duration-200"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-project-title"
     >
       <div
-        className="relative w-full max-w-3xl my-8 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xl overflow-hidden animate-in zoom-in-95 duration-200"
+        className="relative w-full max-w-4xl my-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xl overflow-hidden animate-in zoom-in-95 duration-200"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Window Header */}
@@ -79,11 +140,14 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
           </button>
         </div>
 
-        {/* Modal Body */}
-        <div className="p-6 sm:p-8 max-h-[75vh] overflow-y-auto space-y-6">
+        {/* Modal Scrollable Body */}
+        <div className="p-6 sm:p-8 max-h-[78vh] overflow-y-auto space-y-6">
           {/* Title and Intro */}
           <div className="space-y-2">
-            <h3 id="modal-project-title" className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            <h3
+              id="modal-project-title"
+              className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight"
+            >
               {project.title}
             </h3>
             <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
@@ -91,13 +155,85 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
             </p>
           </div>
 
+          {/* Special Authentic UI Gallery for SiPuBi */}
+          {isSiPuBi && (
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-sky-700 dark:text-sky-300">
+                  <Eye className="w-4 h-4 text-sky-500" />
+                  <span>{language === "id" ? "Tangkapan Layar Sistem Asli (SiPuBi)" : "Authentic System Interface (SiPuBi)"}</span>
+                </div>
+                <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 font-semibold">
+                  Laravel + Blade + MySQL
+                </span>
+              </div>
+
+              {/* Tab Selector */}
+              <div className="flex flex-wrap gap-1.5 p-1 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
+                {SIPUBI_SCREENSHOTS.map((screen) => (
+                  <button
+                    key={screen.id}
+                    type="button"
+                    onClick={() => setActiveSipubiTab(screen.id)}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all focus:outline-none ${
+                      activeSipubiTab === screen.id
+                        ? "bg-white dark:bg-slate-800 text-sky-600 dark:text-sky-400 shadow-xs"
+                        : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                    }`}
+                  >
+                    {screen.title[language]}
+                  </button>
+                ))}
+              </div>
+
+              {/* Browser Window Mockup Frame with Real Screenshot */}
+              <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-hidden shadow-xl">
+                {/* Browser Top Chrome */}
+                <div className="flex items-center justify-between px-3 py-2 border-b border-slate-800 bg-slate-900/90 text-xs">
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-2.5 h-2.5 rounded-full bg-rose-500" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-amber-500" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
+                  </div>
+                  <div className="flex items-center gap-2 px-3 py-0.5 rounded-md bg-slate-950 border border-slate-800 font-mono text-[11px] text-slate-300 w-full max-w-sm justify-center">
+                    <span className="text-emerald-400 text-[10px]">https://</span>
+                    <span>{currentSipubiScreen.url}</span>
+                  </div>
+                  <span className="text-[10px] font-mono text-slate-500 hidden sm:inline">SiPuBi</span>
+                </div>
+
+                {/* Real Image Canvas */}
+                <div className="relative w-full aspect-[16/9] bg-slate-900">
+                  <Image
+                    src={currentSipubiScreen.image}
+                    alt={currentSipubiScreen.title[language]}
+                    fill
+                    className="object-contain object-top"
+                    sizes="(max-width: 768px) 100vw, 800px"
+                    priority
+                  />
+                </div>
+
+                {/* Screenshot caption footer */}
+                <div className="p-3 bg-slate-900/90 border-t border-slate-800 flex items-start gap-2.5 text-xs text-slate-300">
+                  <span className="text-sky-400 font-bold font-mono shrink-0">&gt;</span>
+                  <p className="leading-relaxed">{currentSipubiScreen.description[language]}</p>
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* Interactive Flow / Architecture Diagram */}
           {isSiPuBi && (
             <div className="rounded-xl border border-sky-200 dark:border-sky-900/60 bg-sky-50/40 dark:bg-sky-950/20 p-5 space-y-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-sky-700 dark:text-sky-300">
                   <Layers className="w-4 h-4 text-sky-500" />
-                  <span>{language === "id" ? "Alur Verifikasi Distribusi Pupuk Subsidi" : "Subsidized Fertilizer Distribution Workflow"}</span>
+                  <span>
+                    {language === "id"
+                      ? "Alur Verifikasi Distribusi Pupuk Subsidi"
+                      : "Subsidized Fertilizer Distribution Workflow"}
+                  </span>
                 </div>
                 <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 font-semibold">
                   {language === "id" ? "Terverifikasi Resmi" : "Officially Certified"}
@@ -111,7 +247,9 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                     1
                   </div>
                   <p className="font-bold text-slate-900 dark:text-white font-sans text-xs">Petani Terdaftar</p>
-                  <p className="text-[11px] text-slate-500 font-sans">Validasi NIK dan kelompok tani penerima alokasi kuota.</p>
+                  <p className="text-[11px] text-slate-500 font-sans">
+                    Validasi NIK dan kelompok tani penerima alokasi kuota.
+                  </p>
                 </div>
 
                 <div className="p-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1">
@@ -119,7 +257,9 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                     2
                   </div>
                   <p className="font-bold text-slate-900 dark:text-white font-sans text-xs">Pengecekan Kuota</p>
-                  <p className="text-[11px] text-slate-500 font-sans">Verifikasi sisa jatah pupuk (Urea, NPK) secara real-time.</p>
+                  <p className="text-[11px] text-slate-500 font-sans">
+                    Verifikasi sisa jatah pupuk (Urea, NPK) secara real-time.
+                  </p>
                 </div>
 
                 <div className="p-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1">
@@ -127,7 +267,9 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                     3
                   </div>
                   <p className="font-bold text-slate-900 dark:text-white font-sans text-xs">Tebus Kios Resmi</p>
-                  <p className="text-[11px] text-slate-500 font-sans">Penebusan tercatat pada outlet distributor resmi wilayah.</p>
+                  <p className="text-[11px] text-slate-500 font-sans">
+                    Penebusan tercatat pada outlet distributor resmi wilayah.
+                  </p>
                 </div>
 
                 <div className="p-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1">
@@ -135,7 +277,9 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                     4
                   </div>
                   <p className="font-bold text-slate-900 dark:text-white font-sans text-xs">Audit &amp; Laporan</p>
-                  <p className="text-[11px] text-slate-500 font-sans">Rekapitulasi otomatis neraca penyaluran untuk dinas terkait.</p>
+                  <p className="text-[11px] text-slate-500 font-sans">
+                    Rekapitulasi otomatis neraca penyaluran untuk dinas terkait.
+                  </p>
                 </div>
               </div>
 
@@ -145,14 +289,18 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                   <Database className="w-4 h-4 text-sky-500 shrink-0 mt-0.5" />
                   <div>
                     <strong className="text-slate-900 dark:text-white">Relational Data Integrity:</strong>
-                    <p className="text-slate-500 dark:text-slate-400 text-[11px]">Mencegah selisih pencatatan distribusi pupuk dan manipulasi data kuota ganda.</p>
+                    <p className="text-slate-500 dark:text-slate-400 text-[11px]">
+                      Mencegah selisih pencatatan distribusi pupuk dan manipulasi data kuota ganda.
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start gap-2 p-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
                   <ShieldCheck className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
                   <div>
                     <strong className="text-slate-900 dark:text-white">Role-Based Access Control:</strong>
-                    <p className="text-slate-500 dark:text-slate-400 text-[11px]">Pemisahan wewenang antara Admin Wilayah, Pengelola Kios, dan Auditor Pemerintah.</p>
+                    <p className="text-slate-500 dark:text-slate-400 text-[11px]">
+                      Pemisahan wewenang antara Admin Wilayah, Pengelola Kios, dan Petani Terdaftar.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -164,7 +312,11 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-sky-700 dark:text-sky-300">
                   <Activity className="w-4 h-4 text-sky-500" />
-                  <span>{language === "id" ? "Arsitektur Layanan Fasilitas Kesehatan Terpadu" : "Integrated Healthcare Services Architecture"}</span>
+                  <span>
+                    {language === "id"
+                      ? "Arsitektur Layanan Fasilitas Kesehatan Terpadu"
+                      : "Integrated Healthcare Services Architecture"}
+                  </span>
                 </div>
                 <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-sky-100 dark:bg-sky-950 text-sky-700 dark:text-sky-300 font-semibold">
                   TypeScript + Blade
@@ -216,7 +368,11 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
             <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 p-5 space-y-3">
               <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
                 <Calendar className="w-4 h-4 text-sky-500" />
-                <span>{language === "id" ? "Modul Operasional Klinik Digital (Paperless)" : "Paperless Dental Clinic Operations"}</span>
+                <span>
+                  {language === "id"
+                    ? "Modul Operasional Klinik Digital (Paperless)"
+                    : "Paperless Dental Clinic Operations"}
+                </span>
               </div>
               <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
                 {language === "id"
@@ -230,7 +386,11 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
             <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 p-5 space-y-3">
               <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
                 <ShieldCheck className="w-4 h-4 text-sky-500" />
-                <span>{language === "id" ? "Alur Otorisasi & Kuota Cuti Karyawan" : "Leave Authorization & Quota Lifecycle"}</span>
+                <span>
+                  {language === "id"
+                    ? "Alur Otorisasi & Kuota Cuti Karyawan"
+                    : "Leave Authorization & Quota Lifecycle"}
+                </span>
               </div>
               <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
                 {language === "id"
@@ -247,7 +407,10 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
             </h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {project.highlights[language].map((item, idx) => (
-                <div key={idx} className="flex items-start gap-2 text-xs text-slate-700 dark:text-slate-300 p-2.5 rounded-lg bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-slate-800">
+                <div
+                  key={idx}
+                  className="flex items-start gap-2 text-xs text-slate-700 dark:text-slate-300 p-2.5 rounded-lg bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-slate-800"
+                >
                   <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
                   <span>{item}</span>
                 </div>
@@ -290,7 +453,9 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2 rounded-lg bg-sky-600 hover:bg-sky-500 text-white text-xs sm:text-sm font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-sky-500 shadow-xs min-h-[38px]"
           >
             <GithubIcon className="w-4 h-4" />
-            <span>{language === "id" ? "Lihat Source Code di GitHub" : "View Source Code on GitHub"}</span>
+            <span>
+              {language === "id" ? "Lihat Source Code di GitHub" : "View Source Code on GitHub"}
+            </span>
             <ExternalLink className="w-4 h-4" />
           </a>
         </div>
