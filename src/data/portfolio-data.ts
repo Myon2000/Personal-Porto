@@ -198,30 +198,30 @@ export const FEATURED_PROJECTS: ProjectItem[] = [
   },
   {
     id: "nila-health",
-    title: "NilaHealth: Platform Layanan Kesehatan Digital",
+    title: "NilaHealth: Deteksi Penyakit Ikan Nila Berbasis CNN & Manajemen Tambak",
     category: "web",
     featured: true,
     badge: {
-      id: "Aplikasi Kesehatan",
-      en: "Healthcare Platform",
+      id: "Kemitraan Peternak Jember",
+      en: "Aquaculture AI & Farmer Partnership",
     },
     description: {
-      id: "Platform layanan digital untuk sektor kesehatan yang mempermudah organisasi data kesehatan, visualisasi informasi fasilitas medis, dan pengalaman pengguna yang intuitif melalui komponen berbasis TypeScript dan Blade.",
-      en: "Digital healthcare platform built to streamline health data management, medical service facility visualization, and intuitive patient interaction using modern component design.",
+      id: "Sistem cerdas penanggulangan kematian ikan nila hasil kemitraan dengan kelompok pembudidaya ikan air tawar di Jember. Mengintegrasikan aplikasi web Laravel dengan model Deep Learning CNN (EfficientNet via Flask) untuk mendeteksi 5 jenis penyakit infeksius (Streptococcosis, Columnaris, Aeromonas/MAS, TiLV, Parasit) dan kondisi sehat, dilengkapi rekomendasi SOP penanganan kuratif dan penjadwalan pemeliharaan kolam.",
+      en: "Smart aquaculture disease prevention system built in partnership with local tilapia fish farmers in Jember to reduce mortality rates. Integrates Laravel web architecture with a CNN Deep Learning model (EfficientNet via Flask microservice) to classify 5 infectious fish pathologies and healthy tilapia, providing automated curative SOP recommendations and pond maintenance scheduling.",
     },
     highlights: {
       id: [
-        "Dibangun dalam varian TypeScript modern dan arsitektur Blade",
-        "Desain antarmuka responsif dan ramah aksesibilitas",
-        "Struktur data modular untuk kemudahan skalabilitas fitur",
+        "Model CNN (EfficientNet) untuk klasifikasi 6 kondisi patologis ikan nila",
+        "Arsitektur Microservice: Laravel 12 Web Core + Python Flask AI API",
+        "Rekomendasi kuratif otomatis (SOP medis) & penjadwalan perawatan kolam",
       ],
       en: [
-        "Developed across modern TypeScript and Blade architectures",
-        "Responsive, accessibility-focused interface design",
-        "Modular data structures for straightforward feature scaling",
+        "CNN (EfficientNet) classifier trained across 6 tilapia pathology classes",
+        "Microservice architecture: Laravel 12 Web App + Python Flask AI API",
+        "Automated treatment SOP recommendations & recurring pond care scheduling",
       ],
     },
-    tags: ["TypeScript", "PHP", "Blade", "Tailwind CSS", "Healthcare"],
+    tags: ["Laravel", "Python", "Flask", "CNN (EfficientNet)", "Aquaculture AI", "MySQL"],
     githubUrl: "https://github.com/Myon2000/NilaHealth2",
   },
   {

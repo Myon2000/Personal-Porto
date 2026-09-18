@@ -53,4 +53,7 @@ declare module 'lucide-react' {
   export const RotateCw: Icon;
   export const Info: Icon;
   export const Sliders: Icon;
+  export const Fish: Icon;
+  export const Server: Icon;
+  export const AlertCircle: Icon;
 }

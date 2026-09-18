@@ -79,9 +79,109 @@ const SIPUBI_SCREENSHOTS = [
   },
 ];
 
+const NILAHEALTH_PREDICTIONS = [
+  {
+    id: "pred1",
+    title: {
+      id: "Prediksi 1: Streptococcosis (98.4%)",
+      en: "Inference 1: Streptococcosis (98.4%)",
+    },
+    image: "/projects/nilahealth/pred1.png",
+    disease: "Streptococcosis",
+    severity: {
+      id: "Tinggi (High Risk)",
+      en: "High Risk",
+    },
+    symptom: {
+      id: "Mata menonjol (exophthalmia), gerakan renang berputar (whirling), dan pendarahan di dasar sirip.",
+      en: "Exophthalmia (pop-eye), erratic spinning swimming pattern, and hemorrhages around fin bases.",
+    },
+    treatment: {
+      id: "Isolasi ikan sakit, berikan antibiotik spektrum luas sesuai dosis, dan naikkan aerasi oksigen kolam.",
+      en: "Isolate symptomatic fish, administer broad-spectrum antibiotics, and increase dissolved oxygen aeration.",
+    },
+  },
+  {
+    id: "pred2",
+    title: {
+      id: "Prediksi 2: Columnaris Disease (95.2%)",
+      en: "Inference 2: Columnaris Disease (95.2%)",
+    },
+    image: "/projects/nilahealth/pred2.png",
+    disease: "Columnaris Disease",
+    severity: {
+      id: "Menengah (Moderate)",
+      en: "Moderate",
+    },
+    symptom: {
+      id: "Lesi putih menyerupai kapas di punggung, erosi sirip (fin rot), serta kerusakan filamen insang.",
+      en: "Cotton-like white lesions on skin, dorsal fin erosion (fin rot), and necrotic gill filaments.",
+    },
+    treatment: {
+      id: "Kuras lumpur dasar kolam, ganti air 40-50%, dan lakukan perendaman larutan garam (NaCl) atau oxytetracycline.",
+      en: "Siphon bottom sludge, perform 40-50% water exchange, and apply salt immersion (NaCl) or oxytetracycline bath.",
+    },
+  },
+  {
+    id: "pred3",
+    title: {
+      id: "Prediksi 3: Sampel Tambak Peternak",
+      en: "Inference 3: Partner Farm Sample",
+    },
+    image: "/projects/nilahealth/pred3.png",
+    disease: "Field Pathology Test",
+    severity: {
+      id: "Verifikasi Otomatis",
+      en: "Automated Verification",
+    },
+    symptom: {
+      id: "Hasil uji langsung citra ikan nila di tambak mitra Jember dengan inferensi bounding box hijau otomatis.",
+      en: "Direct trial inference from Jember partner aquaculture ponds with automated green bounding box detection.",
+    },
+    treatment: {
+      id: "Pemberian pakan bernutrisi dengan vitamin C untuk penguatan antibodi alami dan desinfeksi wadah jaring.",
+      en: "High-protein feeding fortified with vitamin C immunostimulants and aquaculture netting disinfection.",
+    },
+  },
+];
+
+const NILA_CLASSES = [
+  {
+    name: "Streptococcosis",
+    type: "Bakteri (Streptococcus)",
+    sop: "Antibiotik spektrum luas, isolasi ikan sakit, dan perbaikan aerasi.",
+  },
+  {
+    name: "Columnaris Disease",
+    type: "Bakteri (Flavobacterium)",
+    sop: "Ganti air kolam 50%, kuras lumpur, dan gunakan oxytetracycline.",
+  },
+  {
+    name: "Motile Aeromonad (MAS)",
+    type: "Bakteri (Aeromonas)",
+    sop: "Enrofloxacin terukur pada pakan, kurangi pakan sisa, dan pantau amonia.",
+  },
+  {
+    name: "Tilapia Lake Virus (TiLV)",
+    type: "Virus Patogen",
+    sop: "Karantina ketat, pakan berimunostimulan, dan desinfeksi perlengkapan tambak.",
+  },
+  {
+    name: "Parasitic Diseases",
+    type: "Parasit (Trichodina)",
+    sop: "Perendaman garam dapur (NaCl) 1-3% atau formalin terukur.",
+  },
+  {
+    name: "Normal Nile Tilapia",
+    type: "Ikan Sehat (Kontrol)",
+    sop: "Kondisi ikan prima, sisik cerah, dan refleks aktif. Lanjutkan SOP pakan rutin.",
+  },
+];
+
 export default function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
   const { language } = useLanguage();
   const [activeSipubiTab, setActiveSipubiTab] = useState(SIPUBI_SCREENSHOTS[0].id);
+  const [activeNilaTab, setActiveNilaTab] = useState(NILAHEALTH_PREDICTIONS[0].id);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -108,6 +208,9 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
 
   const currentSipubiScreen =
     SIPUBI_SCREENSHOTS.find((s) => s.id === activeSipubiTab) || SIPUBI_SCREENSHOTS[0];
+
+  const currentNilaScreen =
+    NILAHEALTH_PREDICTIONS.find((s) => s.id === activeNilaTab) || NILAHEALTH_PREDICTIONS[0];
 
   return (
     <div
@@ -308,58 +411,230 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
           )}
 
           {isNilaHealth && (
-            <div className="rounded-xl border border-sky-200 dark:border-sky-900/60 bg-sky-50/40 dark:bg-sky-950/20 p-5 space-y-4">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-sky-700 dark:text-sky-300">
-                  <Activity className="w-4 h-4 text-sky-500" />
-                  <span>
-                    {language === "id"
-                      ? "Arsitektur Layanan Fasilitas Kesehatan Terpadu"
-                      : "Integrated Healthcare Services Architecture"}
+            <div className="space-y-6">
+              {/* Top Partnership & Tech Ribbon */}
+              <div className="p-4 rounded-xl border border-sky-200 dark:border-sky-900/60 bg-sky-50/50 dark:bg-sky-950/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <div className="relative w-10 h-10 rounded-lg overflow-hidden bg-sky-600 p-1 shrink-0 shadow-xs">
+                    <Image
+                      src="/projects/nilahealth/logo.png"
+                      alt="NilaHealth Logo"
+                      fill
+                      className="object-contain"
+                      sizes="40px"
+                    />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-bold text-slate-900 dark:text-white">
+                      {language === "id"
+                        ? "Kemitraan Pembudidaya Ikan Nila Jember"
+                        : "Jember Tilapia Aquaculture Farmer Partnership"}
+                    </h4>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">
+                      {language === "id"
+                        ? "Proyek Mata Kuliah ADPL / PPL Fasilkom UNEJ untuk Menekan Angka Kematian Ikan"
+                        : "Software Engineering (ADPL/PPL) Project to Mitigate Tilapia Mortality Rates"}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-1.5 flex-wrap">
+                  <span className="px-2 py-0.5 rounded text-[11px] font-mono bg-sky-100 dark:bg-sky-950 text-sky-700 dark:text-sky-300 font-semibold border border-sky-200 dark:border-sky-800">
+                    Laravel 12
+                  </span>
+                  <span className="px-2 py-0.5 rounded text-[11px] font-mono bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 font-semibold border border-indigo-200 dark:border-indigo-800">
+                    Flask AI API
+                  </span>
+                  <span className="px-2 py-0.5 rounded text-[11px] font-mono bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 font-semibold border border-emerald-200 dark:border-emerald-800">
+                    EfficientNet CNN
                   </span>
                 </div>
-                <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-sky-100 dark:bg-sky-950 text-sky-700 dark:text-sky-300 font-semibold">
-                  TypeScript + Blade
-                </span>
               </div>
 
-              {/* Service Pipeline */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-                <div className="p-3.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1.5">
-                  <div className="flex items-center gap-1.5 text-sky-600 dark:text-sky-400 font-bold">
-                    <Users className="w-4 h-4" />
-                    <span>Portal Pasien</span>
+              {/* Real Prediction Showcase with Bounding Box */}
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-sky-700 dark:text-sky-300">
+                    <Eye className="w-4 h-4 text-sky-500" />
+                    <span>
+                      {language === "id"
+                        ? "Hasil Deteksi Citra Model CNN Lapangan (Bounding Box)"
+                        : "Field CNN Model Detection Outputs (Automated Bounding Box)"}
+                    </span>
                   </div>
-                  <p className="text-slate-500 dark:text-slate-400 text-[11px]">
-                    {language === "id"
-                      ? "Pencarian fasilitas kesehatan terdekat, jadwal poliklinik aktif, dan pendaftaran mandiri."
-                      : "Healthcare facility locator, active polyclinic schedule, and patient self-registration."}
-                  </p>
+                  <span className="text-[11px] font-mono text-slate-500 dark:text-slate-400">
+                    Confidence Threshold &ge; 80%
+                  </span>
                 </div>
 
-                <div className="p-3.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1.5">
-                  <div className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-bold">
-                    <Calendar className="w-4 h-4" />
-                    <span>Antrean &amp; Jadwal</span>
-                  </div>
-                  <p className="text-slate-500 dark:text-slate-400 text-[11px]">
-                    {language === "id"
-                      ? "Estimasi waktu tunggu tindakan medis dan nomor antrean terotomatisasi."
-                      : "Automated queue number assignment and medical examination waiting time estimation."}
-                  </p>
+                {/* Prediction Selector Tabs */}
+                <div className="flex flex-wrap gap-1.5 p-1 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
+                  {NILAHEALTH_PREDICTIONS.map((screen) => (
+                    <button
+                      key={screen.id}
+                      type="button"
+                      onClick={() => setActiveNilaTab(screen.id)}
+                      className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all focus:outline-none ${
+                        activeNilaTab === screen.id
+                          ? "bg-white dark:bg-slate-800 text-sky-600 dark:text-sky-400 shadow-xs"
+                          : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                      }`}
+                    >
+                      {screen.title[language]}
+                    </button>
+                  ))}
                 </div>
 
-                <div className="p-3.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1.5">
-                  <div className="flex items-center gap-1.5 text-indigo-600 dark:text-indigo-400 font-bold">
-                    <Database className="w-4 h-4" />
-                    <span>Dashboard Tenaga Medis</span>
+                {/* Image Frame */}
+                <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-hidden shadow-lg">
+                  <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] bg-slate-900">
+                    <Image
+                      src={currentNilaScreen.image}
+                      alt={currentNilaScreen.title[language]}
+                      fill
+                      className="object-contain p-2"
+                      sizes="(max-width: 768px) 100vw, 800px"
+                      priority
+                    />
                   </div>
-                  <p className="text-slate-500 dark:text-slate-400 text-[11px]">
-                    {language === "id"
-                      ? "Pencatatan riwayat anamnesa, resep obat, dan resume medis terstruktur."
-                      : "Structured medical intake records, prescription logs, and clinical summary."}
-                  </p>
+
+                  <div className="p-4 bg-slate-900/95 border-t border-slate-800 space-y-2 text-xs">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <div className="flex items-center gap-2">
+                        <span className="font-bold text-white text-sm">
+                          {currentNilaScreen.disease}
+                        </span>
+                        <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                          {currentNilaScreen.severity[language]}
+                        </span>
+                      </div>
+                      <span className="text-[11px] font-mono text-emerald-400">
+                        {language === "id" ? "Anotasi Hijau Otomatis (Matplotlib)" : "Auto Green Bounding Box"}
+                      </span>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 text-[11px] text-slate-300">
+                      <div>
+                        <strong className="text-slate-400 block mb-0.5">
+                          {language === "id" ? "Gejala Terdeteksi:" : "Observed Pathology:"}
+                        </strong>
+                        <p>{currentNilaScreen.symptom[language]}</p>
+                      </div>
+                      <div>
+                        <strong className="text-emerald-400 block mb-0.5">
+                          {language === "id" ? "Rekomendasi Tindakan (SOP):" : "Curative Protocol (SOP):"}
+                        </strong>
+                        <p>{currentNilaScreen.treatment[language]}</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+              </div>
+
+              {/* 3-Tier Microservices Architecture Flow */}
+              <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/40 p-5 space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+                    <Layers className="w-4 h-4 text-sky-500" />
+                    <span>
+                      {language === "id"
+                        ? "Arsitektur Microservices (Laravel + Flask AI)"
+                        : "Microservices Architecture (Laravel + Flask AI)"}
+                    </span>
+                  </div>
+                  <span className="text-[11px] font-mono text-sky-600 dark:text-sky-400 font-medium">
+                    REST API HTTP Client
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                  <div className="p-3.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1.5">
+                    <div className="flex items-center gap-1.5 text-sky-600 dark:text-sky-400 font-bold">
+                      <Users className="w-4 h-4" />
+                      <span>1. Web App Peternak</span>
+                    </div>
+                    <p className="text-slate-500 dark:text-slate-400 text-[11px] leading-relaxed">
+                      {language === "id"
+                        ? "Peternak mengunggah foto ikan nila bergejala melalui form Blade/Tailwind dan mengelola jadwal pakan tambak."
+                        : "Farmers upload symptomatic tilapia photos through Blade/Tailwind UI and manage pond feeding schedules."}
+                    </p>
+                  </div>
+
+                  <div className="p-3.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1.5">
+                    <div className="flex items-center gap-1.5 text-indigo-600 dark:text-indigo-400 font-bold">
+                      <Activity className="w-4 h-4" />
+                      <span>2. Flask AI Microservice</span>
+                    </div>
+                    <p className="text-slate-500 dark:text-slate-400 text-[11px] leading-relaxed">
+                      {language === "id"
+                        ? "Validasi dimensi 224x224, inferensi EfficientNet CNN, verifikasi confidence ≥80%, dan pembuatan bounding box."
+                        : "Image 224x224 normalization, EfficientNet CNN forward pass, confidence filtering ≥80%, and bounding box drawing."}
+                    </p>
+                  </div>
+
+                  <div className="p-3.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1.5">
+                    <div className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-bold">
+                      <Database className="w-4 h-4" />
+                      <span>3. SOP Penanganan &amp; DB</span>
+                    </div>
+                    <p className="text-slate-500 dark:text-slate-400 text-[11px] leading-relaxed">
+                      {language === "id"
+                        ? "MySQL menarik dosis antibiotik, protokol karantina, serta memicu notifikasi email jadwal perawatan kolam."
+                        : "MySQL pulls curative antibiotic dosages, quarantine guidelines, and triggers pond maintenance email alerts."}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* 6 Pathology Classes Grid */}
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                    {language === "id"
+                      ? "6 Klasifikasi Kondisi Ikan Nila pada Model:"
+                      : "6 Tilapia Pathology & Health Classes in Model:"}
+                  </h4>
+                  <span className="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold">
+                    final_model.keras
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+                  {NILA_CLASSES.map((item, idx) => (
+                    <div
+                      key={idx}
+                      className="p-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1 text-xs"
+                    >
+                      <div className="flex items-center justify-between">
+                        <strong className="text-slate-900 dark:text-white font-medium">
+                          {item.name}
+                        </strong>
+                      </div>
+                      <p className="text-[10px] font-mono text-sky-600 dark:text-sky-400">{item.type}</p>
+                      <p className="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed pt-0.5">
+                        <span className="font-semibold text-slate-700 dark:text-slate-300">SOP:</span> {item.sop}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Pond Management Highlight */}
+              <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+                <div className="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+                  <Calendar className="w-4 h-4 text-sky-500 shrink-0" />
+                  <span>
+                    <strong className="text-slate-900 dark:text-white">
+                      {language === "id" ? "Fitur Manajemen Tambak:" : "Pond Management Suite:"}
+                    </strong>{" "}
+                    {language === "id"
+                      ? "Penjadwalan rutin pemberian pakan, pembersihan lumpur kolam, dan notifikasi email terotomatisasi."
+                      : "Recurring feeding schedules, pond silt cleaning, and automated email alerts for farmers."}
+                  </span>
+                </div>
+                <span className="text-[11px] font-mono text-slate-400 shrink-0">
+                  ADPL &amp; PPL Project
+                </span>
               </div>
             </div>
           )}
