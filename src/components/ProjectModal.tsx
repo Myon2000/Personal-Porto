@@ -79,68 +79,111 @@ const SIPUBI_SCREENSHOTS = [
   },
 ];
 
-const NILAHEALTH_PREDICTIONS = [
+interface NilaPrediction {
+  id: string;
+  title: { id: string; en: string };
+  image: string;
+  historyImage?: string;
+  disease: string;
+  categoryType: string;
+  confidence: string;
+  severity: { id: string; en: string };
+  symptom: { id: string; en: string };
+  treatment: { id: string; en: string };
+}
+
+const NILAHEALTH_PREDICTIONS: NilaPrediction[] = [
   {
     id: "pred1",
     title: {
-      id: "Prediksi 1: Streptococcosis (98.4%)",
-      en: "Inference 1: Streptococcosis (98.4%)",
+      id: "Streptococcosis (98.2%)",
+      en: "Streptococcosis (98.2%)",
     },
-    image: "/projects/nilahealth/pred1.png",
+    image: "/projects/nilahealth/streptococcosis.jpg",
     disease: "Streptococcosis",
+    categoryType: "Bakteri (Streptococcus agalactiae)",
+    confidence: "98.2%",
     severity: {
       id: "Tinggi (High Risk)",
       en: "High Risk",
     },
     symptom: {
-      id: "Mata menonjol (exophthalmia), gerakan renang berputar (whirling), dan pendarahan di dasar sirip.",
-      en: "Exophthalmia (pop-eye), erratic spinning swimming pattern, and hemorrhages around fin bases.",
+      id: "Mata menonjol (exophthalmia), pembengkakan rongga perut (dropsy), dan pendarahan di pangkal sirip.",
+      en: "Exophthalmia (pop-eye), abdominal dropsy, and hemorrhages around fin bases.",
     },
     treatment: {
-      id: "Isolasi ikan sakit, berikan antibiotik spektrum luas sesuai dosis, dan naikkan aerasi oksigen kolam.",
+      id: "Isolasi ikan sakit, berikan antibiotik spektrum luas sesuai dosis dinas, dan tingkatkan aerasi oksigen kolam.",
       en: "Isolate symptomatic fish, administer broad-spectrum antibiotics, and increase dissolved oxygen aeration.",
     },
   },
   {
     id: "pred2",
     title: {
-      id: "Prediksi 2: Columnaris Disease (95.2%)",
-      en: "Inference 2: Columnaris Disease (95.2%)",
+      id: "Columnaris Disease (96.8%)",
+      en: "Columnaris Disease (96.8%)",
     },
-    image: "/projects/nilahealth/pred2.png",
+    image: "/projects/nilahealth/columnaris.jpg",
     disease: "Columnaris Disease",
+    categoryType: "Bakteri (Flavobacterium columnare)",
+    confidence: "96.8%",
     severity: {
       id: "Menengah (Moderate)",
       en: "Moderate",
     },
     symptom: {
-      id: "Lesi putih menyerupai kapas di punggung, erosi sirip (fin rot), serta kerusakan filamen insang.",
+      id: "Lesi putih menyerupai kapas di punggung (saddleback), erosi sirip (fin rot), serta kerusakan filamen insang.",
       en: "Cotton-like white lesions on skin, dorsal fin erosion (fin rot), and necrotic gill filaments.",
     },
     treatment: {
-      id: "Kuras lumpur dasar kolam, ganti air 40-50%, dan lakukan perendaman larutan garam (NaCl) atau oxytetracycline.",
+      id: "Kuras lumpur dasar kolam, ganti air 40-50%, dan lakukan perendaman larutan garam (NaCl 1-3%) atau oxytetracycline.",
       en: "Siphon bottom sludge, perform 40-50% water exchange, and apply salt immersion (NaCl) or oxytetracycline bath.",
     },
   },
   {
     id: "pred3",
     title: {
-      id: "Prediksi 3: Sampel Tambak Peternak",
-      en: "Inference 3: Partner Farm Sample",
+      id: "Normal Nile Tilapia (99.1%)",
+      en: "Normal Nile Tilapia (99.1%)",
     },
-    image: "/projects/nilahealth/pred3.png",
-    disease: "Field Pathology Test",
+    image: "/projects/nilahealth/normal.jpg",
+    disease: "Normal Nile Tilapia",
+    categoryType: "Ikan Sehat (Kontrol Normal)",
+    confidence: "99.1%",
     severity: {
-      id: "Verifikasi Otomatis",
-      en: "Automated Verification",
+      id: "Kondisi Sehat",
+      en: "Healthy Condition",
     },
     symptom: {
-      id: "Hasil uji langsung citra ikan nila di tambak mitra Jember dengan inferensi bounding box hijau otomatis.",
-      en: "Direct trial inference from Jember partner aquaculture ponds with automated green bounding box detection.",
+      id: "Morfologi ikan prima, sisik utuh berkilau, refleks renang gesit, dan bebas dari lesi atau pendarahan eksternal.",
+      en: "Intact reflective scales, active swimming reflex, clear cornea, and zero external lesions or hemorrhages.",
     },
     treatment: {
-      id: "Pemberian pakan bernutrisi dengan vitamin C untuk penguatan antibodi alami dan desinfeksi wadah jaring.",
-      en: "High-protein feeding fortified with vitamin C immunostimulants and aquaculture netting disinfection.",
+      id: "Kondisi optimal. Pertahankan jadwal pemberian pakan berbobot dan pembersihan berkala tambak.",
+      en: "Optimal condition. Maintain regular feeding schedule and periodic water exchange cycles.",
+    },
+  },
+  {
+    id: "eval",
+    title: {
+      id: "Confusion Matrix & Metrik",
+      en: "Confusion Matrix & Metrics",
+    },
+    image: "/projects/nilahealth/confusion_matrix.png",
+    historyImage: "/projects/nilahealth/training_history.png",
+    disease: "Model Evaluation Report",
+    categoryType: "EfficientNet CNN Metrics",
+    confidence: "6 Classes",
+    severity: {
+      id: "Evaluasi Empiris",
+      en: "Empirical Evaluation",
+    },
+    symptom: {
+      id: "Matriks konfusi riil dan kurva akurasi/loss pelatihan model EfficientNet pada klasifikasi 6 kondisi ikan nila.",
+      en: "Empirical Confusion Matrix and training accuracy/loss curves for the EfficientNet tilapia classifier.",
+    },
+    treatment: {
+      id: "Model dilatih hingga konvergen dengan evaluasi seimbang antar kelas penyakit untuk menekan false negative.",
+      en: "Model trained to optimal convergence with balanced evaluation across classes to minimize false negatives.",
     },
   },
 ];
@@ -487,16 +530,54 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
 
                 {/* Image Frame */}
                 <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-950 overflow-hidden shadow-lg">
-                  <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] bg-slate-900">
-                    <Image
-                      src={currentNilaScreen.image}
-                      alt={currentNilaScreen.title[language]}
-                      fill
-                      className="object-contain p-2"
-                      sizes="(max-width: 768px) 100vw, 800px"
-                      priority
-                    />
-                  </div>
+                  {currentNilaScreen.id === "eval" ? (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-4 bg-slate-900">
+                      <div className="space-y-1.5">
+                        <p className="text-[11px] font-mono text-slate-400 text-center">Confusion Matrix (6 Classes)</p>
+                        <div className="relative w-full aspect-square bg-white rounded-lg overflow-hidden border border-slate-800">
+                          <Image
+                            src={currentNilaScreen.image}
+                            alt="Confusion Matrix"
+                            fill
+                            className="object-contain p-2"
+                            sizes="(max-width: 768px) 100vw, 400px"
+                            priority
+                          />
+                        </div>
+                      </div>
+                      <div className="space-y-1.5">
+                        <p className="text-[11px] font-mono text-slate-400 text-center">Training &amp; Validation Curves</p>
+                        <div className="relative w-full aspect-square bg-white rounded-lg overflow-hidden border border-slate-800">
+                          <Image
+                            src={currentNilaScreen.historyImage || currentNilaScreen.image}
+                            alt="Training History"
+                            fill
+                            className="object-contain p-2"
+                            sizes="(max-width: 768px) 100vw, 400px"
+                            priority
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] bg-slate-900 flex items-center justify-center">
+                      <Image
+                        src={currentNilaScreen.image}
+                        alt={currentNilaScreen.title[language]}
+                        fill
+                        className="object-contain p-2"
+                        sizes="(max-width: 768px) 100vw, 800px"
+                        priority
+                      />
+
+                      {/* Automated Green Bounding Box Overlay matching Flask Matplotlib style */}
+                      <div className="absolute inset-4 sm:inset-6 border-2 sm:border-4 border-lime-400 rounded-lg pointer-events-none shadow-[0_0_15px_rgba(163,230,53,0.35)]">
+                        <div className="absolute top-2 left-2 px-2.5 py-1 rounded bg-emerald-700/95 text-white font-bold font-mono text-[11px] sm:text-xs shadow-md border border-emerald-500/40">
+                          {currentNilaScreen.disease}
+                        </div>
+                      </div>
+                    </div>
+                  )}
 
                   <div className="p-4 bg-slate-900/95 border-t border-slate-800 space-y-2 text-xs">
                     <div className="flex flex-wrap items-center justify-between gap-2">
@@ -509,14 +590,14 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                         </span>
                       </div>
                       <span className="text-[11px] font-mono text-emerald-400">
-                        {language === "id" ? "Anotasi Hijau Otomatis (Matplotlib)" : "Auto Green Bounding Box"}
+                        {currentNilaScreen.categoryType}
                       </span>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 text-[11px] text-slate-300">
                       <div>
                         <strong className="text-slate-400 block mb-0.5">
-                          {language === "id" ? "Gejala Terdeteksi:" : "Observed Pathology:"}
+                          {language === "id" ? "Gejala Terdeteksi / Lingkup Evaluasi:" : "Observed Pathology / Metric Scope:"}
                         </strong>
                         <p>{currentNilaScreen.symptom[language]}</p>
                       </div>
