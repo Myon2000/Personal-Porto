@@ -28,6 +28,8 @@ declare module 'lucide-react' {
   export const CheckCircle: Icon;
   export const CheckCircle2: Icon;
   export const ArrowRight: Icon;
+  export const ArrowLeft: Icon;
+  export const ArrowDown: Icon;
   export const ArrowUpRight: Icon;
   export const Database: Icon;
   export const Cpu: Icon;

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { useLanguage } from "@/context/language-context";
 import ThemeToggle from "@/components/ThemeToggle";
 import LanguageToggle from "@/components/LanguageToggle";
@@ -32,7 +33,7 @@ export default function Navbar() {
 
   // IntersectionObserver for active section highlight
   useEffect(() => {
-    const sections = ["about", "skills", "projects", "certificates", "experience", "contact"];
+    const sections = ["about", "capabilities", "projects", "credentials", "stack", "contact", "playground"];
     const sectionElements = sections
       .map((id) => document.getElementById(id))
       .filter((el): el is HTMLElement => el !== null);
@@ -70,18 +71,20 @@ export default function Navbar() {
   }, [mobileMenuOpen]);
 
   const navLinks = language === "id" ? [
-    { name: "Proyek", href: "#projects", id: "projects" },
     { name: "Tentang", href: "#about", id: "about" },
-    { name: "Keahlian", href: "#skills", id: "skills" },
-    { name: "Sertifikasi", href: "#certificates", id: "certificates" },
-    { name: "Pengalaman", href: "#experience", id: "experience" },
+    { name: "Keahlian", href: "#capabilities", id: "capabilities" },
+    { name: "Karya", href: "#projects", id: "projects" },
+    { name: "Prestasi", href: "#credentials", id: "credentials" },
+    { name: "Stack", href: "#stack", id: "stack" },
+    { name: "Game", href: "#playground", id: "playground" },
     { name: "Kontak", href: "#contact", id: "contact" },
   ] : [
-    { name: "Work", href: "#projects", id: "projects" },
     { name: "About", href: "#about", id: "about" },
-    { name: "Skills", href: "#skills", id: "skills" },
-    { name: "Certifications", href: "#certificates", id: "certificates" },
-    { name: "Experience", href: "#experience", id: "experience" },
+    { name: "Capabilities", href: "#capabilities", id: "capabilities" },
+    { name: "Work", href: "#projects", id: "projects" },
+    { name: "Credentials", href: "#credentials", id: "credentials" },
+    { name: "Stack", href: "#stack", id: "stack" },
+    { name: "Playground", href: "#playground", id: "playground" },
     { name: "Contact", href: "#contact", id: "contact" },
   ];
 
@@ -101,26 +104,37 @@ export default function Navbar() {
         />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 h-16 sm:h-20 flex items-center justify-between">
-        {/* Brand / Logo (Uppercase Tracked Monospace matching CollectUI) */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 h-16 sm:h-20 flex items-center justify-between">
+        {/* Brand / Logo with Real Photo Avatar */}
         <a
           href="#"
-          className="font-mono text-xs sm:text-sm font-semibold tracking-[0.22em] uppercase text-slate-950 dark:text-white hover:opacity-80 transition-opacity focus:outline-none focus:ring-1 focus:ring-slate-400"
+          className="flex items-center gap-2.5 font-mono text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase text-slate-950 dark:text-white hover:opacity-80 transition-opacity focus:outline-none"
           aria-label="Kembali ke atas"
         >
-          Oktavian Ramadhani
+          <div className="relative w-7 h-7 sm:w-8 sm:h-8 rounded-full overflow-hidden border border-slate-300 dark:border-slate-700 shrink-0 bg-slate-100 dark:bg-slate-800">
+            <Image
+              src="/avatar.png"
+              alt="Oktavian Ramadhani"
+              fill
+              className="object-cover"
+              sizes="32px"
+              priority
+            />
+          </div>
+          <span className="hidden sm:inline">Oktavian Ramadhani</span>
+          <span className="sm:hidden font-bold">Oktavian</span>
         </a>
 
-        {/* Desktop Navigation Links matching CollectUI text navigation */}
-        <div className="hidden md:flex items-center gap-6 lg:gap-8">
-          <nav className="flex items-center gap-6 lg:gap-8">
+        {/* Desktop Navigation Links matching Sandeep/CollectUI text navigation */}
+        <div className="hidden md:flex items-center gap-5 lg:gap-7">
+          <nav className="flex items-center gap-5 lg:gap-7">
             {navLinks.map((link) => {
               const isActive = activeSection === link.id;
               return (
                 <a
                   key={link.name}
                   href={link.href}
-                  className={`font-mono text-[11px] lg:text-xs tracking-[0.2em] uppercase transition-colors relative py-1 focus:outline-none ${
+                  className={`font-mono text-[11px] lg:text-xs tracking-[0.18em] uppercase transition-colors relative py-1 focus:outline-none ${
                     isActive
                       ? "text-slate-950 dark:text-white font-bold"
                       : "text-slate-500 hover:text-slate-950 dark:text-slate-400 dark:hover:text-white font-medium"
@@ -136,7 +150,7 @@ export default function Navbar() {
           </nav>
 
           {/* Minimal Controls: Language + Theme */}
-          <div className="flex items-center gap-2 pl-2 border-l border-slate-200 dark:border-slate-800">
+          <div className="flex items-center gap-2 pl-3 border-l border-slate-200 dark:border-slate-800">
             <LanguageToggle />
             <ThemeToggle />
           </div>
