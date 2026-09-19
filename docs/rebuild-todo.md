@@ -104,15 +104,20 @@ Dokumen ini adalah acuan kerja dan pelacak progres (*checklist*) perombakan meny
 - [x] Section `06 / Get In Touch`: Strip CTA penutup
 
 ### Fase 4: Pembangunan Halaman About (`/about`)
-- [ ] Buat page route `src/app/about/page.tsx`
-- [ ] Section `01 / About Me`: Potret asli Vian + biografi terkurasi
-- [ ] Section `02 / Curriculum Vitæ`: Tombol `[ Download Resume ]` mengunduh `/resume.pdf` + timeline pendidikan UNEJ IPK 3.84 & riwayat organisasi
-- [ ] Section `03 / Things I Believe`: Prinsip T.01 - T.03
-- [ ] Section `04 / How I Work?`: Kartu H.01 - H.04
-- [ ] Section `05 / Contact Form`: Komponen formulir kontak lengkap 3-channel (`ContactSection`)
+- [x] Buat page route `src/app/about/page.tsx`
+- [x] Section `01 / About Me`: Potret asli Vian + biografi terkurasi
+- [x] Section `02 / Curriculum Vitæ`: Tombol `[ Download Resume ]` mengunduh `/resume.pdf` + timeline pendidikan UNEJ IPK 3.84 & riwayat organisasi
+- [x] Section `03 / Things I Believe`: Prinsip T.01 - T.03
+- [x] Section `04 / How I Work?`: Kartu H.01 - H.04
+- [x] Section `05 / Contact Form`: Komponen formulir kontak lengkap 3-channel (`ContactSection`)
 
-### Fase 5: Verifikasi, Build & Deployment
+### Fase 5: Hapus Mode Malam & Redesain Uji Prediksi DenseNet (Anti-AI Slop)
+- [ ] Hapus tema gelap (Dark Mode) secara total: ubah website menjadi murni Light Mode elegan, bersih, dan berwibawa persis sandeep.design (tanpa toggle tema malam, background `#FFFFFF` / `#FAFAF8`)
+- [ ] Redesain `AlzheimerSimulator.tsx`: hilangkan gradasi biru-ungu, hilangkan animasi laser scanning norak, ganti dengan tipografi monospace saintifik, tabel metrik yang presisi, dan visualisasi scan MRI klinis yang elegan
+- [ ] Perbarui `HeroDotField.tsx`: sesuaikan partikel matriks hijau emerald murni di atas kanvas terang
+- [ ] Perbarui `Navbar.tsx` & `globals.css`: bersihkan komponen `ThemeToggle`
+
+### Fase 6: Verifikasi, Build & Deployment
 - [ ] Jalankan audit linting `npm run lint` (0 error, 0 warning)
 - [ ] Jalankan pengujian build Next.js produksi `npm run build`
-- [ ] Pastikan navigasi antarmuka mulus di layar Desktop, Tablet, dan Smartphone
 - [ ] Buat commit Git yang bersih dan push ke branch `main` GitHub untuk live deployment di `personalporto.myon.my.id`

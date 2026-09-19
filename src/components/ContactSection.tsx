@@ -16,7 +16,11 @@ import {
   Check,
 } from "lucide-react";
 
-export default function ContactSection() {
+interface ContactSectionProps {
+  sectionIndex?: string;
+}
+
+export default function ContactSection({ sectionIndex = "05" }: ContactSectionProps) {
   const { language } = useLanguage();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -122,7 +126,7 @@ export default function ContactSection() {
         {/* Sandeep-style Section Header Ribbon */}
         <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 pb-6 border-b border-slate-200 dark:border-slate-800">
           <div className="flex items-center gap-4 font-mono text-xs text-slate-400">
-            <span className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">06</span>
+            <span className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">{sectionIndex}</span>
             <span className="h-4 w-px bg-slate-300 dark:bg-slate-700" />
             <span className="uppercase tracking-[0.25em] text-slate-900 dark:text-white font-semibold">
               {language === "id" ? "Kontak & Kolaborasi" : "Get In Touch"}
