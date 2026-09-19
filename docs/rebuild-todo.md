@@ -95,13 +95,13 @@ Dokumen ini adalah acuan kerja dan pelacak progres (*checklist*) perombakan meny
 - [x] Section `07 / Get In Touch`: Strip CTA minimalis menghubungkan ke `/about#contact`
 
 ### Fase 3: Pembangunan Halaman Work (`/work`)
-- [ ] Buat page route `src/app/work/page.tsx`
-- [ ] Section `01 / Work`: Header besar *"Selected work across products, systems, and experiments"*
-- [ ] Section `02 / Selected`: Daftar studi kasus bernomor `P. 01` - `P. 05`
-- [ ] Section `03 / Archived & Coursework`: Daftar baris ringkas repositori publik & proyek kuliah
-- [ ] Section `04 / Work & Community Experience`: Timeline pengalaman dari CV (KOMPIS, Cafe Dewisri, HMIF, I/O)
-- [ ] Section `05 / How I Work?`: Kartu H.01 - H.04
-- [ ] Section `06 / Get In Touch`: Strip CTA penutup
+- [x] Buat page route `src/app/work/page.tsx`
+- [x] Section `01 / Work`: Header besar *"Selected work across products, systems, and experiments"*
+- [x] Section `02 / Selected`: Daftar studi kasus bernomor `P. 01` - `P. 06`
+- [x] Section `03 / Archived & Coursework`: Daftar baris ringkas repositori publik & proyek kuliah
+- [x] Section `04 / Work & Community Experience`: Timeline pengalaman dari CV (KOMPIS, Cafe Dewisri, HMIF, I/O)
+- [x] Section `05 / How I Work?`: Kartu H.01 - H.04
+- [x] Section `06 / Get In Touch`: Strip CTA penutup
 
 ### Fase 4: Pembangunan Halaman About (`/about`)
 - [ ] Buat page route `src/app/about/page.tsx`
