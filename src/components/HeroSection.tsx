@@ -1,84 +1,56 @@
 "use client";
 
 import { useLanguage } from "@/context/language-context";
-import { ArrowRight, Mail } from "lucide-react";
+import { PERSONAL_INFO } from "@/data/portfolio-data";
+import HeroDotField from "@/components/HeroDotField";
+import { ArrowUpRight } from "lucide-react";
 
 export default function HeroSection() {
   const { language } = useLanguage();
 
   return (
-    <section className="relative min-h-[85vh] sm:min-h-[90vh] flex flex-col justify-between items-center text-center px-4 sm:px-6 pt-24 sm:pt-28 md:pt-32 pb-10 sm:pb-14 bg-white dark:bg-[#090d16] transition-colors border-b border-slate-200/80 dark:border-slate-800/80">
-      {/* Top Status Pill */}
-      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-slate-700 dark:text-slate-300 text-[11px] sm:text-xs font-mono tracking-wider uppercase">
-        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-        <span>
-          {language === "id"
-            ? "Portofolio '26 · Terbuka untuk Peluang Kerja & Magang"
-            : "Portfolio '26 · Open to Work & Internship Roles"}
-        </span>
+    <section className="relative min-h-[88vh] sm:min-h-[92vh] flex flex-col justify-between px-6 sm:px-10 lg:px-16 pt-10 sm:pt-14 pb-12 sm:pb-16 bg-white dark:bg-[#090d16] transition-colors border-b border-slate-200 dark:border-slate-800 overflow-hidden">
+      {/* Interactive Dot Vortex Particle Field behind content */}
+      <HeroDotField />
+
+      {/* Subheader Status Row (Exact Sandeep.design pattern) */}
+      <div className="flex items-center justify-between text-xs font-mono tracking-[0.2em] uppercase text-slate-500 dark:text-slate-400 select-none pt-2 sm:pt-4">
+        <span>PORTFOLIO &apos;26</span>
+        <div className="flex items-center gap-2 font-medium text-slate-800 dark:text-slate-200">
+          <span className="w-2 h-2 rounded-full bg-[#EA3826] animate-pulse" />
+          <span>{PERSONAL_INFO.status[language]}</span>
+        </div>
       </div>
 
-      {/* Main Center Editorial Typography Block */}
-      <div className="max-w-4xl mx-auto space-y-6 sm:space-y-8 my-auto">
-        {/* Massive Serif Italic Name */}
-        <h1 className="font-editorial italic font-normal text-6xl sm:text-8xl md:text-9xl lg:text-[7.5rem] tracking-tight text-slate-950 dark:text-white leading-[0.92] select-none">
-          Oktavian Ramadhani
+      {/* Massive Left-Aligned Headline (Exact Sandeep.design typography hierarchy) */}
+      <div className="max-w-5xl my-auto py-12 sm:py-16">
+        <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[6.5rem] xl:text-[7.2rem] font-extrabold tracking-[-0.04em] text-slate-950 dark:text-white leading-[0.98] select-none">
+          {language === "id" ? (
+            <>
+              <span className="text-[#EA3826]">Rekayasa web</span> untuk sistem kompleks yang andal
+            </>
+          ) : (
+            <>
+              <span className="text-[#EA3826]">Web engineering</span> for complex systems that feel simple
+            </>
+          )}
         </h1>
+      </div>
 
-        {/* 2-Line Monospace Tracked Subtitle */}
-        <div className="space-y-1.5 text-[11px] sm:text-xs md:text-sm font-mono tracking-[0.22em] text-slate-600 dark:text-slate-400 uppercase font-medium">
-          <p>
-            {language === "id"
-              ? "FULL-STACK WEB DEVELOPER & APPLIED AI BUILDER"
-              : "FULL-STACK WEB DEVELOPER & APPLIED AI BUILDER"}
-          </p>
-          <p className="text-slate-500 dark:text-slate-500">
-            {language === "id"
-              ? "JEMBER, INDONESIA · FASILKOM UNIVERSITAS JEMBER"
-              : "JEMBER, INDONESIA · CS AT UNIVERSITY OF JEMBER"}
-          </p>
-        </div>
-
-        {/* Summary Description */}
-        <p className="max-w-2xl mx-auto text-sm sm:text-base md:text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
+      {/* Bottom Footer Row: Bio on Left, Get in Touch on Right */}
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 pt-4 border-t border-slate-100 dark:border-slate-800/60">
+        <p className="max-w-xl text-xs sm:text-sm md:text-base text-slate-600 dark:text-slate-400 font-normal leading-relaxed">
           {language === "id"
-            ? "Membangun sistem web terdistribusi yang terukur dan pipeline model Deep Learning terapan. Berpengalaman dalam Computer Vision, arsitektur backend andal, serta rekayasa perangkat lunak berdampak nyata."
-            : "Engineering scalable web applications and applied Deep Learning classification pipelines. Experienced in Computer Vision, reliable backend architectures, and mission-critical software delivery."}
+            ? "Pengembang web full-stack dan applied AI builder dari Universitas Jember yang berfokus pada arsitektur sistem terukur dan model Deep Learning terapan. Terbuka untuk peluang kerja & magang."
+            : "Full-stack web developer and applied AI builder from University of Jember building scalable information architectures and applied Deep Learning models. Currently open to full-time roles & internships."}
         </p>
 
-        {/* Minimalist Boxed Button Group */}
-        <div className="flex flex-wrap items-center justify-center gap-3.5 pt-2 sm:pt-4">
-          <a
-            href="#projects"
-            className="inline-flex items-center justify-center gap-2 border border-slate-950 dark:border-white px-7 sm:px-8 py-3 text-xs font-mono font-semibold tracking-[0.22em] text-slate-950 dark:text-white uppercase hover:bg-slate-950 hover:text-white dark:hover:bg-white dark:hover:text-slate-950 transition-all duration-300 shadow-2xs min-h-[44px]"
-          >
-            <span>{language === "id" ? "LIHAT KARYA" : "VIEW SELECTED WORK"}</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </a>
-
-          <a
-            href="#contact"
-            className="inline-flex items-center justify-center gap-2 border border-slate-300 dark:border-slate-800 px-6 sm:px-7 py-3 text-xs font-mono font-medium tracking-[0.22em] text-slate-700 dark:text-slate-300 uppercase hover:border-slate-900 dark:hover:border-slate-500 hover:text-slate-950 dark:hover:text-white transition-colors duration-200 min-h-[44px]"
-          >
-            <Mail className="w-3.5 h-3.5" />
-            <span>{language === "id" ? "HUBUNGI SAYA" : "GET IN TOUCH"}</span>
-          </a>
-        </div>
-      </div>
-
-      {/* Bottom Mouse Scroll Down Indicator */}
-      <div className="pt-8">
         <a
-          href="#about"
-          className="inline-flex flex-col items-center gap-2 text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors focus:outline-none group"
-          aria-label={language === "id" ? "Gulir ke bawah ke bagian Tentang" : "Scroll down to About section"}
+          href="#contact"
+          className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-mono tracking-[0.18em] uppercase font-bold text-slate-950 dark:text-white hover:text-[#EA3826] dark:hover:text-[#EA3826] transition-colors shrink-0 group py-1"
         >
-          <div className="w-5 h-8 rounded-full border border-slate-400 dark:border-slate-600 group-hover:border-slate-800 dark:group-hover:border-slate-300 flex justify-center pt-1.5 transition-colors">
-            <div className="w-1 h-2 rounded-full bg-slate-500 dark:bg-slate-400 group-hover:bg-slate-900 dark:group-hover:bg-white animate-bounce" />
-          </div>
-          <span className="text-[10px] font-mono tracking-widest uppercase">
-            {language === "id" ? "Gulir ke bawah" : "Scroll down"}
-          </span>
+          <span>{language === "id" ? "HUBUNGI SAYA" : "GET IN TOUCH"}</span>
+          <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-[#EA3826]" />
         </a>
       </div>
     </section>

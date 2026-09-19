@@ -23,6 +23,7 @@
 # Private / Raw Certificate Documents
 /Sertifikat/
 *.pdf
+!public/resume.pdf
 *.docx
 
 # misc
