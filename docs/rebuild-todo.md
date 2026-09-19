@@ -86,13 +86,13 @@ Dokumen ini adalah acuan kerja dan pelacak progres (*checklist*) perombakan meny
   - Kaki kanan: Tombol teks `GET IN TOUCH ↗`
 
 ### Fase 2: Reorganisasi Halaman Home (`/`)
-- [ ] Section `01 / Featured Case`: Menampilkan Alzheimer MRI DenseNet-169 + `AlzheimerSimulator` interaktif
-- [ ] Section `02 / Selected`: Menampilkan SiPuBi, NilaHealth, Web Klinik Gigi dengan tombol pratinjau modal alur sistem
-- [ ] Section `03 / Why Work With Me?`: Kartu A/B/C (Integritas Sistem, ML Empiris, Dampak Lapangan)
-- [ ] Section `04 / How I Work?`: Kartu proses kolaborasi H.01 - H.04 (Discovery, Documented, Clear Specs, Support)
-- [ ] Section `05 / Tech Stack & Tools`: Ticker marquee horizontal berjalan mulus (hover to pause)
-- [ ] Section `06 / Retro Terminal Playground`: Minigame Retro Snake Bug Eater
-- [ ] Section `07 / Get In Touch`: Strip CTA minimalis menghubungkan ke `/about#contact`
+- [x] Section `01 / Featured Case`: Menampilkan Alzheimer MRI DenseNet-169 + `AlzheimerSimulator` interaktif
+- [x] Section `02 / Selected`: Menampilkan SiPuBi, NilaHealth, Web Klinik Gigi dengan tombol pratinjau modal alur sistem
+- [x] Section `03 / Why Work With Me?`: Kartu A/B/C (Integritas Sistem, ML Empiris, Dampak Lapangan)
+- [x] Section `04 / How I Work?`: Kartu proses kolaborasi H.01 - H.04 (Discovery, Documented, Clear Specs, Support)
+- [x] Section `05 / Tech Stack & Tools`: Ticker marquee horizontal berjalan mulus (hover to pause)
+- [x] Section `06 / Retro Terminal Playground`: Minigame Retro Snake Bug Eater
+- [x] Section `07 / Get In Touch`: Strip CTA minimalis menghubungkan ke `/about#contact`
 
 ### Fase 3: Pembangunan Halaman Work (`/work`)
 - [ ] Buat page route `src/app/work/page.tsx`

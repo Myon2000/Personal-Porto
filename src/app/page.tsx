@@ -1,23 +1,23 @@
 import HeroSection from "@/components/HeroSection";
-import AboutSection from "@/components/AboutSection";
-import SkillsSection from "@/components/SkillsSection";
-import ProjectsSection from "@/components/ProjectsSection";
-import CertificatesSection from "@/components/CertificatesSection";
+import FeaturedCaseSection from "@/components/FeaturedCaseSection";
+import SelectedWorksSection from "@/components/SelectedWorksSection";
+import WhyWorkWithMe from "@/components/WhyWorkWithMe";
+import HowIWork from "@/components/HowIWork";
 import TechStackMarquee from "@/components/TechStackMarquee";
-import ContactSection from "@/components/ContactSection";
 import RetroSnakeGame from "@/components/RetroSnakeGame";
+import HomeContactCTA from "@/components/HomeContactCTA";
 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       <HeroSection />
-      <AboutSection />
-      <SkillsSection />
-      <ProjectsSection />
-      <CertificatesSection />
+      <FeaturedCaseSection />
+      <SelectedWorksSection />
+      <WhyWorkWithMe />
+      <HowIWork />
       <TechStackMarquee />
-      <ContactSection />
       <RetroSnakeGame />
+      <HomeContactCTA />
     </div>
   );
 }
