@@ -43,8 +43,9 @@ export default function Navbar() {
       (entries) => {
         const visibleEntries = entries.filter((entry) => entry.isIntersecting);
         if (visibleEntries.length > 0) {
-          // Find the one closest to top
-          visibleEntries.sort((a, b) => Math.abs(a.boundingClientRect.top) - Math.abs(b.boundingClientRect.top));
+          visibleEntries.sort(
+            (a, b) => Math.abs(a.boundingClientRect.top) - Math.abs(b.boundingClientRect.top)
+          );
           setActiveSection(visibleEntries[0].target.id);
         }
       },
@@ -69,16 +70,16 @@ export default function Navbar() {
   }, [mobileMenuOpen]);
 
   const navLinks = language === "id" ? [
+    { name: "Proyek", href: "#projects", id: "projects" },
     { name: "Tentang", href: "#about", id: "about" },
     { name: "Keahlian", href: "#skills", id: "skills" },
-    { name: "Proyek", href: "#projects", id: "projects" },
     { name: "Sertifikasi", href: "#certificates", id: "certificates" },
     { name: "Pengalaman", href: "#experience", id: "experience" },
     { name: "Kontak", href: "#contact", id: "contact" },
   ] : [
+    { name: "Work", href: "#projects", id: "projects" },
     { name: "About", href: "#about", id: "about" },
     { name: "Skills", href: "#skills", id: "skills" },
-    { name: "Projects", href: "#projects", id: "projects" },
     { name: "Certifications", href: "#certificates", id: "certificates" },
     { name: "Experience", href: "#experience", id: "experience" },
     { name: "Contact", href: "#contact", id: "contact" },
@@ -88,66 +89,68 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/85 dark:bg-slate-950/85 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800/80 shadow-xs"
+          ? "bg-white/90 dark:bg-[#090d16]/90 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800/80 shadow-xs"
           : "bg-transparent"
       }`}
     >
       {/* Top Reading Progress Bar */}
-      <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-transparent overflow-hidden">
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-transparent overflow-hidden">
         <div
-          className="h-full bg-gradient-to-r from-sky-600 via-sky-500 to-indigo-500 transition-all duration-150 ease-out"
+          className="h-full bg-slate-900 dark:bg-white transition-all duration-150 ease-out"
           style={{ width: `${scrollProgress}%` }}
         />
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-        {/* Brand / Logo */}
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 h-16 sm:h-20 flex items-center justify-between">
+        {/* Brand / Logo (Uppercase Tracked Monospace matching CollectUI) */}
         <a
           href="#"
-          className="group inline-flex items-center gap-2 text-base font-bold text-slate-900 dark:text-white tracking-tight focus:outline-none focus:ring-2 focus:ring-sky-500 rounded-md py-1 px-1.5"
+          className="font-mono text-xs sm:text-sm font-semibold tracking-[0.22em] uppercase text-slate-950 dark:text-white hover:opacity-80 transition-opacity focus:outline-none focus:ring-1 focus:ring-slate-400"
           aria-label="Kembali ke atas"
         >
-          <span className="w-8 h-8 rounded-lg bg-sky-600 text-white flex items-center justify-center font-mono text-sm font-semibold shadow-xs group-hover:bg-sky-500 transition-colors">
-            OR
-          </span>
-          <span className="hidden sm:inline font-mono text-sm text-slate-600 dark:text-slate-400 group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">
-            myon.my.id
-          </span>
+          Oktavian Ramadhani
         </a>
 
-        {/* Desktop Navigation Links with Scrollspy Highlight */}
-        <nav className="hidden md:flex items-center gap-1 lg:gap-1.5">
-          {navLinks.map((link) => {
-            const isActive = activeSection === link.id;
-            return (
-              <a
-                key={link.name}
-                href={link.href}
-                className={`relative px-3 py-1.5 text-xs lg:text-sm font-medium rounded-md transition-all focus:outline-none focus:ring-2 focus:ring-sky-500 ${
-                  isActive
-                    ? "text-sky-600 dark:text-sky-400 bg-sky-50/80 dark:bg-sky-950/60 font-semibold"
-                    : "text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 hover:bg-slate-100 dark:hover:bg-slate-800/60"
-                }`}
-              >
-                {link.name}
-                {isActive && (
-                  <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-sky-500 rounded-full animate-in fade-in duration-200" />
-                )}
-              </a>
-            );
-          })}
-        </nav>
+        {/* Desktop Navigation Links matching CollectUI text navigation */}
+        <div className="hidden md:flex items-center gap-6 lg:gap-8">
+          <nav className="flex items-center gap-6 lg:gap-8">
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.id;
+              return (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className={`font-mono text-[11px] lg:text-xs tracking-[0.2em] uppercase transition-colors relative py-1 focus:outline-none ${
+                    isActive
+                      ? "text-slate-950 dark:text-white font-bold"
+                      : "text-slate-500 hover:text-slate-950 dark:text-slate-400 dark:hover:text-white font-medium"
+                  }`}
+                >
+                  {link.name}
+                  {isActive && (
+                    <span className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-slate-900 dark:bg-white animate-in fade-in duration-200" />
+                  )}
+                </a>
+              );
+            })}
+          </nav>
 
-        {/* Action Controls: Language + Theme + Mobile Menu Button */}
-        <div className="flex items-center gap-2">
+          {/* Minimal Controls: Language + Theme */}
+          <div className="flex items-center gap-2 pl-2 border-l border-slate-200 dark:border-slate-800">
+            <LanguageToggle />
+            <ThemeToggle />
+          </div>
+        </div>
+
+        {/* Mobile controls */}
+        <div className="md:hidden flex items-center gap-2">
           <LanguageToggle />
           <ThemeToggle />
 
-          {/* Mobile hamburger button */}
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden flex items-center justify-center w-9 h-9 rounded-lg border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-sky-500"
+            className="flex items-center justify-center w-9 h-9 rounded-md border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 focus:outline-none"
             aria-expanded={mobileMenuOpen}
             aria-label={mobileMenuOpen ? "Tutup menu" : "Buka menu navigasi"}
           >
@@ -158,7 +161,7 @@ export default function Navbar() {
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-b border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-950/95 backdrop-blur-md px-4 pt-2 pb-5 space-y-1 shadow-lg animate-in fade-in slide-in-from-top-2 duration-200">
+        <div className="md:hidden border-b border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-[#090d16]/95 backdrop-blur-md px-6 pt-3 pb-6 space-y-2 shadow-lg animate-in fade-in slide-in-from-top-2 duration-200 font-mono">
           {navLinks.map((link) => {
             const isActive = activeSection === link.id;
             return (
@@ -166,10 +169,10 @@ export default function Navbar() {
                 key={link.name}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className={`block px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                className={`block py-2 text-xs tracking-[0.2em] uppercase transition-colors ${
                   isActive
-                    ? "bg-sky-50 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400 font-semibold"
-                    : "text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-sky-600 dark:hover:text-sky-400"
+                    ? "text-slate-950 dark:text-white font-bold"
+                    : "text-slate-500 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white"
                 }`}
               >
                 {link.name}

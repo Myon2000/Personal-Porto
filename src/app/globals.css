@@ -39,3 +39,7 @@ body {
 .dark ::-webkit-scrollbar-thumb:hover {
   background: #475569;
 }
+
+.font-editorial {
+  font-family: var(--font-cormorant), "Times New Roman", Times, Georgia, serif;
+}

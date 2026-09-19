@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LanguageProvider } from "@/context/language-context";
@@ -14,6 +14,13 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
@@ -71,7 +78,7 @@ export default function RootLayout({
   return (
     <html lang="id" suppressHydrationWarning className="scroll-smooth">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} min-h-screen flex flex-col font-sans antialiased selection:bg-sky-500/20 selection:text-sky-600 dark:selection:text-sky-300`}
+        className={`${geistSans.variable} ${geistMono.variable} ${cormorant.variable} min-h-screen flex flex-col font-sans antialiased selection:bg-sky-500/20 selection:text-sky-600 dark:selection:text-sky-300`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <LanguageProvider>
