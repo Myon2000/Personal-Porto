@@ -4,17 +4,31 @@ import { useEffect, useRef } from "react";
 import { useTheme } from "next-themes";
 import { useMounted } from "@/hooks/use-mounted";
 
+interface Particle {
+  ringIdx: number;
+  dotIdx: number;
+  baseRadius: number;
+  baseAngle: number;
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  size: number;
+}
+
 export default function HeroDotField() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const { resolvedTheme } = useTheme();
   const mounted = useMounted();
 
-  const mouseRef = useRef({
-    x: 0,
-    y: 0,
-    targetX: 0,
-    targetY: 0,
+  const stateRef = useRef({
+    mouseX: 0,
+    mouseY: 0,
+    centerX: 0,
+    centerY: 0,
     isHovering: false,
+    alpha: 0,
+    targetAlpha: 0,
   });
 
   useEffect(() => {
@@ -27,13 +41,15 @@ export default function HeroDotField() {
     let width = (canvas.width = canvas.offsetWidth);
     let height = (canvas.height = canvas.offsetHeight);
 
-    // Initial center around upper-middle where headline sits
+    // Initial center point
     const initX = width * 0.5;
     const initY = height * 0.45;
-    mouseRef.current.x = initX;
-    mouseRef.current.y = initY;
-    mouseRef.current.targetX = initX;
-    mouseRef.current.targetY = initY;
+    stateRef.current.mouseX = initX;
+    stateRef.current.mouseY = initY;
+    stateRef.current.centerX = initX;
+    stateRef.current.centerY = initY;
+    stateRef.current.alpha = 0;
+    stateRef.current.targetAlpha = 0; // Starts completely empty as Vian requested!
 
     const handleResize = () => {
       if (!canvas) return;
@@ -43,121 +59,163 @@ export default function HeroDotField() {
       canvas.width = width * dpr;
       canvas.height = height * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-      if (!mouseRef.current.isHovering) {
-        mouseRef.current.targetX = width * 0.5;
-        mouseRef.current.targetY = height * 0.45;
-      }
     };
 
     handleResize();
     window.addEventListener("resize", handleResize);
 
+    // Build concentric spiral particles
+    const particles: Particle[] = [];
+    const numRings = 22;
+    const minRadius = 42; // inner open circle around cursor
+    const maxRadius = 360;
+    const radiusStep = (maxRadius - minRadius) / numRings;
+
+    for (let rIdx = 0; rIdx < numRings; rIdx++) {
+      const radius = minRadius + rIdx * radiusStep;
+      const ringProgress = rIdx / numRings; // 0 to 1
+      const count = Math.floor(14 + rIdx * 3.6);
+      const dotSize = 1.3 + Math.sin(ringProgress * Math.PI) * 2.0;
+
+      for (let d = 0; d < count; d++) {
+        const baseAngle = (d / count) * Math.PI * 2;
+        particles.push({
+          ringIdx: rIdx,
+          dotIdx: d,
+          baseRadius: radius,
+          baseAngle,
+          x: initX,
+          y: initY,
+          vx: 0,
+          vy: 0,
+          size: dotSize,
+        });
+      }
+    }
+
     const handleMouseMove = (e: MouseEvent) => {
       const rect = canvas.getBoundingClientRect();
-      mouseRef.current.targetX = e.clientX - rect.left;
-      mouseRef.current.targetY = e.clientY - rect.top;
-      mouseRef.current.isHovering = true;
+      const mx = e.clientX - rect.left;
+      const my = e.clientY - rect.top;
+
+      stateRef.current.mouseX = mx;
+      stateRef.current.mouseY = my;
+      stateRef.current.isHovering = true;
+      stateRef.current.targetAlpha = 1; // Fade in when cursor enters
     };
 
     const handleMouseLeave = () => {
-      mouseRef.current.isHovering = false;
-      mouseRef.current.targetX = width * 0.5;
-      mouseRef.current.targetY = height * 0.45;
+      stateRef.current.isHovering = false;
+      stateRef.current.targetAlpha = 0; // Fade out completely when cursor leaves
     };
+
+    let touchTimer: ReturnType<typeof setTimeout> | null = null;
 
     const handleTouchMove = (e: TouchEvent) => {
       if (e.touches.length > 0) {
         const rect = canvas.getBoundingClientRect();
-        mouseRef.current.targetX = e.touches[0].clientX - rect.left;
-        mouseRef.current.targetY = e.touches[0].clientY - rect.top;
-        mouseRef.current.isHovering = true;
+        const tx = e.touches[0].clientX - rect.left;
+        const ty = e.touches[0].clientY - rect.top;
+
+        stateRef.current.mouseX = tx;
+        stateRef.current.mouseY = ty;
+        stateRef.current.isHovering = true;
+        stateRef.current.targetAlpha = 1; // Fade in on touch
+
+        if (touchTimer) clearTimeout(touchTimer);
+        touchTimer = setTimeout(() => {
+          stateRef.current.isHovering = false;
+          stateRef.current.targetAlpha = 0; // Fade out after 2s of inactivity
+        }, 2200);
       }
     };
 
-    const handleTouchEnd = () => {
-      mouseRef.current.isHovering = false;
-      mouseRef.current.targetX = width * 0.5;
-      mouseRef.current.targetY = height * 0.45;
-    };
-
-    // Listen on parent section for wide interactive zone
     const parent = canvas.parentElement;
     if (parent) {
       parent.addEventListener("mousemove", handleMouseMove, { passive: true });
       parent.addEventListener("mouseleave", handleMouseLeave, { passive: true });
       parent.addEventListener("touchstart", handleTouchMove, { passive: true });
       parent.addEventListener("touchmove", handleTouchMove, { passive: true });
-      parent.addEventListener("touchend", handleTouchEnd, { passive: true });
     }
 
     let time = 0;
     const isDark = resolvedTheme === "dark";
 
     const render = () => {
-      time += 0.015;
+      time += 0.012;
 
-      // Responsive lerp mouse tracking (0.075 provides fluid, immediate feedback)
-      mouseRef.current.x +=
-        (mouseRef.current.targetX - mouseRef.current.x) * 0.075;
-      mouseRef.current.y +=
-        (mouseRef.current.targetY - mouseRef.current.y) * 0.075;
+      // Alpha transition: smooth fade in on hover, smooth fade out to 0 on exit
+      stateRef.current.alpha +=
+        (stateRef.current.targetAlpha - stateRef.current.alpha) * 0.085;
 
-      let cx = mouseRef.current.x;
-      let cy = mouseRef.current.y;
-
-      // Active breathing and drift on mobile / when idle
-      if (!mouseRef.current.isHovering) {
-        cx += Math.sin(time * 0.9) * 60 + Math.cos(time * 0.4) * 25;
-        cy += Math.cos(time * 0.75) * 45 + Math.sin(time * 0.5) * 20;
-      }
+      const currentAlpha = stateRef.current.alpha;
 
       ctx.clearRect(0, 0, width, height);
 
-      // Concentric vortex parameters
-      const numRings = 24;
-      const minRadius = 30;
-      const maxRadius = Math.min(Math.max(width * 0.5, 360), 520);
-      const radiusStep = (maxRadius - minRadius) / numRings;
+      // Only calculate and render when visible
+      if (currentAlpha > 0.005) {
+        // Smooth lerp tracking for central hub of vortex
+        stateRef.current.centerX +=
+          (stateRef.current.mouseX - stateRef.current.centerX) * 0.09;
+        stateRef.current.centerY +=
+          (stateRef.current.mouseY - stateRef.current.centerY) * 0.09;
 
-      for (let rIdx = 0; rIdx < numRings; rIdx++) {
-        const radius = minRadius + rIdx * radiusStep;
-        const ringProgress = rIdx / numRings; // 0 to 1
-        const dotCount = Math.floor(16 + rIdx * 4.2);
+        const cx = stateRef.current.centerX;
+        const cy = stateRef.current.centerY;
+        const mx = stateRef.current.mouseX;
+        const my = stateRef.current.mouseY;
 
-        // Bell curve opacity - clearly visible in center, smoothly dissipates outward
-        const bell = Math.sin(ringProgress * Math.PI);
-        const opacity = isDark
-          ? 0.15 + bell * 0.75
-          : 0.12 + bell * 0.65;
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          const ringProgress = p.ringIdx / numRings;
 
-        // Distinct dot radius
-        const dotSize = 1.4 + bell * 2.2;
+          // Spiral torsion angle offset that breathes over time
+          const spiralAngle =
+            p.baseAngle + time * 0.35 + ringProgress * 1.5;
 
-        // Spiral torsion angle offset that reacts to time
-        const rotationOffset = time * 0.4 + ringProgress * 1.8;
+          // Radial wave oscillation
+          const wave = Math.sin(time * 2.2 + p.dotIdx * 0.7 + p.ringIdx * 0.35) * 3;
+          const currentR = p.baseRadius + wave;
 
-        for (let d = 0; d < dotCount; d++) {
-          const angle = (d / dotCount) * Math.PI * 2 + rotationOffset;
+          // Rest anchor position relative to center
+          const targetX = cx + Math.cos(spiralAngle) * currentR;
+          const targetY = cy + Math.sin(spiralAngle) * (currentR * 0.88);
 
-          // Radial pulsation wave
-          const wave = Math.sin(time * 2.5 + d * 0.7 + rIdx * 0.4) * 3.5;
-          const currentR = radius + wave;
+          // Spring physics back to target anchor
+          const dx = targetX - p.x;
+          const dy = targetY - p.y;
+          p.vx = (p.vx + dx * 0.16) * 0.76;
+          p.vy = (p.vy + dy * 0.16) * 0.76;
 
-          const px = cx + Math.cos(angle) * currentR;
-          const py = cy + Math.sin(angle) * (currentR * 0.9); // slight perspective flattening
+          // Immediate mouse cursor repulsion / magnetic distortion wave
+          const distToMouse = Math.hypot(p.x - mx, p.y - my);
+          const repelRadius = 85;
+          if (distToMouse < repelRadius && distToMouse > 0.1) {
+            const repelForce = (1 - distToMouse / repelRadius) * 12;
+            const rx = (p.x - mx) / distToMouse;
+            const ry = (p.y - my) / distToMouse;
+            p.vx += rx * repelForce;
+            p.vy += ry * repelForce;
+          }
 
-          if (px < -15 || px > width + 15 || py < -15 || py > height + 15) continue;
+          p.x += p.vx;
+          p.y += p.vy;
+
+          if (p.x < -20 || p.x > width + 20 || p.y < -20 || p.y > height + 20) continue;
+
+          // Opacity falloff curve (bell curve radiating from center) multiplied by currentAlpha
+          const bell = Math.sin(ringProgress * Math.PI);
+          const dotAlpha = (isDark ? 0.2 + bell * 0.75 : 0.18 + bell * 0.7) * currentAlpha;
 
           ctx.beginPath();
-          ctx.arc(px, py, dotSize, 0, Math.PI * 2);
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
 
           if (isDark) {
-            ctx.fillStyle = `rgba(74, 222, 128, ${opacity.toFixed(3)})`;
+            ctx.fillStyle = `rgba(74, 222, 128, ${dotAlpha.toFixed(3)})`;
             ctx.shadowColor = "rgba(74, 222, 128, 0.4)";
-            ctx.shadowBlur = 3;
+            ctx.shadowBlur = 4;
           } else {
-            ctx.fillStyle = `rgba(22, 163, 74, ${opacity.toFixed(3)})`;
+            ctx.fillStyle = `rgba(22, 163, 74, ${dotAlpha.toFixed(3)})`;
             ctx.shadowColor = "transparent";
             ctx.shadowBlur = 0;
           }
@@ -173,12 +231,12 @@ export default function HeroDotField() {
     return () => {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener("resize", handleResize);
+      if (touchTimer) clearTimeout(touchTimer);
       if (parent) {
         parent.removeEventListener("mousemove", handleMouseMove);
         parent.removeEventListener("mouseleave", handleMouseLeave);
         parent.removeEventListener("touchstart", handleTouchMove);
         parent.removeEventListener("touchmove", handleTouchMove);
-        parent.removeEventListener("touchend", handleTouchEnd);
       }
     };
   }, [resolvedTheme, mounted]);
