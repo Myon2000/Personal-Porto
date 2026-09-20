@@ -15,7 +15,7 @@ export default function HowIWork() {
     {
       num: "H. 01",
       title: "Eksplorasi & Dialog Terbuka",
-      desc: "Saya menjaga proses penemuan solusi tetap kolaboratif dan transparan—berbagi hipotesis awal, batasan teknis, dan trade-off arsitektur sebelum penulisan kode dimulai.",
+      desc: "Saya menjaga proses penemuan solusi tetap kolaboratif dan transparan, berbagi hipotesis awal, batasan teknis, dan trade-off arsitektur sebelum penulisan kode dimulai.",
     },
     {
       num: "H. 02",
@@ -30,7 +30,7 @@ export default function HowIWork() {
     {
       num: "H. 04",
       title: "Dukungan Penuh Pasca Implementasi",
-      desc: "Mengawal sistem hingga berjalan stabil di lingkungan produksi—membantu pengujian integrasi, pemantauan performa model, dan verifikasi alur pengguna di lapangan.",
+      desc: "Mengawal sistem hingga berjalan stabil di lingkungan produksi, membantu pengujian integrasi, pemantauan performa model, dan verifikasi alur pengguna di lapangan.",
     },
   ] : [
     {
@@ -46,7 +46,7 @@ export default function HowIWork() {
     {
       num: "H. 03",
       title: "Clear Specs, Fewer Gaps",
-      desc: "Engineering with production realities in mind—defining explicit states, edge cases, schema constraints, and error boundaries so deployment runs smoothly.",
+      desc: "Engineering with production realities in mind, defining explicit states, edge cases, schema constraints, and error boundaries so deployment runs smoothly.",
     },
     {
       num: "H. 04",

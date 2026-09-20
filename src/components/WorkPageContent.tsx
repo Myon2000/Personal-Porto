@@ -425,8 +425,8 @@ export default function WorkPageContent() {
             </h2>
             <p className="text-base text-slate-600 dark:text-slate-400 font-normal">
               {language === "id"
-                ? "Pengalaman lapangan di luar kode—dari perizinan sosial kemasyarakatan hingga memimpin puluhan panitia olimpiade nasional."
-                : "Real-world experience beyond pure code—from community outreach and permits to directing national student olympiads."}
+                ? "Pengalaman lapangan di luar kode, dari perizinan sosial kemasyarakatan hingga memimpin puluhan panitia olimpiade nasional."
+                : "Real-world experience beyond pure code, from community outreach and permits to directing national student olympiads."}
             </p>
           </div>
 

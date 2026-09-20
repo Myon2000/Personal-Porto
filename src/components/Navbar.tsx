@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useLanguage } from "@/context/language-context";
-import ThemeToggle from "@/components/ThemeToggle";
 import LanguageToggle from "@/components/LanguageToggle";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 
@@ -99,7 +98,6 @@ export default function Navbar() {
         {/* Right: Book a Call / Contact + Controls */}
         <div className="hidden md:flex items-center gap-5">
           <LanguageToggle />
-          <ThemeToggle />
 
           <a
             href={pathname === "/about" ? "#contact" : "/about#contact"}
@@ -113,7 +111,6 @@ export default function Navbar() {
         {/* Mobile menu triggers */}
         <div className="md:hidden flex items-center gap-2">
           <LanguageToggle />
-          <ThemeToggle />
 
           <button
             type="button"

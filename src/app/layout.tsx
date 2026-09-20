@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
 import { LanguageProvider } from "@/context/language-context";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -76,17 +75,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="id" suppressHydrationWarning className="scroll-smooth">
+    <html lang="id" className="scroll-smooth">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${cormorant.variable} min-h-screen flex flex-col font-sans antialiased selection:bg-sky-500/20 selection:text-sky-600 dark:selection:text-sky-300`}
+        className={`${geistSans.variable} ${geistMono.variable} ${cormorant.variable} min-h-screen flex flex-col font-sans antialiased selection:bg-slate-900 selection:text-white bg-[#FAFAF8] text-slate-900`}
       >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <LanguageProvider>
-            <Navbar />
-            <main className="flex-1 pt-16">{children}</main>
-            <Footer />
-          </LanguageProvider>
-        </ThemeProvider>
+        <LanguageProvider>
+          <Navbar />
+          <main className="flex-1 pt-16 sm:pt-20">{children}</main>
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   );

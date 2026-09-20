@@ -12,75 +12,103 @@ import {
 } from "lucide-react";
 
 interface CvTimelineItem {
-  year: string;
+  period: string;
   role: { id: string; en: string };
   company: string;
   location: string;
   desc: { id: string; en: string };
-  badge?: string;
+  badge: { id: string; en: string };
+  highlights?: { id: string[]; en: string[] };
 }
 
 const CV_TIMELINE: CvTimelineItem[] = [
   {
-    year: "2023 — 2027",
-    role: {
-      id: "S1 Informatika (IPK 3.84 / 4.00)",
-      en: "B.S. Computer Science - Informatics (GPA 3.84 / 4.00)",
-    },
-    company: "Fakultas Ilmu Komputer, Universitas Jember",
-    location: "Jember, Indonesia",
-    desc: {
-      id: "Konsentrasi pada rekayasa perangkat lunak dan komputasi cerdas. Aktif mengembangkan proyek kolaboratif, riset Deep Learning Computer Vision, serta kepengurusan himpunan mahasiswa.",
-      en: "Focusing on software engineering and applied intelligent systems. Active in full-stack collaborative projects, Computer Vision Deep Learning research, and student governance.",
-    },
-    badge: "Education",
-  },
-  {
-    year: "2025 — Present",
+    period: "2025 - Sekarang",
     role: { id: "Content Creator", en: "Content Creator" },
     company: "Dewi Sri & Cak Ndhoet Tidar Cafe",
     location: "Jember, Indonesia",
+    badge: { id: "Pekerjaan Profesional", en: "Professional Work" },
     desc: {
-      id: "Perencanaan konsep promosi digital, penyusunan naskah script, produksi foto/video on-site, kurasi layout feed Instagram, dan editing pascaproduksi.",
-      en: "Digital campaign concepting, creative scriptwriting, on-site photo/video production, Instagram aesthetic curation, and full post-production editing.",
+      id: "Merancang konsep kampanye media sosial, menyusun naskah script, mengarahkan sesi foto dan video on-site, serta mengelola tata letak feed Instagram agar selaras dengan identitas visual brand.",
+      en: "Planning social media campaigns, writing creative scripts, directing on-site photo/video shoots, and curating Instagram grid layouts aligned with brand aesthetic standards.",
     },
-    badge: "Professional Work",
+    highlights: {
+      id: [
+        "Perencanaan dan eksekusi konten foto/video promosi digital secara konsisten",
+        "Penyusunan naskah kreatif dan editing pascaproduksi sebelum publikasi",
+      ],
+      en: [
+        "End-to-end planning and execution of promotional social media content",
+        "Creative scriptwriting and full post-production media editing",
+      ],
+    },
   },
   {
-    year: "2025",
+    period: "2025",
     role: { id: "Ketua Panitia (Project Lead)", en: "Project Lead (Head of Committee)" },
     company: "Informatics Olympiad (I/O) 2025",
     location: "Universitas Jember",
+    badge: { id: "Kepemimpinan", en: "Leadership" },
     desc: {
-      id: "Memimpin perencanaan strategis, manajemen kepanitiaan lintas divisi, alokasi anggaran, dan pertanggungjawaban kegiatan olimpiade informatika nasional 80+ peserta SMA.",
-      en: "Directed strategic planning, cross-divisional committee governance, budget allocation, and operational delivery for national informatics competition with 80+ competitors.",
+      id: "Memimpin perencanaan strategis, manajemen kepanitiaan lintas divisi, alokasi anggaran, dan pertanggungjawaban kegiatan olimpiade informatika nasional yang diikuti 80+ peserta SMA dari seluruh Indonesia.",
+      en: "Directed strategic planning, cross-divisional committee governance, budget allocation, and operational delivery for a national informatics competition with 80+ high school competitors.",
     },
-    badge: "Leadership",
+    highlights: {
+      id: [
+        "Mengatur koordinasi lintas divisi dan memastikan komunikasi berjalan lancar",
+        "Mengawasi kepatuhan anggaran dan menyusun laporan pertanggungjawaban kegiatan",
+      ],
+      en: [
+        "Coordinated multi-divisional committees to ensure synchronous execution",
+        "Supervised budget compliance and authored formal audit documentation",
+      ],
+    },
   },
   {
-    year: "2024 — 2025",
+    period: "2024 - 2025",
     role: {
       id: "Staff Humas & Konten Kreator (2 Periode)",
       en: "Public Relations Staff (2 Consecutive Terms)",
     },
     company: "Himpunan Mahasiswa Informatika (HMIF) UNEJ",
     location: "Universitas Jember",
+    badge: { id: "Organisasi Mahasiswa", en: "Student Governance" },
     desc: {
-      id: "Membuat dan menjadwalkan 15 konten publikasi teknologi tiap bulan, menjalin komunikasi formal dengan mitra eksternal, dan mengawal kegiatan kaderisasi mahasiswa.",
-      en: "Authored and scheduled 15 monthly tech publications, facilitated formal external stakeholder communications, and supported department student programs.",
+      id: "Membuat dan menjadwalkan publikasi konten teknologi tiap bulan, menjalin jalur komunikasi formal dengan pihak eksternal, dan mengawal kegiatan kaderisasi mahasiswa baru di lingkungan program studi.",
+      en: "Authored and scheduled monthly tech publications, facilitated formal external stakeholder communications, and supported department student development programs.",
     },
-    badge: "Organisational",
+    highlights: {
+      id: [
+        "Membuat dan menjadwalkan hingga 15 konten publikasi teknologi setiap bulan",
+        "Mengkoordinasikan komunikasi dengan pihak eksternal fakultas dan mitra kampus",
+      ],
+      en: [
+        "Authored and published up to 15 technology announcements monthly",
+        "Coordinated outreach with external faculty and university partners",
+      ],
+    },
   },
   {
-    year: "2023",
+    period: "2024",
+    role: { id: "Koordinator Perlengkapan", en: "Logistics Coordinator" },
+    company: "Informatics Olympiad (I/O) 2024",
+    location: "Universitas Jember",
+    badge: { id: "Kepanitiaan", en: "Committee" },
+    desc: {
+      id: "Bertanggung jawab mengkoordinasikan tim perlengkapan dalam penyiapan inventaris teknis dan sarana laboratorium komputer untuk olimpiade nasional tingkat SMA.",
+      en: "Managed technical equipment inventory and computer laboratory infrastructure readiness for national high school trials.",
+    },
+  },
+  {
+    period: "2023",
     role: { id: "Field Promotion Assistant", en: "Field Promotion Assistant" },
     company: "Komunitas Peduli Indonesia Sehat (KOMPIS)",
     location: "Jombang, Indonesia",
+    badge: { id: "Pekerjaan Lapangan", en: "Field Work" },
     desc: {
-      id: "Sosialisasi kesehatan di lingkungan masyarakat, koordinasi perizinan RT hingga 6 wilayah per hari, dan mencapai target penjualan tim hingga 15 produk/hari dengan komunikasi persuasif.",
-      en: "Community public health outreach, territory permit coordination across 6 districts daily, achieving team distribution quotas of up to 15 products/day via persuasive communication.",
+      id: "Terlibat langsung dalam sosialisasi kesehatan masyarakat, koordinasi perizinan acara dengan pengurus RT hingga 6 wilayah per hari, dan membantu tim mencapai penjualan hingga 15 produk per hari melalui pendekatan persuasif.",
+      en: "Conducted community health outreach, coordinated event permits with local district heads across 6 areas daily, and supported team sales up to 15 units/day via clear, respectful communication.",
     },
-    badge: "Professional Work",
   },
 ];
 
@@ -98,8 +126,8 @@ const BELIEFS: PrincipleItem[] = [
       en: "Data Contracts Before Visual Layers",
     },
     desc: {
-      id: "Antarmuka pengguna hanya seandal integritas skema database dan penanganan state di bawahnya. Saya selalu memprioritaskan konsistensi data relasional (MySQL/Postgres), aturan transaksi, dan kontrak REST API yang kokoh sebelum merancang presentasi visual.",
-      en: "A user interface is only as reliable as the relational schema and state boundaries underneath it. I always architect strict transactional consistency, relational constraints, and explicit REST contracts before styling visual presentations.",
+      id: "Antarmuka pengguna hanya seandal integritas skema database dan penanganan state di bawahnya. Saya memprioritaskan konsistensi data relasional (MySQL), aturan transaksi, dan kontrak REST API yang kokoh sebelum merancang presentasi visual.",
+      en: "A user interface is only as reliable as the relational schema and state boundaries underneath it. I architect strict transactional consistency, relational constraints, and explicit REST contracts before styling visual presentations.",
     },
   },
   {
@@ -109,19 +137,19 @@ const BELIEFS: PrincipleItem[] = [
       en: "Empirical Benchmarks Over Speculative Claims",
     },
     desc: {
-      id: "Dalam Machine Learning, kualitas model ditentukan oleh data uji independen, confusion matrix, dan mitigasi false-positive, bukan sekadar klaim verbal. Setiap pipeline Deep Learning yang saya bangun divalidasi dengan metrik riil terukur (seperti akurasi 99.92% pada 5.098 sampel MRI).",
-      en: "In Machine Learning, a model's true capability is defined by independent test sets, confusion matrices, and false-positive mitigation, not buzzwords. Every pipeline I build is empirically verified on real-world datasets with verifiable benchmarks.",
+      id: "Dalam Machine Learning, kualitas model dibuktikan melalui data uji independen, confusion matrix, dan mitigasi false-positive, bukan sekadar klaim verbal. Setiap pipeline Deep Learning yang saya bangun divalidasi dengan metrik riil terukur (akurasi 99.92% pada 5.098 sampel MRI).",
+      en: "In Machine Learning, model quality is proven through independent test sets, confusion matrices, and false-positive mitigation, not buzzwords. Every pipeline I build is empirically verified on real-world datasets with verifiable benchmarks.",
     },
   },
   {
     code: "T. 03",
     title: {
-      id: "Teknologi Wajib Membumi & Berdampak",
-      en: "Engineering Grounded in Community Impact",
+      id: "Teknologi Wajib Membumi dan Berdampak",
+      en: "Engineering Grounded in Real Impact",
     },
     desc: {
-      id: "Perangkat lunak terbukti bernilai ketika memecahkan masalah nyata di lapangan—seperti berkolaborasi dengan pembudidaya ikan nila di Jember untuk menekan angka mortalitas tambak, atau membangun sistem distribusi pupuk bersubsidi yang terverifikasi resmi.",
-      en: "Software demonstrates its highest worth when solving tangible grassroots challenges—such as partnering with local tilapia fish farmers in Jember to prevent mortality losses or building verified subsidized fertilizer distribution workflows.",
+      id: "Perangkat lunak terbukti bernilai ketika memecahkan masalah nyata di lapangan, seperti kemitraan dengan pembudidaya ikan nila di Jember untuk menekan angka mortalitas tambak, atau membangun sistem distribusi pupuk bersubsidi yang terverifikasi resmi.",
+      en: "Software demonstrates its highest worth when solving tangible grassroots challenges, such as partnering with local tilapia fish farmers in Jember to prevent mortality losses or building verified subsidized fertilizer distribution workflows.",
     },
   },
 ];
@@ -186,7 +214,7 @@ export default function AboutPageContent() {
                   <span>{PERSONAL_INFO.university}</span>
                 </div>
                 <p className="pl-6 text-[11px] text-slate-500">
-                  {PERSONAL_INFO.faculty} · Informatika (IPK 3.84)
+                  {PERSONAL_INFO.faculty} · S1 Informatika (IPK 3.84)
                 </p>
               </div>
             </div>
@@ -196,20 +224,20 @@ export default function AboutPageContent() {
               <div className="space-y-4 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
                 <p>
                   {language === "id"
-                    ? "Halo! Saya Oktavian Ramadhani (Vian), mahasiswa tingkat akhir program studi Informatika di Universitas Jember dengan konsentrasi pada rekayasa perangkat lunak dan komputasi cerdas (Applied Machine Learning)."
+                    ? "Halo! Saya Oktavian Ramadhani (Vian), mahasiswa tingkat akhir program studi Informatika di Universitas Jember dengan fokus pada rekayasa perangkat lunak dan komputasi cerdas (Applied Machine Learning)."
                     : "Hello! I am Oktavian Ramadhani (Vian), a senior undergraduate Computer Science student at University of Jember focusing on scalable software engineering and Applied Machine Learning."}
                 </p>
 
                 <p>
                   {language === "id"
-                    ? "Karier dan proyek saya didorong oleh rasa penasaran mendalam terhadap bagaimana arsitektur sistem informasi dan kecerdasan buatan dapat bersinergi memecahkan masalah nyata. Saya tidak hanya merancang antarmuka, tetapi juga mengawal integritas database relasional, isolasi microservices, dan keakuratan matematis model Computer Vision."
-                    : "My development path is driven by a deep conviction in bridging resilient information systems with applied AI. Beyond crafting clean interfaces, I take pride in architecting solid relational schemas, decoupled microservices, and empirically verifiable Computer Vision classification models."}
+                    ? "Perjalanan rekayasa saya didorong oleh keyakinan bahwa sistem informasi yang kokoh harus berpadu dengan kecerdasan buatan terapan untuk memecahkan masalah riil. Saya tidak hanya merancang antarmuka yang bersih, tetapi juga memastikan keandalan skema relasional, pemisahan microservices yang terisolasi, serta validasi matematis model Computer Vision."
+                    : "My engineering journey is driven by a focus on bridging resilient information systems with applied AI to solve real-world problems. Beyond building clean interfaces, I prioritize relational schema integrity, decoupled microservice boundaries, and verifiable Computer Vision classification models."}
                 </p>
 
                 <p>
                   {language === "id"
-                    ? "Di luar layar kode, saya berpengalaman memimpin kepanitiaan berskala nasional, mengkoordinasikan komunikasi publik di organisasi mahasiswa, dan berdialog langsung dengan masyarakat serta mitra usaha lokal."
-                    : "Beyond code, I bring hands-on experience directing national-level student competitions, coordinating public communications in student governance, and engaging directly with local industry partners."}
+                    ? "Di luar penulisan kode, saya berpengalaman memimpin kepanitiaan berskala nasional, mengkoordinasikan komunikasi publik di organisasi mahasiswa, dan berdialog langsung dengan masyarakat serta mitra usaha lokal."
+                    : "Beyond code, I bring hands-on experience directing national-level student competitions, coordinating public communications in student governance, and engaging directly with community and local business partners."}
                 </p>
               </div>
 
@@ -225,7 +253,7 @@ export default function AboutPageContent() {
                 </div>
                 <div>
                   <span className="text-slate-400 block text-[10px] uppercase tracking-wider">
-                    {language === "id" ? "Status Akademik" : "Academic Standing"}
+                    {language === "id" ? "Pendidikan" : "Education"}
                   </span>
                   <span className="text-slate-900 dark:text-white font-semibold">
                     Informatika (IPK 3.84)
@@ -274,9 +302,14 @@ export default function AboutPageContent() {
           <div className="max-w-3xl space-y-3">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-950 dark:text-white tracking-tight leading-[1.12]">
               {language === "id"
-                ? "Di mana saya belajar, bekerja, dan sistem apa yang saya bangun."
-                : "Where I’ve worked, learned, and what I’ve helped build."}
+                ? "Riwayat pengalaman kerja, kepemimpinan, dan pendidikan akademik."
+                : "Work history, organizational leadership, and academic background."}
             </h2>
+            <p className="text-base text-slate-600 dark:text-slate-400 font-normal">
+              {language === "id"
+                ? "Daftar terstruktur pengalaman profesional dan kontribusi organisasi dari curriculum vitae resmi."
+                : "Structured timeline of professional work experience, event leadership, and academic records from formal curriculum vitae."}
+            </p>
           </div>
 
           {/* Timeline List */}
@@ -289,17 +322,15 @@ export default function AboutPageContent() {
                 {/* Year & Badge */}
                 <div className="lg:col-span-3 space-y-1.5 font-mono">
                   <span className="text-sm font-bold text-slate-900 dark:text-white">
-                    {item.year}
+                    {item.period}
                   </span>
-                  {item.badge && (
-                    <span className="block text-[11px] uppercase tracking-wider text-slate-500">
-                      {item.badge}
-                    </span>
-                  )}
+                  <span className="block text-[11px] uppercase tracking-wider text-slate-500 font-medium">
+                    {item.badge[language]}
+                  </span>
                 </div>
 
                 {/* Role, Company, and Description */}
-                <div className="lg:col-span-9 space-y-2">
+                <div className="lg:col-span-9 space-y-3">
                   <div className="space-y-0.5">
                     <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white group-hover:text-[#EA3826] transition-colors">
                       {item.company}
@@ -308,12 +339,51 @@ export default function AboutPageContent() {
                       {item.role[language]} · {item.location}
                     </p>
                   </div>
-                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal pt-1">
+
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
                     {item.desc[language]}
                   </p>
+
+                  {item.highlights && (
+                    <ul className="space-y-1 pt-1 font-mono text-xs text-slate-500 dark:text-slate-400">
+                      {item.highlights[language].map((h, hIdx) => (
+                        <li key={hIdx} className="flex items-start gap-2">
+                          <span className="text-emerald-500 font-bold shrink-0">✓</span>
+                          <span>{h}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Formal Education Summary Block */}
+          <div className="p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+            <div className="space-y-1.5">
+              <div className="flex items-center gap-2 font-mono text-xs text-slate-500 uppercase tracking-wider">
+                <GraduationCap className="w-4 h-4 text-slate-700 dark:text-slate-300" />
+                <span>{language === "id" ? "Pendidikan Formal" : "Formal Education"}</span>
+              </div>
+              <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
+                Universitas Jember (UNEJ)
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-mono">
+                S1 Informatika · Fakultas Ilmu Komputer · IPK 3.84 / 4.00 (2023 - 2027)
+              </p>
+            </div>
+
+            <a
+              href="/resume.pdf"
+              download="Oktavian_Ramadhani_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:border-slate-900 dark:hover:border-slate-400 text-slate-800 dark:text-slate-200 font-mono text-xs font-semibold uppercase tracking-wider transition-colors shrink-0"
+            >
+              <Download className="w-3.5 h-3.5" />
+              <span>PDF Resume</span>
+            </a>
           </div>
         </div>
       </section>
@@ -340,7 +410,7 @@ export default function AboutPageContent() {
             <p className="text-base text-slate-600 dark:text-slate-400 font-normal">
               {language === "id"
                 ? "Rekayasa perangkat lunak yang hebat tidak meniadakan kompleksitas secara gegabah, melainkan menatanya sehingga pengguna dan sistem dapat melangkah dengan pasti."
-                : "Great software engineering doesn't eliminate complexity for the sake of it. It structures dense requirements so users and teams move forward with confidence."}
+                : "Great software engineering does not eliminate complexity for the sake of it. It structures dense requirements so users and teams move forward with confidence."}
             </p>
           </div>
 

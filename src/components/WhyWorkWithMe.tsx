@@ -35,7 +35,7 @@ export default function WhyWorkWithMe() {
     {
       letter: "C",
       title: "Grounded Impact on Real-World Challenges",
-      description: "Software proves its worth when serving communities—such as partnering with local tilapia fish farmers in Jember to curb mortality rates and engineering transparent fertilizer quota systems.",
+      description: "Software proves its worth when serving communities, such as partnering with local tilapia fish farmers in Jember to curb mortality rates and engineering transparent fertilizer quota systems.",
     },
   ];
 
