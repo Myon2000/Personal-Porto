@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useLanguage } from "@/context/language-context";
 import { Mail, Globe, ArrowUp } from "lucide-react";
-import { GithubIcon } from "@/components/icons";
+import { GithubIcon } from "@/components/shared/icons";
 
 export default function Footer() {
   const { language } = useLanguage();

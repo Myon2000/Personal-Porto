@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import WorkPageContent from "@/components/WorkPageContent";
+import WorkPageContent from "@/components/work/WorkPageContent";
 
 export const metadata: Metadata = {
   title: "Work & Experience | Oktavian Ramadhani",

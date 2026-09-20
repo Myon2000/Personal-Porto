@@ -3,10 +3,10 @@
 import { useState } from "react";
 import { useLanguage } from "@/context/language-context";
 import { FEATURED_PROJECTS, ProjectItem } from "@/data/portfolio-data";
-import { GithubIcon } from "@/components/icons";
-import ProjectModal from "@/components/ProjectModal";
-import HowIWork from "@/components/HowIWork";
-import HomeContactCTA from "@/components/HomeContactCTA";
+import { GithubIcon } from "@/components/shared/icons";
+import ProjectModal from "@/components/shared/ProjectModal";
+import HowIWork from "@/components/shared/HowIWork";
+import HomeContactCTA from "@/components/home/HomeContactCTA";
 import {
   ExternalLink,
   Eye,

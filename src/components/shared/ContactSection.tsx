@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useLanguage } from "@/context/language-context";
 import { PERSONAL_INFO } from "@/data/portfolio-data";
-import { GithubIcon } from "@/components/icons";
+import { GithubIcon } from "./icons";
 import {
   Mail,
   Send,

@@ -1,11 +1,11 @@
-import HeroSection from "@/components/HeroSection";
-import FeaturedCaseSection from "@/components/FeaturedCaseSection";
-import SelectedWorksSection from "@/components/SelectedWorksSection";
-import WhyWorkWithMe from "@/components/WhyWorkWithMe";
-import HowIWork from "@/components/HowIWork";
-import TechStackMarquee from "@/components/TechStackMarquee";
-import RetroSnakeGame from "@/components/RetroSnakeGame";
-import HomeContactCTA from "@/components/HomeContactCTA";
+import HeroSection from "@/components/home/HeroSection";
+import FeaturedCaseSection from "@/components/home/FeaturedCaseSection";
+import SelectedWorksSection from "@/components/home/SelectedWorksSection";
+import WhyWorkWithMe from "@/components/home/WhyWorkWithMe";
+import HowIWork from "@/components/shared/HowIWork";
+import TechStackMarquee from "@/components/home/TechStackMarquee";
+import RetroSnakeGame from "@/components/home/RetroSnakeGame";
+import HomeContactCTA from "@/components/home/HomeContactCTA";
 
 export default function Home() {
   return (

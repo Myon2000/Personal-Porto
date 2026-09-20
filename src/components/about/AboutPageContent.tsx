@@ -3,8 +3,8 @@
 import Image from "next/image";
 import { useLanguage } from "@/context/language-context";
 import { PERSONAL_INFO } from "@/data/portfolio-data";
-import HowIWork from "@/components/HowIWork";
-import ContactSection from "@/components/ContactSection";
+import HowIWork from "@/components/shared/HowIWork";
+import ContactSection from "@/components/shared/ContactSection";
 import {
   Download,
   GraduationCap,

@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useLanguage } from "@/context/language-context";
 import { ProjectItem } from "@/data/portfolio-data";
-import { GithubIcon } from "@/components/icons";
+import { GithubIcon } from "./icons";
 import {
   X,
   ExternalLink,

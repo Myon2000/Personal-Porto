@@ -112,12 +112,14 @@ Dokumen ini adalah acuan kerja dan pelacak progres (*checklist*) perombakan meny
 - [x] Section `05 / Contact Form`: Komponen formulir kontak lengkap 3-channel (`ContactSection`)
 
 ### Fase 5: Hapus Mode Malam & Redesain Uji Prediksi DenseNet (Anti-AI Slop)
-- [ ] Hapus tema gelap (Dark Mode) secara total: ubah website menjadi murni Light Mode elegan, bersih, dan berwibawa persis sandeep.design (tanpa toggle tema malam, background `#FFFFFF` / `#FAFAF8`)
-- [ ] Redesain `AlzheimerSimulator.tsx`: hilangkan gradasi biru-ungu, hilangkan animasi laser scanning norak, ganti dengan tipografi monospace saintifik, tabel metrik yang presisi, dan visualisasi scan MRI klinis yang elegan
-- [ ] Perbarui `HeroDotField.tsx`: sesuaikan partikel matriks hijau emerald murni di atas kanvas terang
-- [ ] Perbarui `Navbar.tsx` & `globals.css`: bersihkan komponen `ThemeToggle`
+- [x] Hapus tema gelap (Dark Mode) secara total: website 100% Light Mode elegan & bersih (`#FAFAF8`), tanpa toggle tema malam
+- [x] Redesain `AlzheimerSimulator.tsx`: hilangkan gradasi ungu/biru & laser scan, terapkan tipografi monospace saintifik dan frame MRI klinis elegan
+- [x] Perbarui `HeroDotField.tsx`: partikel matriks hijau emerald murni di atas kanvas terang
+- [x] Perbarui `Navbar.tsx` & `globals.css`: bersihkan komponen `ThemeToggle` dan token CSS `.dark`
 
-### Fase 6: Verifikasi, Build & Deployment
-- [ ] Jalankan audit linting `npm run lint` (0 error, 0 warning)
-- [ ] Jalankan pengujian build Next.js produksi `npm run build`
-- [ ] Buat commit Git yang bersih dan push ke branch `main` GitHub untuk live deployment di `personalporto.myon.my.id`
+### Fase 6: Restrukturisasi & Modularisasi Folder Komponen
+- [x] Rapikan `src/components/` menjadi subdirektori terorganisir: `layout/`, `home/`, `work/`, `about/`, `shared/`
+- [x] Hapus file komponen mati yang tidak digunakan (`ThemeToggle`, `theme-provider`, `AboutSection`, `SkillsSection`, `CertificatesSection`, `ExperienceSection`, `ProjectsSection`)
+- [x] Jalankan audit linting ESLint (0 error, 0 warning)
+- [x] Jalankan pengujian build Next.js produksi statis (10/10 pages prerendered)
+- [x] Buat commit Git dan push ke branch `main` GitHub untuk live deployment di `personalporto.myon.my.id`

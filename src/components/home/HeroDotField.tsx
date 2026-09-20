@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { useTheme } from "next-themes";
 import { useMounted } from "@/hooks/use-mounted";
 
 interface Particle {
@@ -15,7 +14,6 @@ interface Particle {
 
 export default function HeroDotField() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const { resolvedTheme } = useTheme();
   const mounted = useMounted();
 
   const stateRef = useRef({
@@ -115,8 +113,6 @@ export default function HeroDotField() {
       parent.addEventListener("mouseleave", handleMouseLeave, { passive: true });
     }
 
-    const isDark = resolvedTheme === "dark";
-
     // Parameter Fisika Interaksi Kursor (Sesuai Spesifikasi Vian)
     const REPEL_RADIUS = 110; // Radius pengaruh tolakan kursor
     const REPEL_MAX_FORCE = 32; // Kekuatan dorongan maksimum partikel menjauh
@@ -194,12 +190,7 @@ export default function HeroDotField() {
 
           ctx.beginPath();
           ctx.arc(p.x, p.y, dotRadius, 0, Math.PI * 2);
-
-          if (isDark) {
-            ctx.fillStyle = `rgba(74, 222, 128, ${(dotAlpha * 0.95).toFixed(3)})`;
-          } else {
-            ctx.fillStyle = `rgba(22, 163, 74, ${(dotAlpha * 0.85).toFixed(3)})`;
-          }
+          ctx.fillStyle = `rgba(22, 163, 74, ${(dotAlpha * 0.85).toFixed(3)})`;
           ctx.fill();
         }
       }
@@ -218,7 +209,7 @@ export default function HeroDotField() {
         parent.removeEventListener("mouseleave", handleMouseLeave);
       }
     };
-  }, [resolvedTheme, mounted]);
+  }, [mounted]);
 
   return (
     <canvas

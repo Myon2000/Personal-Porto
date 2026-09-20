@@ -2,7 +2,7 @@
 
 import { useLanguage } from "@/context/language-context";
 import { PERSONAL_INFO } from "@/data/portfolio-data";
-import HeroDotField from "@/components/HeroDotField";
+import HeroDotField from "./HeroDotField";
 import { ArrowUpRight } from "lucide-react";
 
 export default function HeroSection() {

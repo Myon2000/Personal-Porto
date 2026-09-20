@@ -4,8 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { useLanguage } from "@/context/language-context";
 import { FEATURED_PROJECTS, ProjectItem } from "@/data/portfolio-data";
-import { GithubIcon } from "@/components/icons";
-import ProjectModal from "@/components/ProjectModal";
+import { GithubIcon } from "@/components/shared/icons";
+import ProjectModal from "@/components/shared/ProjectModal";
 import { ExternalLink, ArrowUpRight, Eye } from "lucide-react";
 
 export default function SelectedWorksSection() {

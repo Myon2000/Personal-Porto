@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useLanguage } from "@/context/language-context";
-import LanguageToggle from "@/components/LanguageToggle";
+import LanguageToggle from "./LanguageToggle";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 
 export default function Navbar() {

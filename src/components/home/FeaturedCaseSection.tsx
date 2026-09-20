@@ -2,8 +2,8 @@
 
 import { useLanguage } from "@/context/language-context";
 import { FEATURED_PROJECTS } from "@/data/portfolio-data";
-import { GithubIcon } from "@/components/icons";
-import AlzheimerSimulator from "@/components/AlzheimerSimulator";
+import { GithubIcon } from "@/components/shared/icons";
+import AlzheimerSimulator from "./AlzheimerSimulator";
 import { ExternalLink, Layers } from "lucide-react";
 
 export default function FeaturedCaseSection() {

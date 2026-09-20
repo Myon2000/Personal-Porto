@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import AboutPageContent from "@/components/AboutPageContent";
+import AboutPageContent from "@/components/about/AboutPageContent";
 
 export const metadata: Metadata = {
   title: "About & Resume | Oktavian Ramadhani",
