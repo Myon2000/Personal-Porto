@@ -113,9 +113,12 @@ Dokumen ini adalah acuan kerja dan pelacak progres (*checklist*) perombakan meny
 
 ### Fase 5: Hapus Mode Malam & Redesain Uji Prediksi DenseNet (Anti-AI Slop)
 - [x] Hapus tema gelap (Dark Mode) secara total: website 100% Light Mode elegan & bersih (`#FAFAF8`), tanpa toggle tema malam
+- [x] Kunci `color-scheme: light;` pada `:root` dan `html` serta buang seluruh 300+ class `dark:` di seluruh komponen
+- [x] Hapus kartu redundant "Request CV" di ContactSection (unduh CV resmi terpusat langsung di halaman About `/resume.pdf`)
 - [x] Redesain `AlzheimerSimulator.tsx`: hilangkan gradasi ungu/biru & laser scan, terapkan tipografi monospace saintifik dan frame MRI klinis elegan
 - [x] Perbarui `HeroDotField.tsx`: partikel matriks hijau emerald murni di atas kanvas terang
 - [x] Perbarui `Navbar.tsx` & `globals.css`: bersihkan komponen `ThemeToggle` dan token CSS `.dark`
+- [x] Pastikan 0 kemunculan karakter em dash (`—`) di seluruh codebase
 
 ### Fase 6: Restrukturisasi & Modularisasi Folder Komponen
 - [x] Rapikan `src/components/` menjadi subdirektori terorganisir: `layout/`, `home/`, `work/`, `about/`, `shared/`

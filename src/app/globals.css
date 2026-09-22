@@ -1,8 +1,15 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:not(*));
+
 :root {
+  color-scheme: light;
   --background: #fafaf8;
   --foreground: #090d16;
+}
+
+html {
+  color-scheme: light;
 }
 
 body {

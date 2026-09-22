@@ -201,15 +201,15 @@ export default function RetroSnakeGame() {
   return (
     <section
       id="playground"
-      className="py-20 md:py-28 border-b border-slate-200/80 dark:border-slate-800/80 bg-white dark:bg-[#090d16] transition-colors"
+      className="py-20 md:py-28 border-b border-slate-200/80 bg-white transition-colors"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-12">
         {/* Sandeep-style Section Header Ribbon */}
-        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 pb-6 border-b border-slate-200 dark:border-slate-800">
+        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 pb-6 border-b border-slate-200">
           <div className="flex items-center gap-4 font-mono text-xs text-slate-400">
-            <span className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">06</span>
-            <span className="h-4 w-px bg-slate-300 dark:bg-slate-700" />
-            <span className="uppercase tracking-[0.25em] text-slate-900 dark:text-white font-semibold">
+            <span className="text-xl sm:text-2xl font-bold text-slate-900">06</span>
+            <span className="h-4 w-px bg-slate-300" />
+            <span className="uppercase tracking-[0.25em] text-slate-900 font-semibold">
               {language === "id" ? "Mini Playground" : "Interactive Playground"}
             </span>
           </div>
@@ -220,12 +220,12 @@ export default function RetroSnakeGame() {
 
         {/* Massive Editorial Headline */}
         <div className="max-w-3xl space-y-3">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-950 dark:text-white tracking-tight leading-[1.12]">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-950 tracking-tight leading-[1.12]">
             {language === "id"
               ? "Retro Terminal Snake: Tangkap bug & pertahankan clean code."
               : "Retro Terminal Snake: Hunt down bugs & compile clean code."}
           </h2>
-          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400 font-normal">
+          <p className="text-base sm:text-lg text-slate-600 font-normal">
             {language === "id"
               ? "Gunakan tombol panah keyboard atau kontrol sentuh virtual di layar untuk menavigasi snake."
               : "Use keyboard arrow keys / WASD or the virtual touch D-pad below to steer the terminal snake."}
@@ -233,7 +233,7 @@ export default function RetroSnakeGame() {
         </div>
 
         {/* Game Window Enclosure */}
-        <div className="max-w-xl mx-auto rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-950 text-white shadow-2xl overflow-hidden font-mono">
+        <div className="max-w-xl mx-auto rounded-2xl border border-slate-300 bg-slate-950 text-white shadow-2xl overflow-hidden font-mono">
           {/* Terminal Title Bar */}
           <div className="flex items-center justify-between px-4 py-3 border-b border-slate-800 bg-slate-900/90 text-xs">
             <div className="flex items-center gap-2">
