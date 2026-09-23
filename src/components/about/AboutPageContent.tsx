@@ -159,9 +159,9 @@ export default function AboutPageContent() {
 
  return (
  <div className="flex flex-col min-h-screen bg-white text-slate-900 transition-colors">
- {/* 01 / ABOUT ME HEADER & PORTRAIT */}
- <section className="pt-24 sm:pt-32 pb-20 sm:pb-28 border-b border-slate-200">
- <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-16 space-y-12">
+      {/* 01 / ABOUT ME HEADER & PORTRAIT */}
+      <section className="pt-24 sm:pt-32 pb-20 sm:pb-28 border-b border-slate-200">
+        <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-12 space-y-12">
  {/* Section Indicator */}
  <div className="flex items-center gap-4 font-mono text-xs text-slate-400">
  <span className="text-xl sm:text-2xl font-bold text-slate-900">
@@ -273,9 +273,9 @@ export default function AboutPageContent() {
  </div>
  </section>
 
- {/* 02 / CURRICULUM VITAE & RESUME DOWNLOAD */}
- <section className="py-20 sm:py-28 border-b border-slate-200 bg-slate-50/50">
- <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-16 space-y-12">
+      {/* 02 / CURRICULUM VITAE & RESUME DOWNLOAD */}
+      <section className="py-20 sm:py-28 border-b border-slate-200 bg-slate-50/50">
+        <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-12 space-y-12">
  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200 font-mono text-xs">
  <div className="flex items-center gap-3">
  <span className="text-xl font-bold text-slate-900">02</span>
@@ -388,9 +388,9 @@ export default function AboutPageContent() {
  </div>
  </section>
 
- {/* 03 / THINGS I BELIEVE (SANDEEP STYLE T.01 - T.03) */}
- <section className="py-20 sm:py-28 border-b border-slate-200 bg-white">
- <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-16 space-y-12">
+      {/* 03 / THINGS I BELIEVE (SANDEEP STYLE T.01 - T.03) */}
+      <section className="py-20 sm:py-28 border-b border-slate-200 bg-white">
+        <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-12 space-y-12">
  <div className="flex items-center gap-4 font-mono text-xs text-slate-400 pb-6 border-b border-slate-200">
  <span className="text-xl sm:text-2xl font-bold text-slate-900">
  03

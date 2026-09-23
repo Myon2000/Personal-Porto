@@ -51,7 +51,7 @@ export default function Navbar() {
  :"bg-white"
  }`}
  >
- <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 h-16 sm:h-18 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-12 h-16 sm:h-18 flex items-center justify-between">
  {/* Left: Brand Name with Authentic Face Avatar */}
  <Link
  href="/"

@@ -34,7 +34,7 @@ export default function SelectedWorksSection() {
  id="selected-works"
  className="py-20 md:py-28 border-b border-slate-200/80 bg-slate-50/50 transition-colors"
  >
- <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-16 space-y-14">
+      <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-12 space-y-14">
  {/* Sandeep-style Section Header Ribbon */}
  <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 pb-6 border-b border-slate-200">
  <div className="flex items-center gap-4 font-mono text-xs text-slate-400">

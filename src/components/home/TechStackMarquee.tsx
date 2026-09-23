@@ -38,7 +38,7 @@ export default function TechStackMarquee() {
  id="stack"
  className="py-20 md:py-28 border-b border-slate-200/80 bg-white transition-colors overflow-hidden"
  >
- <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-12">
+      <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-12 space-y-12">
  {/* Sandeep-style Section Header Ribbon */}
  <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 pb-6 border-b border-slate-200">
  <div className="flex items-center gap-4 font-mono text-xs text-slate-400">
@@ -132,7 +132,7 @@ export default function TechStackMarquee() {
  </div>
 
  {/* Ticker Legend / Subtext */}
- <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-6 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-slate-500">
+      <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-12 pt-6 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-slate-500">
  <div className="flex items-center gap-4">
  <span className="flex items-center gap-1.5">
  <span className="w-2 h-2 rounded-full bg-sky-500"/>

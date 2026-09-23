@@ -14,7 +14,7 @@ export default function Footer() {
 
  return (
  <footer className="border-t border-slate-200 bg-white transition-colors">
- <div className="max-w-6xl mx-auto px-4 sm:px-6 py-14 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-12 py-14 flex flex-col md:flex-row items-center justify-between gap-6">
  <div className="flex flex-col items-center md:items-start gap-1.5">
  <div className="inline-flex items-center gap-2.5 font-mono text-xs sm:text-sm font-semibold tracking-wider text-slate-950 uppercase">
  <div className="relative w-6 h-6 rounded-full overflow-hidden border border-slate-300 shrink-0">

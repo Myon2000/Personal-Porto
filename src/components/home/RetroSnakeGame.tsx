@@ -203,7 +203,7 @@ export default function RetroSnakeGame() {
       id="playground"
       className="py-20 md:py-28 border-b border-slate-200/80 bg-white transition-colors"
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-12">
+      <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-12 space-y-12">
         {/* Sandeep-style Section Header Ribbon */}
         <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 pb-6 border-b border-slate-200">
           <div className="flex items-center gap-4 font-mono text-xs text-slate-400">

@@ -233,9 +233,9 @@ export default function WorkPageContent() {
 
  return (
  <div className="flex flex-col min-h-screen bg-white text-slate-900 transition-colors">
- {/* 01 / WORK HEADER */}
- <section className="pt-24 sm:pt-32 pb-16 sm:pb-20 border-b border-slate-200">
- <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-16 space-y-8">
+      {/* 01 / WORK HEADER */}
+      <section className="pt-24 sm:pt-32 pb-16 sm:pb-20 border-b border-slate-200">
+        <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-12 space-y-8">
  {/* Section Indicator */}
  <div className="flex items-center gap-4 font-mono text-xs text-slate-400">
  <span className="text-xl sm:text-2xl font-bold text-slate-900">
@@ -269,9 +269,9 @@ export default function WorkPageContent() {
  </div>
  </section>
 
- {/* 02 / SELECTED CASE STUDIES */}
- <section className="py-20 sm:py-28 border-b border-slate-200 bg-slate-50/50">
- <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-16 space-y-12">
+      {/* 02 / SELECTED CASE STUDIES */}
+      <section className="py-20 sm:py-28 border-b border-slate-200 bg-slate-50/50">
+        <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-12 space-y-12">
  <div className="flex items-center justify-between pb-6 border-b border-slate-200 font-mono text-xs">
  <div className="flex items-center gap-3">
  <span className="text-xl font-bold text-slate-900">02</span>
@@ -349,9 +349,9 @@ export default function WorkPageContent() {
  </div>
  </section>
 
- {/* 03 / ARCHIVED & COURSEWORK REPOSITORIES */}
- <section className="py-20 sm:py-28 border-b border-slate-200 bg-white">
- <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-16 space-y-10">
+      {/* 03 / ARCHIVED & COURSEWORK REPOSITORIES */}
+      <section className="py-20 sm:py-28 border-b border-slate-200 bg-white">
+        <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-12 space-y-10">
  <div className="flex items-center justify-between pb-6 border-b border-slate-200 font-mono text-xs">
  <div className="flex items-center gap-3">
  <span className="text-xl font-bold text-slate-900">03</span>
@@ -401,9 +401,9 @@ export default function WorkPageContent() {
  </div>
  </section>
 
- {/* 04 / WORK & LEADERSHIP EXPERIENCE (FROM VIAN'S CV) */}
- <section className="py-20 sm:py-28 border-b border-slate-200 bg-slate-50/50">
- <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-16 space-y-12">
+      {/* 04 / WORK & LEADERSHIP EXPERIENCE (FROM VIAN'S CV) */}
+      <section className="py-20 sm:py-28 border-b border-slate-200 bg-slate-50/50">
+        <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-12 space-y-12">
  <div className="flex items-center justify-between pb-6 border-b border-slate-200 font-mono text-xs">
  <div className="flex items-center gap-3">
  <span className="text-xl font-bold text-slate-900">04</span>

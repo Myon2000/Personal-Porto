@@ -13,7 +13,7 @@ export default function HomeContactCTA() {
  id="contact"
  className="py-24 md:py-32 border-b border-slate-200/80 bg-white transition-colors"
  >
- <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-16 space-y-10">
+      <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-12 space-y-10">
  {/* Minimalist Pill Label */}
  <div className="inline-flex items-center gap-2 font-mono text-xs text-slate-500 uppercase tracking-widest">
  <span className="w-1.5 h-1.5 rounded-full bg-[#EA3826]"/>
