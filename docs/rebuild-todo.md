@@ -132,3 +132,5 @@ Dokumen ini adalah acuan kerja dan pelacak progres (*checklist*) perombakan meny
 ## 📅 Catatan Log Harian (Audit Trail)
 - **2026-09-21:** Penyelarasan arsitektur portofolio dan verifikasi model data.
 - **2026-09-22:** Implementasi penuh 3-halaman (Home, Work, About) ala sandeep.design.
+- **2026-09-23:** Penyatuan master container max-w-6xl dan transisi fluid flow zoom layout.
+- **2026-09-26:** Audit performa render kanvas partikel dan penyesuaian responsivitas container.
