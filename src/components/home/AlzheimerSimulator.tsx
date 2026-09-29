@@ -163,8 +163,20 @@ export default function AlzheimerSimulator() {
           onClick={() => setShowReport(!showReport)}
           className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-slate-300 hover:border-slate-900 bg-white text-slate-800 text-xs font-mono font-semibold uppercase tracking-wider transition-colors self-start sm:self-auto shrink-0"
         >
-          <span>{showReport ? (language === "id" ? "TUTUP LAPORAN METRIK" : "HIDE METRICS") : (language === "id" ? "LIHAT METRIK 5.098 SAMPEL" : "VIEW 5,098 SAMPLES REPORT")}</span>
-          {showReport ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+          <span>
+            {showReport
+              ? language === "id"
+                ? "TUTUP LAPORAN METRIK"
+                : "HIDE METRICS"
+              : language === "id"
+                ? "LIHAT METRIK 5.098 SAMPEL"
+                : "VIEW 5,098 SAMPLES REPORT"}
+          </span>
+          {showReport ? (
+            <ChevronUp className="w-3.5 h-3.5" />
+          ) : (
+            <ChevronDown className="w-3.5 h-3.5" />
+          )}
         </button>
       </div>
 
@@ -173,8 +185,11 @@ export default function AlzheimerSimulator() {
         <div className="flex items-center gap-2 text-slate-800">
           <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
           <span>
-            {language === "id" ? "Akurasi Uji Terverifikasi:" : "Verified Test Accuracy:"}{" "}
-            <strong className="text-slate-950 font-bold">99.92%</strong> (5,098 Scans / 160 Batches)
+            {language === "id"
+              ? "Akurasi Uji Terverifikasi:"
+              : "Verified Test Accuracy:"}{" "}
+            <strong className="text-slate-950 font-bold">99.92%</strong> (5,098
+            Scans / 160 Batches)
           </span>
         </div>
         <div className="flex items-center gap-3 text-[11px] text-slate-500">
@@ -204,45 +219,76 @@ export default function AlzheimerSimulator() {
           <table className="w-full text-left border-collapse text-[11px] sm:text-xs">
             <thead>
               <tr className="text-slate-400 border-b border-slate-800">
-                <th className="py-2 pr-6 uppercase tracking-wider font-semibold">Class Pathological Category</th>
-                <th className="py-2 px-4 uppercase tracking-wider font-semibold">Precision</th>
-                <th className="py-2 px-4 uppercase tracking-wider font-semibold">Recall</th>
-                <th className="py-2 px-4 uppercase tracking-wider font-semibold">F1-Score</th>
-                <th className="py-2 pl-4 uppercase tracking-wider font-semibold">Support (Scans)</th>
+                <th className="py-2 pr-6 uppercase tracking-wider font-semibold">
+                  Class Pathological Category
+                </th>
+                <th className="py-2 px-4 uppercase tracking-wider font-semibold">
+                  Precision
+                </th>
+                <th className="py-2 px-4 uppercase tracking-wider font-semibold">
+                  Recall
+                </th>
+                <th className="py-2 px-4 uppercase tracking-wider font-semibold">
+                  F1-Score
+                </th>
+                <th className="py-2 pl-4 uppercase tracking-wider font-semibold">
+                  Support (Scans)
+                </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-800/80">
               <tr>
-                <td className="py-2 pr-6 font-semibold text-white">MildDemented</td>
+                <td className="py-2 pr-6 font-semibold text-white">
+                  MildDemented
+                </td>
                 <td className="py-2 px-4 text-slate-300">1.0000</td>
                 <td className="py-2 px-4 text-slate-300">1.0000</td>
-                <td className="py-2 px-4 text-emerald-400 font-semibold">1.0000</td>
+                <td className="py-2 px-4 text-emerald-400 font-semibold">
+                  1.0000
+                </td>
                 <td className="py-2 pl-4 text-slate-400">1,344</td>
               </tr>
               <tr>
-                <td className="py-2 pr-6 font-semibold text-white">ModerateDemented</td>
+                <td className="py-2 pr-6 font-semibold text-white">
+                  ModerateDemented
+                </td>
                 <td className="py-2 px-4 text-slate-300">1.0000</td>
                 <td className="py-2 px-4 text-slate-300">1.0000</td>
-                <td className="py-2 px-4 text-emerald-400 font-semibold">1.0000</td>
+                <td className="py-2 px-4 text-emerald-400 font-semibold">
+                  1.0000
+                </td>
                 <td className="py-2 pl-4 text-slate-400">970</td>
               </tr>
               <tr>
-                <td className="py-2 pr-6 font-semibold text-white">NonDemented</td>
+                <td className="py-2 pr-6 font-semibold text-white">
+                  NonDemented
+                </td>
                 <td className="py-2 px-4 text-slate-300">1.0000</td>
                 <td className="py-2 px-4 text-slate-300">0.9972</td>
-                <td className="py-2 px-4 text-emerald-400 font-semibold">0.9986</td>
+                <td className="py-2 px-4 text-emerald-400 font-semibold">
+                  0.9986
+                </td>
                 <td className="py-2 pl-4 text-slate-400">1,440</td>
               </tr>
               <tr>
-                <td className="py-2 pr-6 font-semibold text-white">VeryMildDemented</td>
+                <td className="py-2 pr-6 font-semibold text-white">
+                  VeryMildDemented
+                </td>
                 <td className="py-2 px-4 text-slate-300">0.9970</td>
                 <td className="py-2 px-4 text-slate-300">1.0000</td>
-                <td className="py-2 px-4 text-emerald-400 font-semibold">0.9985</td>
+                <td className="py-2 px-4 text-emerald-400 font-semibold">
+                  0.9985
+                </td>
                 <td className="py-2 pl-4 text-slate-400">1,344</td>
               </tr>
               <tr className="border-t border-slate-700 bg-slate-900/90 font-bold text-white">
                 <td className="py-2.5 pr-6 text-emerald-400">Model Accuracy</td>
-                <td colSpan={2} className="py-2.5 px-4 text-slate-400 font-normal">Across All Partitions</td>
+                <td
+                  colSpan={2}
+                  className="py-2.5 px-4 text-slate-400 font-normal"
+                >
+                  Across All Partitions
+                </td>
                 <td className="py-2.5 px-4 text-emerald-400 text-sm">99.92%</td>
                 <td className="py-2.5 pl-4">5,098</td>
               </tr>
@@ -257,7 +303,9 @@ export default function AlzheimerSimulator() {
         <div className="lg:col-span-5 space-y-4">
           <div className="space-y-2">
             <span className="block text-xs font-mono uppercase tracking-wider text-slate-500 font-semibold">
-              {language === "id" ? "1. Pilih Sampel Uji MRI:" : "1. Select Test Scan Sample:"}
+              {language === "id"
+                ? "1. Pilih Sampel Uji MRI:"
+                : "1. Select Test Scan Sample:"}
             </span>
             <div className="grid grid-cols-2 gap-2">
               {SAMPLES.map((sample) => {
@@ -336,12 +384,20 @@ export default function AlzheimerSimulator() {
             {isInferring ? (
               <>
                 <RotateCw className="w-3.5 h-3.5 animate-spin" />
-                <span>{language === "id" ? "MENGEKSEKUSI FORWARD PASS..." : "EXECUTING FORWARD PASS..."}</span>
+                <span>
+                  {language === "id"
+                    ? "MENGEKSEKUSI FORWARD PASS..."
+                    : "EXECUTING FORWARD PASS..."}
+                </span>
               </>
             ) : (
               <>
                 <Play className="w-3.5 h-3.5 fill-current" />
-                <span>{language === "id" ? "ULANGI UJI INFERENSI MODEL" : "EVALUATE FORWARD PASS"}</span>
+                <span>
+                  {language === "id"
+                    ? "ULANGI UJI INFERENSI MODEL"
+                    : "EVALUATE FORWARD PASS"}
+                </span>
               </>
             )}
           </button>
@@ -352,31 +408,51 @@ export default function AlzheimerSimulator() {
           <div className="space-y-4">
             <div className="flex items-center justify-between pb-3 border-b border-slate-200">
               <span className="text-xs font-mono uppercase tracking-wider text-slate-500 font-semibold">
-                {language === "id" ? "2. Distribusi Probabilitas Softmax:" : "2. Softmax Probability Distribution:"}
+                {language === "id"
+                  ? "2. Distribusi Probabilitas Softmax:"
+                  : "2. Softmax Probability Distribution:"}
               </span>
               <span className="text-xs font-mono font-bold text-emerald-700">
-                {isInferring ? "Evaluating Layer Output..." : "Prediction Confirmed"}
+                {isInferring
+                  ? "Evaluating Layer Output..."
+                  : "Prediction Confirmed"}
               </span>
             </div>
 
             {/* Minimalist Probability Rows */}
             <div className="space-y-3.5">
               {[
-                { key: "NonDemented", label: "Non-Demented (Sehat / Normal Control)" },
-                { key: "VeryMildDemented", label: "Very Mild Demented (Tahap Sangat Awal)" },
+                {
+                  key: "NonDemented",
+                  label: "Non-Demented (Sehat / Normal Control)",
+                },
+                {
+                  key: "VeryMildDemented",
+                  label: "Very Mild Demented (Tahap Sangat Awal)",
+                },
                 { key: "MildDemented", label: "Mild Demented (Tahap Ringan)" },
-                { key: "ModerateDemented", label: "Moderate Demented (Tahap Menengah)" },
+                {
+                  key: "ModerateDemented",
+                  label: "Moderate Demented (Tahap Menengah)",
+                },
               ].map((item) => {
-                const prob = selectedSample.probabilities[item.key as keyof typeof selectedSample.probabilities];
+                const prob =
+                  selectedSample.probabilities[
+                    item.key as keyof typeof selectedSample.probabilities
+                  ];
                 const isWinner = prob > 50;
 
                 return (
                   <div key={item.key} className="space-y-1">
                     <div className="flex items-center justify-between text-xs font-mono">
-                      <span className={`${isWinner ? "text-slate-950 font-bold" : "text-slate-500"}`}>
+                      <span
+                        className={`${isWinner ? "text-slate-950 font-bold" : "text-slate-500"}`}
+                      >
                         {item.label}
                       </span>
-                      <span className={`font-semibold ${isWinner ? "text-emerald-700 font-bold" : "text-slate-600"}`}>
+                      <span
+                        className={`font-semibold ${isWinner ? "text-emerald-700 font-bold" : "text-slate-600"}`}
+                      >
                         {isInferring ? "--" : `${prob.toFixed(1)}%`}
                       </span>
                     </div>
@@ -398,7 +474,11 @@ export default function AlzheimerSimulator() {
             <div className="p-4 rounded-xl border border-slate-200 bg-slate-50/70 space-y-1 text-xs">
               <div className="flex items-center gap-2 font-mono font-bold text-slate-950">
                 <Activity className="w-4 h-4 text-[#EA3826]" />
-                <span>{language === "id" ? "Hasil Diagnosis Komputasi:" : "Computational Diagnostic Consensus:"}</span>
+                <span>
+                  {language === "id"
+                    ? "Hasil Diagnosis Komputasi:"
+                    : "Computational Diagnostic Consensus:"}
+                </span>
                 <span className="underline decoration-[#EA3826] underline-offset-2">
                   {selectedSample.expectedClass}
                 </span>
@@ -413,14 +493,26 @@ export default function AlzheimerSimulator() {
           <div className="p-4 rounded-xl border border-slate-200 bg-white space-y-2 font-mono text-[11px] text-slate-600">
             <div className="flex items-center gap-2 text-xs font-bold text-slate-900 uppercase tracking-wider">
               <Layers className="w-3.5 h-3.5 text-slate-700" />
-              <span>{language === "id" ? "Pipeline Inferensi 2 Tahap:" : "Two-Stage Inference Pipeline:"}</span>
+              <span>
+                {language === "id"
+                  ? "Pipeline Inferensi 2 Tahap:"
+                  : "Two-Stage Inference Pipeline:"}
+              </span>
             </div>
             <div className="space-y-1.5 pl-3 border-l-2 border-slate-300">
               <p>
-                <strong className="text-slate-950">[Tahap 1 · Pre-filter CNN]:</strong> Validasi integritas citra MRI otak asli guna menyaring artefak atau gambar non-medis sebelum komputasi berat.
+                <strong className="text-slate-950">
+                  [Tahap 1 · Pre-filter CNN]:
+                </strong>{" "}
+                Validasi integritas citra MRI otak asli guna menyaring artefak
+                atau gambar non-medis sebelum komputasi berat.
               </p>
               <p>
-                <strong className="text-slate-950">[Tahap 2 · DenseNet-169]:</strong> Ekstraksi fitur cross-layer berkelanjutan melalui 4 Dense Blocks untuk membedakan derajat atrofi serebral.
+                <strong className="text-slate-950">
+                  [Tahap 2 · DenseNet-169]:
+                </strong>{" "}
+                Ekstraksi fitur cross-layer berkelanjutan melalui 4 Dense Blocks
+                untuk membedakan derajat atrofi serebral.
               </p>
             </div>
           </div>

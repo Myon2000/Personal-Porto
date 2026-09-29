@@ -102,11 +102,23 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     },
     iconName: "Code",
     skills: [
-      { name: "TypeScript & JavaScript", level: { id: "Mahir", en: "Proficient" } },
+      {
+        name: "TypeScript & JavaScript",
+        level: { id: "Mahir", en: "Proficient" },
+      },
       { name: "Next.js & React", level: { id: "Mahir", en: "Proficient" } },
-      { name: "PHP & Laravel / Blade", level: { id: "Kompeten", en: "Skilled" } },
-      { name: "Tailwind CSS & Responsive UI", level: { id: "Mahir", en: "Proficient" } },
-      { name: "RESTful API Architecture", level: { id: "Kompeten", en: "Skilled" } },
+      {
+        name: "PHP & Laravel / Blade",
+        level: { id: "Kompeten", en: "Skilled" },
+      },
+      {
+        name: "Tailwind CSS & Responsive UI",
+        level: { id: "Mahir", en: "Proficient" },
+      },
+      {
+        name: "RESTful API Architecture",
+        level: { id: "Kompeten", en: "Skilled" },
+      },
     ],
   },
   {
@@ -117,10 +129,22 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     iconName: "Brain",
     skills: [
       { name: "Python", level: { id: "Mahir", en: "Proficient" } },
-      { name: "PyTorch & Deep Learning", level: { id: "Kompeten", en: "Skilled" } },
-      { name: "Convolutional Networks (DenseNet)", level: { id: "Kompeten", en: "Skilled" } },
-      { name: "Medical Image Classification", level: { id: "Spesialisasi", en: "Specialized" } },
-      { name: "Data Preprocessing & Evaluation", level: { id: "Kompeten", en: "Skilled" } },
+      {
+        name: "PyTorch & Deep Learning",
+        level: { id: "Kompeten", en: "Skilled" },
+      },
+      {
+        name: "Convolutional Networks (DenseNet)",
+        level: { id: "Kompeten", en: "Skilled" },
+      },
+      {
+        name: "Medical Image Classification",
+        level: { id: "Spesialisasi", en: "Specialized" },
+      },
+      {
+        name: "Data Preprocessing & Evaluation",
+        level: { id: "Kompeten", en: "Skilled" },
+      },
     ],
   },
   {
@@ -130,11 +154,26 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     },
     iconName: "Shield",
     skills: [
-      { name: "Server Security & DDOS Mitigation", level: { id: "Juara 1 LAOS", en: "1st Place LAOS" } },
-      { name: "Linux Server Management", level: { id: "Kompeten", en: "Skilled" } },
-      { name: "Git & GitHub Collaboration", level: { id: "Mahir", en: "Proficient" } },
-      { name: "MySQL & Relational Databases", level: { id: "Kompeten", en: "Skilled" } },
-      { name: "Cloud Deployment (Vercel)", level: { id: "Mahir", en: "Proficient" } },
+      {
+        name: "Server Security & DDOS Mitigation",
+        level: { id: "Juara 1 LAOS", en: "1st Place LAOS" },
+      },
+      {
+        name: "Linux Server Management",
+        level: { id: "Kompeten", en: "Skilled" },
+      },
+      {
+        name: "Git & GitHub Collaboration",
+        level: { id: "Mahir", en: "Proficient" },
+      },
+      {
+        name: "MySQL & Relational Databases",
+        level: { id: "Kompeten", en: "Skilled" },
+      },
+      {
+        name: "Cloud Deployment (Vercel)",
+        level: { id: "Mahir", en: "Proficient" },
+      },
     ],
   },
 ];
@@ -165,7 +204,13 @@ export const FEATURED_PROJECTS: ProjectItem[] = [
         "Evaluation using Confusion Matrix and F1-Score metrics",
       ],
     },
-    tags: ["Python", "PyTorch", "Deep Learning", "DenseNet-169", "Computer Vision"],
+    tags: [
+      "Python",
+      "PyTorch",
+      "Deep Learning",
+      "DenseNet-169",
+      "Computer Vision",
+    ],
     githubUrl: "https://github.com/Myon2000/Alzheimer-DenseNet-169",
   },
   {
@@ -198,7 +243,8 @@ export const FEATURED_PROJECTS: ProjectItem[] = [
   },
   {
     id: "nila-health",
-    title: "NilaHealth: Deteksi Penyakit Ikan Nila Berbasis CNN & Manajemen Tambak",
+    title:
+      "NilaHealth: Deteksi Penyakit Ikan Nila Berbasis CNN & Manajemen Tambak",
     category: "web",
     featured: true,
     badge: {
@@ -221,7 +267,14 @@ export const FEATURED_PROJECTS: ProjectItem[] = [
         "Automated treatment SOP recommendations & recurring pond care scheduling",
       ],
     },
-    tags: ["Laravel", "Python", "Flask", "CNN (EfficientNet)", "Aquaculture AI", "MySQL"],
+    tags: [
+      "Laravel",
+      "Python",
+      "Flask",
+      "CNN (EfficientNet)",
+      "Aquaculture AI",
+      "MySQL",
+    ],
     githubUrl: "https://github.com/Myon2000/NilaHealth2",
   },
   {

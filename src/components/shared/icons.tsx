@@ -14,7 +14,11 @@ export function GithubIcon({ className = "w-5 h-5" }: { className?: string }) {
   );
 }
 
-export function LinkedInIcon({ className = "w-5 h-5" }: { className?: string }) {
+export function LinkedInIcon({
+  className = "w-5 h-5",
+}: {
+  className?: string;
+}) {
   return (
     <svg
       role="img"

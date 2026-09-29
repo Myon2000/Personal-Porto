@@ -28,7 +28,8 @@ export default function HeroDotField() {
     // Non-aktifkan di perangkat mobile / touch-only untuk efisiensi baterai & performa
     const isMobile =
       typeof window !== "undefined" &&
-      (window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 768);
+      (window.matchMedia("(pointer: coarse)").matches ||
+        window.innerWidth < 768);
 
     if (isMobile) return;
 
@@ -110,7 +111,9 @@ export default function HeroDotField() {
 
     if (parent) {
       parent.addEventListener("mousemove", handleMouseMove, { passive: true });
-      parent.addEventListener("mouseleave", handleMouseLeave, { passive: true });
+      parent.addEventListener("mouseleave", handleMouseLeave, {
+        passive: true,
+      });
     }
 
     // Parameter Fisika Interaksi Kursor (Sesuai Spesifikasi Vian)
@@ -146,7 +149,10 @@ export default function HeroDotField() {
           // Partikel di luar radius cahaya diabaikan untuk performa tinggi
           if (distMouse > VISIBILITY_RADIUS) {
             // Partikel tetap kembali ke basis jika sebelumnya terdorong
-            if (Math.abs(p.x - p.baseX) > 0.1 || Math.abs(p.y - p.baseY) > 0.1) {
+            if (
+              Math.abs(p.x - p.baseX) > 0.1 ||
+              Math.abs(p.y - p.baseY) > 0.1
+            ) {
               const ax = (p.baseX - p.x) * SPRING_STIFFNESS;
               const ay = (p.baseY - p.y) * SPRING_STIFFNESS;
               p.vx = (p.vx + ax) * DAMPING;
@@ -163,7 +169,7 @@ export default function HeroDotField() {
 
           if (distMouse < REPEL_RADIUS && distMouse > 0.1) {
             // Gaya dorong berbanding terbalik dengan jarak
-            const repelFactor = (1 - distMouse / REPEL_RADIUS);
+            const repelFactor = 1 - distMouse / REPEL_RADIUS;
             const repelDist = repelFactor * repelFactor * REPEL_MAX_FORCE;
             const angle = Math.atan2(dyMouse, dxMouse);
             targetX = p.baseX + Math.cos(angle) * repelDist;

@@ -19,7 +19,9 @@ interface ContactSectionProps {
   sectionIndex?: string;
 }
 
-export default function ContactSection({ sectionIndex = "05" }: ContactSectionProps) {
+export default function ContactSection({
+  sectionIndex = "05",
+}: ContactSectionProps) {
   const { language } = useLanguage();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -36,7 +38,7 @@ export default function ContactSection({ sectionIndex = "05" }: ContactSectionPr
       setErrorMessage(
         language === "id"
           ? "Mohon lengkapi nama, email, dan pesan Anda terlebih dahulu."
-          : "Please fill in your name, email, and message first."
+          : "Please fill in your name, email, and message first.",
       );
       setSuccessMessage("");
       return false;
@@ -67,27 +69,27 @@ export default function ContactSection({ sectionIndex = "05" }: ContactSectionPr
 
     if (target === "gmail") {
       const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
-        PERSONAL_INFO.email
+        PERSONAL_INFO.email,
       )}&su=${encodeURIComponent(formattedSubject)}&body=${encodeURIComponent(
-        formattedBody
+        formattedBody,
       )}`;
       window.open(gmailUrl, "_blank", "noopener,noreferrer");
       setSuccessMessage(
         language === "id"
           ? "Membuka tab Gmail baru di browser. Silakan tinjau dan klik Send."
-          : "Opened a new Gmail tab in your browser. Please review and hit Send."
+          : "Opened a new Gmail tab in your browser. Please review and hit Send.",
       );
     } else if (target === "mailto") {
       const mailtoUrl = `mailto:${encodeURIComponent(
-        PERSONAL_INFO.email
+        PERSONAL_INFO.email,
       )}?subject=${encodeURIComponent(formattedSubject)}&body=${encodeURIComponent(
-        formattedBody
+        formattedBody,
       )}`;
       window.location.href = mailtoUrl;
       setSuccessMessage(
         language === "id"
           ? "Membuka aplikasi email bawaan. Silakan tinjau dan klik Send."
-          : "Opening default email app. Please review and hit Send."
+          : "Opening default email app. Please review and hit Send.",
       );
     } else if (target === "copy") {
       const fullText =
@@ -102,7 +104,7 @@ export default function ContactSection({ sectionIndex = "05" }: ContactSectionPr
         setSuccessMessage(
           language === "id"
             ? "Draf pesan dan email penerima telah disalin ke clipboard."
-            : "Message draft and recipient email copied to clipboard."
+            : "Message draft and recipient email copied to clipboard.",
         );
       }
     }
@@ -125,14 +127,18 @@ export default function ContactSection({ sectionIndex = "05" }: ContactSectionPr
         {/* Section Header Ribbon */}
         <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 pb-6 border-b border-slate-200">
           <div className="flex items-center gap-4 font-mono text-xs text-slate-400">
-            <span className="text-xl sm:text-2xl font-bold text-slate-900">{sectionIndex}</span>
+            <span className="text-xl sm:text-2xl font-bold text-slate-900">
+              {sectionIndex}
+            </span>
             <span className="h-4 w-px bg-slate-300" />
             <span className="uppercase tracking-[0.25em] text-slate-900 font-semibold">
               {language === "id" ? "Kontak & Kolaborasi" : "Get In Touch"}
             </span>
           </div>
           <span className="text-xs font-mono text-slate-500 uppercase tracking-widest">
-            {language === "id" ? "Saluran Komunikasi Langsung" : "Direct Inquiries"}
+            {language === "id"
+              ? "Saluran Komunikasi Langsung"
+              : "Direct Inquiries"}
           </span>
         </div>
 
@@ -156,10 +162,14 @@ export default function ContactSection({ sectionIndex = "05" }: ContactSectionPr
             <div className="p-6 sm:p-7 rounded-2xl border border-slate-200 bg-white shadow-xs space-y-5">
               <div className="space-y-1 pb-3 border-b border-slate-100">
                 <h3 className="text-sm font-mono font-bold uppercase tracking-wider text-slate-900">
-                  {language === "id" ? "Saluran Kontak Utama" : "Primary Channels"}
+                  {language === "id"
+                    ? "Saluran Kontak Utama"
+                    : "Primary Channels"}
                 </h3>
                 <p className="text-xs text-slate-500 font-normal">
-                  {language === "id" ? "Koneksi langsung tanpa perantara" : "Direct reachout without intermediaries"}
+                  {language === "id"
+                    ? "Koneksi langsung tanpa perantara"
+                    : "Direct reachout without intermediaries"}
                 </p>
               </div>
 
@@ -168,19 +178,25 @@ export default function ContactSection({ sectionIndex = "05" }: ContactSectionPr
                 <div className="flex items-center justify-between gap-3 p-3.5 rounded-xl bg-slate-50 border border-slate-200 hover:border-slate-400 transition-colors group">
                   <a
                     href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
-                      PERSONAL_INFO.email
+                      PERSONAL_INFO.email,
                     )}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 flex-1 min-w-0 focus:outline-none"
-                    title={language === "id" ? "Tulis email via Gmail Web" : "Compose via Gmail Web"}
+                    title={
+                      language === "id"
+                        ? "Tulis email via Gmail Web"
+                        : "Compose via Gmail Web"
+                    }
                   >
                     <div className="p-2.5 rounded-lg bg-white text-slate-800 group-hover:bg-slate-900 group-hover:text-white transition-colors shrink-0 shadow-2xs">
                       <Mail className="w-4 h-4" />
                     </div>
                     <div className="min-w-0">
                       <p className="text-[11px] font-mono text-slate-500">
-                        {language === "id" ? "Email Utama (Gmail)" : "Primary Email"}
+                        {language === "id"
+                          ? "Email Utama (Gmail)"
+                          : "Primary Email"}
                       </p>
                       <p className="font-mono text-xs sm:text-sm font-semibold text-slate-900 truncate">
                         {PERSONAL_INFO.email}
@@ -192,7 +208,11 @@ export default function ContactSection({ sectionIndex = "05" }: ContactSectionPr
                     type="button"
                     onClick={handleCopyEmail}
                     className="p-2 rounded-lg hover:bg-slate-200 text-slate-500 hover:text-slate-900 transition-colors focus:outline-none shrink-0"
-                    title={language === "id" ? "Salin alamat email" : "Copy email address"}
+                    title={
+                      language === "id"
+                        ? "Salin alamat email"
+                        : "Copy email address"
+                    }
                     aria-label="Copy email address"
                   >
                     {copiedEmail ? (
@@ -214,7 +234,9 @@ export default function ContactSection({ sectionIndex = "05" }: ContactSectionPr
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-[11px] font-mono text-slate-500">
-                      {language === "id" ? "Repositori & Kode" : "Code Repository"}
+                      {language === "id"
+                        ? "Repositori & Kode"
+                        : "Code Repository"}
                     </p>
                     <p className="font-mono text-xs sm:text-sm font-semibold text-slate-900 truncate">
                       github.com/{PERSONAL_INFO.githubUsername}
@@ -259,7 +281,9 @@ export default function ContactSection({ sectionIndex = "05" }: ContactSectionPr
             <div className="p-6 sm:p-8 rounded-2xl border border-slate-200 bg-white shadow-xs space-y-6">
               <div>
                 <h3 className="text-lg sm:text-xl font-bold text-slate-900">
-                  {language === "id" ? "Kirim Pesan Terstruktur" : "Send a Direct Message"}
+                  {language === "id"
+                    ? "Kirim Pesan Terstruktur"
+                    : "Send a Direct Message"}
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-600 pt-1 font-normal">
                   {language === "id"
@@ -281,10 +305,16 @@ export default function ContactSection({ sectionIndex = "05" }: ContactSectionPr
                 </div>
               )}
 
-              <form onSubmit={(e) => e.preventDefault()} className="space-y-4 font-mono text-xs">
+              <form
+                onSubmit={(e) => e.preventDefault()}
+                className="space-y-4 font-mono text-xs"
+              >
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label htmlFor="name" className="block text-xs font-semibold text-slate-700 uppercase tracking-wider">
+                    <label
+                      htmlFor="name"
+                      className="block text-xs font-semibold text-slate-700 uppercase tracking-wider"
+                    >
                       {language === "id" ? "Nama Lengkap" : "Your Name"}
                     </label>
                     <input
@@ -293,13 +323,20 @@ export default function ContactSection({ sectionIndex = "05" }: ContactSectionPr
                       required
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      placeholder={language === "id" ? "cth. Budi Santoso" : "e.g. Jane Doe"}
+                      placeholder={
+                        language === "id"
+                          ? "cth. Budi Santoso"
+                          : "e.g. Jane Doe"
+                      }
                       className="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 bg-slate-50 text-slate-900 text-xs focus:outline-none focus:border-slate-900 transition-colors"
                     />
                   </div>
 
                   <div className="space-y-1.5">
-                    <label htmlFor="email" className="block text-xs font-semibold text-slate-700 uppercase tracking-wider">
+                    <label
+                      htmlFor="email"
+                      className="block text-xs font-semibold text-slate-700 uppercase tracking-wider"
+                    >
                       {language === "id" ? "Alamat Email" : "Email Address"}
                     </label>
                     <input
@@ -315,7 +352,10 @@ export default function ContactSection({ sectionIndex = "05" }: ContactSectionPr
                 </div>
 
                 <div className="space-y-1.5">
-                  <label htmlFor="subject" className="block text-xs font-semibold text-slate-700 uppercase tracking-wider">
+                  <label
+                    htmlFor="subject"
+                    className="block text-xs font-semibold text-slate-700 uppercase tracking-wider"
+                  >
                     {language === "id" ? "Subjek / Topik" : "Subject Line"}
                   </label>
                   <input
@@ -334,7 +374,10 @@ export default function ContactSection({ sectionIndex = "05" }: ContactSectionPr
                 </div>
 
                 <div className="space-y-1.5">
-                  <label htmlFor="message" className="block text-xs font-semibold text-slate-700 uppercase tracking-wider">
+                  <label
+                    htmlFor="message"
+                    className="block text-xs font-semibold text-slate-700 uppercase tracking-wider"
+                  >
                     {language === "id" ? "Isi Pesan" : "Your Message"}
                   </label>
                   <textarea
@@ -361,7 +404,11 @@ export default function ContactSection({ sectionIndex = "05" }: ContactSectionPr
                       className="inline-flex items-center justify-center gap-2 flex-1 px-5 py-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-xs font-mono font-semibold uppercase tracking-wider transition-colors min-h-[44px]"
                     >
                       <Send className="w-3.5 h-3.5" />
-                      <span>{language === "id" ? "Kirim via Gmail (Web)" : "Send via Gmail (Web)"}</span>
+                      <span>
+                        {language === "id"
+                          ? "Kirim via Gmail (Web)"
+                          : "Send via Gmail (Web)"}
+                      </span>
                     </button>
 
                     <button
@@ -370,14 +417,20 @@ export default function ContactSection({ sectionIndex = "05" }: ContactSectionPr
                       className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg border border-slate-300 hover:bg-slate-100 text-slate-800 text-xs font-mono font-semibold uppercase tracking-wider transition-colors min-h-[44px]"
                     >
                       <Mail className="w-3.5 h-3.5" />
-                      <span>{language === "id" ? "Aplikasi Email" : "Email Client"}</span>
+                      <span>
+                        {language === "id" ? "Aplikasi Email" : "Email Client"}
+                      </span>
                     </button>
 
                     <button
                       type="button"
                       onClick={() => handleSend("copy")}
                       className="inline-flex items-center justify-center gap-2 px-3.5 py-3 rounded-lg border border-slate-200 hover:bg-slate-100 text-slate-600 hover:text-slate-900 text-xs font-mono font-medium transition-colors min-h-[44px]"
-                      title={language === "id" ? "Salin draf pesan ke clipboard" : "Copy message draft"}
+                      title={
+                        language === "id"
+                          ? "Salin draf pesan ke clipboard"
+                          : "Copy message draft"
+                      }
                     >
                       {copiedDraft ? (
                         <>
@@ -389,7 +442,9 @@ export default function ContactSection({ sectionIndex = "05" }: ContactSectionPr
                       ) : (
                         <>
                           <Copy className="w-3.5 h-3.5" />
-                          <span className="text-xs">{language === "id" ? "Salin Draf" : "Copy Draft"}</span>
+                          <span className="text-xs">
+                            {language === "id" ? "Salin Draf" : "Copy Draft"}
+                          </span>
                         </>
                       )}
                     </button>

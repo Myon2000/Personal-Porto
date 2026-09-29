@@ -2,7 +2,16 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useLanguage } from "@/context/language-context";
-import { Play, RotateCw, Trophy, Terminal, ArrowUp, ArrowDown, ArrowLeft, ArrowRight } from "lucide-react";
+import {
+  Play,
+  RotateCw,
+  Trophy,
+  Terminal,
+  ArrowUp,
+  ArrowDown,
+  ArrowLeft,
+  ArrowRight,
+} from "lucide-react";
 
 type Position = { x: number; y: number };
 type Direction = "UP" | "DOWN" | "LEFT" | "RIGHT";
@@ -50,7 +59,7 @@ export default function RetroSnakeGame() {
         y: Math.floor(Math.random() * GRID_SIZE),
       };
       const onSnake = currentSnake.some(
-        (segment) => segment.x === newFood.x && segment.y === newFood.y
+        (segment) => segment.x === newFood.x && segment.y === newFood.y,
       );
       if (!onSnake) break;
     }
@@ -157,7 +166,7 @@ export default function RetroSnakeGame() {
 
         // Collision with self
         const hitSelf = prevSnake.some(
-          (seg) => seg.x === head.x && seg.y === head.y
+          (seg) => seg.x === head.x && seg.y === head.y,
         );
         if (hitSelf) {
           handleGameOver();
@@ -207,7 +216,9 @@ export default function RetroSnakeGame() {
         {/* Sandeep-style Section Header Ribbon */}
         <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 pb-6 border-b border-slate-200">
           <div className="flex items-center gap-4 font-mono text-xs text-slate-400">
-            <span className="text-xl sm:text-2xl font-bold text-slate-900">06</span>
+            <span className="text-xl sm:text-2xl font-bold text-slate-900">
+              06
+            </span>
             <span className="h-4 w-px bg-slate-300" />
             <span className="uppercase tracking-[0.25em] text-slate-900 font-semibold">
               {language === "id" ? "Mini Playground" : "Interactive Playground"}
@@ -238,7 +249,9 @@ export default function RetroSnakeGame() {
           <div className="flex items-center justify-between px-4 py-3 border-b border-slate-800 bg-slate-900/90 text-xs">
             <div className="flex items-center gap-2">
               <Terminal className="w-3.5 h-3.5 text-emerald-400" />
-              <span className="text-slate-300 font-bold">bug_eater_v2026.exe</span>
+              <span className="text-slate-300 font-bold">
+                bug_eater_v2026.exe
+              </span>
             </div>
 
             <div className="flex items-center gap-4 text-[11px]">
@@ -305,16 +318,22 @@ export default function RetroSnakeGame() {
                   {gameOver ? (
                     <div className="space-y-1">
                       <p className="text-rose-500 font-bold text-sm tracking-widest uppercase">
-                        {language === "id" ? "FATAL ERROR: COLLISION DETECTED" : "FATAL ERROR: COLLISION DETECTED"}
+                        {language === "id"
+                          ? "FATAL ERROR: COLLISION DETECTED"
+                          : "FATAL ERROR: COLLISION DETECTED"}
                       </p>
                       <p className="text-xs text-slate-300">
-                        {language === "id" ? `Skor Akhir: ${score}` : `Final Score: ${score}`}
+                        {language === "id"
+                          ? `Skor Akhir: ${score}`
+                          : `Final Score: ${score}`}
                       </p>
                     </div>
                   ) : (
                     <div className="space-y-1">
                       <p className="text-emerald-400 font-bold text-sm tracking-widest uppercase">
-                        {language === "id" ? "CLI SNAKE READY" : "CLI SNAKE READY"}
+                        {language === "id"
+                          ? "CLI SNAKE READY"
+                          : "CLI SNAKE READY"}
                       </p>
                       <p className="text-xs text-slate-400">
                         {language === "id"
@@ -332,12 +351,16 @@ export default function RetroSnakeGame() {
                     {gameOver ? (
                       <>
                         <RotateCw className="w-3.5 h-3.5" />
-                        <span>{language === "id" ? "Main Lagi" : "Try Again"}</span>
+                        <span>
+                          {language === "id" ? "Main Lagi" : "Try Again"}
+                        </span>
                       </>
                     ) : (
                       <>
                         <Play className="w-3.5 h-3.5 fill-current" />
-                        <span>{language === "id" ? "Mulai Game" : "Start Game"}</span>
+                        <span>
+                          {language === "id" ? "Mulai Game" : "Start Game"}
+                        </span>
                       </>
                     )}
                   </button>

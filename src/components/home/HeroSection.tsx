@@ -1,9 +1,9 @@
 "use client";
 
-import { useLanguage } from"@/context/language-context";
-import { PERSONAL_INFO } from"@/data/portfolio-data";
-import HeroDotField from"./HeroDotField";
-import { ArrowUpRight } from"lucide-react";
+import { useLanguage } from "@/context/language-context";
+import { PERSONAL_INFO } from "@/data/portfolio-data";
+import HeroDotField from "./HeroDotField";
+import { ArrowUpRight } from "lucide-react";
 
 export default function HeroSection() {
   const { language } = useLanguage();
@@ -29,11 +29,13 @@ export default function HeroSection() {
           <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[6.2rem] xl:text-[6.8rem] font-extrabold tracking-[-0.04em] text-slate-950 leading-[0.98]">
             {language === "id" ? (
               <>
-                <span className="text-[#EA3826]">Rekayasa web</span> untuk sistem kompleks yang andal
+                <span className="text-[#EA3826]">Rekayasa web</span> untuk
+                sistem kompleks yang andal
               </>
             ) : (
               <>
-                <span className="text-[#EA3826]">Web engineering</span> for complex systems that feel simple
+                <span className="text-[#EA3826]">Web engineering</span> for
+                complex systems that feel simple
               </>
             )}
           </h1>
