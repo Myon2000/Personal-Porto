@@ -36,6 +36,49 @@ export const TIL_CATEGORIES = [
 
 export const TIL_ENTRIES: TilEntry[] = [
   {
+    id: "2026-10-04-pytorch-amp-mixed-precision",
+    date: "2026-10-04",
+    category: "ai",
+    categoryLabel: {
+      id: "Applied AI",
+      en: "Applied AI",
+    },
+    title: {
+      id: "Akselerasi Pelatihan PyTorch dan Efisiensi VRAM dengan torch.cuda.amp",
+      en: "Accelerating PyTorch Training and VRAM Efficiency using torch.cuda.amp",
+    },
+    takeaway: {
+      id: "Kombinasi autocast() dan GradScaler() mengeksekusi operasi forward dan backward dalam presisi FP16 secara otomatis tanpa underflow gradien, memangkas konsumsi VRAM hingga 40-50 persen dan mempercepat proses training.",
+      en: "Pairing autocast() with GradScaler() executes forward and backward operations in FP16 mixed precision without numerical underflow, reducing GPU VRAM allocation by 40-50 percent while accelerating training loops.",
+    },
+    whyItMatters: {
+      id: "Pada model CNN seperti DenseNet-169 atau EfficientNet dengan batch size besar, FP16 mixed precision memungkinkan alokasi batch lebih optimal pada keterbatasan memori GPU tanpa mengorbankan akurasi konvergensi model.",
+      en: "For deep networks such as DenseNet-169 or EfficientNet, mixed precision unlocks higher batch throughput on GPU memory constraints without compromising empirical convergence accuracy.",
+    },
+    codeSnippet: {
+      language: "python",
+      fileName: "mixed_precision_train.py",
+      code: `import torch
+from torch.amp import autocast, GradScaler
+
+scaler = GradScaler("cuda")
+
+for images, labels in train_loader:
+    optimizer.zero_grad(set_to_none=True)
+
+    # Eksekusi operasi konvolusi dalam presisi FP16 secara otomatis
+    with autocast(device_type="cuda", dtype=torch.float16):
+        outputs = model(images)
+        loss = criterion(outputs, labels)
+
+    # Skala loss untuk mencegah underflow gradien pada FP16
+    scaler.scale(loss).backward()
+    scaler.step(optimizer)
+    scaler.update()`,
+    },
+    tags: ["PyTorch", "Mixed Precision", "CUDA", "AMP", "Performance"],
+  },
+  {
     id: "2026-10-03-pytorch-pin-memory",
     date: "2026-10-03",
     category: "ai",
