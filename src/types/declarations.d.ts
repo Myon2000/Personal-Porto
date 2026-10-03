@@ -61,4 +61,9 @@ declare module "lucide-react" {
   export const Fish: Icon;
   export const Server: Icon;
   export const AlertCircle: Icon;
+  export const Search: Icon;
+  export const BookOpen: Icon;
+  export const Filter: Icon;
+  export const Tag: Icon;
+  export const GitCommit: Icon;
 }

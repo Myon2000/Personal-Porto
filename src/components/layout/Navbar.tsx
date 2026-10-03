@@ -39,11 +39,13 @@ export default function Navbar() {
           { name: "BERANDA", href: "/" },
           { name: "KARYA", href: "/work" },
           { name: "TENTANG", href: "/about" },
+          { name: "TIL", href: "/til" },
         ]
       : [
           { name: "HOME", href: "/" },
           { name: "WORK", href: "/work" },
           { name: "ABOUT", href: "/about" },
+          { name: "TIL", href: "/til" },
         ];
 
   return (
