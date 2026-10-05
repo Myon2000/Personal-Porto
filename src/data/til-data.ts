@@ -36,6 +36,51 @@ export const TIL_CATEGORIES = [
 
 export const TIL_ENTRIES: TilEntry[] = [
   {
+    id: "2026-10-05-pytorch-gradcam-visualization",
+    date: "2026-10-05",
+    category: "ai",
+    categoryLabel: {
+      id: "Applied AI",
+      en: "Applied AI",
+    },
+    title: {
+      id: "Visualisasi Keputusan CNN dengan Grad-CAM dan Hook Gradien PyTorch",
+      en: "CNN Interpretability and Decision Visualization using Grad-CAM in PyTorch",
+    },
+    takeaway: {
+      id: "Mengambil gradien dari layer konvolusi terakhir melalui register_full_backward_hook() menghasilkan peta aktivasi visual (heatmap) yang membuktikan bagian citra mana yang menjadi dasar prediksi model.",
+      en: "Extracting gradients from the final convolutional layer using register_full_backward_hook() generates class activation heatmaps validating which spatial regions triggered model inference.",
+    },
+    whyItMatters: {
+      id: "Pada klasifikasi citra medis seperti Alzheimer MRI dan patologi ikan nila, Grad-CAM memberikan bukti transparansi saintifik (Explainable AI) agar keputusan model dapat diverifikasi langsung oleh dokter dan praktisi tambak.",
+      en: "In clinical imaging and aquaculture pathology, Grad-CAM provides Explainable AI (XAI) transparency, enabling domain experts to cross-verify neural activation regions against clinical symptoms.",
+    },
+    codeSnippet: {
+      language: "python",
+      fileName: "gradcam_visualizer.py",
+      code: `import torch
+import torch.nn.functional as F
+
+# Pasang hook pada feature map layer konvolusi terakhir
+gradients = []
+def backward_hook(module, grad_input, grad_output):
+    gradients.append(grad_output[0])
+
+target_layer.register_full_backward_hook(backward_hook)
+output = model(input_tensor)
+score = output[0, predicted_class]
+score.backward()
+
+# Kalkulasi bobot pooled gradients dan relu activation
+pooled_grads = torch.mean(gradients[0], dim=[0, 2, 3])
+for i in range(activations.size(1)):
+    activations[:, i, :, :] *= pooled_grads[i]
+heatmap = torch.mean(activations, dim=1).squeeze()
+heatmap = F.relu(heatmap)`,
+    },
+    tags: ["PyTorch", "Grad-CAM", "Explainable AI", "Computer Vision"],
+  },
+  {
     id: "2026-10-04-pytorch-amp-mixed-precision",
     date: "2026-10-04",
     category: "ai",

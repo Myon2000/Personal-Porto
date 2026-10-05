@@ -148,3 +148,4 @@ Dokumen ini adalah acuan kerja dan pelacak progres (*checklist*) perombakan meny
 - **2026-10-02:** Pemantauan performa runtime client-side dan verifikasi stabilitas canvas interaktif.
 - **2026-10-03:** Verifikasi kontinuitas rute navigasi, implementasi Today I Learned page, dan audit responsivitas antarmuka.
 - **2026-10-04:** Penambahan catatan teknis PyTorch Mixed Precision Training (torch.cuda.amp) pada halaman TIL.
+- **2026-10-05:** Dokumentasi teknik interpretasi model CNN menggunakan Grad-CAM dan hook PyTorch pada halaman TIL.
