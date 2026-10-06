@@ -30,11 +30,64 @@ export const TIL_CATEGORIES = [
   { key: "all", label: { id: "Semua Catatan", en: "All Notes" } },
   { key: "ai", label: { id: "Applied AI & CV", en: "Applied AI & CV" } },
   { key: "web", label: { id: "Web Architecture", en: "Web Architecture" } },
-  { key: "security", label: { id: "Security & Linux", en: "Security & Linux" } },
+  {
+    key: "security",
+    label: { id: "Security & Linux", en: "Security & Linux" },
+  },
   { key: "db", label: { id: "Database & Data", en: "Database & Data" } },
 ];
 
 export const TIL_ENTRIES: TilEntry[] = [
+  {
+    id: "2026-10-06-api-idempotency-key",
+    date: "2026-10-06",
+    category: "web",
+    categoryLabel: {
+      id: "Web Architecture",
+      en: "Web Architecture",
+    },
+    title: {
+      id: "Pencegahan Duplikasi Transaksi dengan Pola Idempotency Key dan Atomic Lock Redis",
+      en: "Preventing Duplicate API Operations using Idempotency Keys and Atomic Redis Locks",
+    },
+    takeaway: {
+      id: "Menerapkan header Idempotency-Key dengan penguncian atomik Cache::lock() pada middleware backend menjamin request mutasi kritis (seperti penebusan kuota pupuk) hanya diproses tepat satu kali meskipun terjadi retry jaringan ganda.",
+      en: "Enforcing an Idempotency-Key header coupled with Redis Cache::lock() in backend middleware ensures critical write operations are processed exactly once under network retry events.",
+    },
+    whyItMatters: {
+      id: "Ketika koneksi internet di lapangan tidak stabil, pengguna cenderung menekan tombol konfirmasi berulang kali. Tanpa kunci idempoten, request ganda dapat memicu pemotongan saldo kuota atau entri transaksi duplikat.",
+      en: "Under degraded field network connectivity, users frequently trigger repeated submissions. Idempotency guards critical state endpoints against double deduction anomalies.",
+    },
+    codeSnippet: {
+      language: "php",
+      fileName: "EnsureIdempotentRequest.php",
+      code: `public function handle(Request $request, Closure $next)
+{
+    $idempotencyKey = $request->header('X-Idempotency-Key');
+    if (!$idempotencyKey) {
+        return $next($request);
+    }
+
+    $lockKey = 'idempotency:' . $idempotencyKey;
+    
+    // Kunci atomik selama 10 detik selama request diproses
+    return Cache::lock($lockKey, 10)->get(function () use ($request, $next, $lockKey) {
+        if ($cachedResponse = Cache::get($lockKey . ':response')) {
+            return response()->json($cachedResponse['data'], $cachedResponse['status']);
+        }
+
+        $response = $next($request);
+        Cache::put($lockKey . ':response', [
+            'data' => json_decode($response->getContent(), true),
+            'status' => $response->getStatusCode()
+        ], now()->addHours(24));
+
+        return $response;
+    }) ?? response()->json(['error' => 'Conflict: Concurrent request in flight.'], 409);
+}`,
+    },
+    tags: ["REST API", "Laravel", "Redis", "Concurrency", "Architecture"],
+  },
   {
     id: "2026-10-05-pytorch-gradcam-visualization",
     date: "2026-10-05",

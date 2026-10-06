@@ -1,6 +1,6 @@
 # Tracker Perombakan Portofolio 3-Halaman (Sandeep.design Reference)
 
-Dokumen ini adalah acuan kerja dan pelacak progres (*checklist*) perombakan menyeluruh website portofolio **Oktavian Ramadhani (Vian)**. Dokumen ini dibuat agar proses pengerjaan tetap terarah, tidak keluar jalur, dan berpegang teguh pada prinsip desain anti-slop.
+Dokumen ini adalah acuan kerja dan pelacak progres (_checklist_) perombakan menyeluruh website portofolio **Oktavian Ramadhani (Vian)**. Dokumen ini dibuat agar proses pengerjaan tetap terarah, tidak keluar jalur, dan berpegang teguh pada prinsip desain anti-slop.
 
 ---
 
@@ -69,11 +69,13 @@ Dokumen ini adalah acuan kerja dan pelacak progres (*checklist*) perombakan meny
 ## 📋 Checklist Eksekusi Bertahap
 
 ### Fase 0: Setup Aset & Fondasi
+
 - [x] Salin dokumen resume resmi `f:\PETING\Oktavian Ramadhani-resume.pdf` ke `public/resume.pdf`
 - [x] Pastikan avatar foto profil asli Vian (`public/avatar.png`) terpasang pada favicon browser dan navbar
 - [x] Buat dokumen `docs/rebuild-todo.md` ini sebagai acuan kerja
 
 ### Fase 1: Navbar & Hero Section Interaktif (Home)
+
 - [x] Rancang komponen `src/components/HeroDotField.tsx`: Canvas 2D partikel pusaran hijau interaktif bereaksi terhadap mouse hover (lerp smoothing, dpr-aware, pause saat off-screen)
 - [x] Perbarui `src/components/Navbar.tsx`:
   - Baris 1: `OKTAVIAN RAMADHANI` (kiri) | `HOME  WORK  ABOUT` (tengah, active-state via `usePathname`) | `BOOK A CALL ↗` / Kontak + Switcher ID/EN & Tema (kanan)
@@ -86,6 +88,7 @@ Dokumen ini adalah acuan kerja dan pelacak progres (*checklist*) perombakan meny
   - Kaki kanan: Tombol teks `GET IN TOUCH ↗`
 
 ### Fase 2: Reorganisasi Halaman Home (`/`)
+
 - [x] Section `01 / Featured Case`: Menampilkan Alzheimer MRI DenseNet-169 + `AlzheimerSimulator` interaktif
 - [x] Section `02 / Selected`: Menampilkan SiPuBi, NilaHealth, Web Klinik Gigi dengan tombol pratinjau modal alur sistem
 - [x] Section `03 / Why Work With Me?`: Kartu A/B/C (Integritas Sistem, ML Empiris, Dampak Lapangan)
@@ -95,8 +98,9 @@ Dokumen ini adalah acuan kerja dan pelacak progres (*checklist*) perombakan meny
 - [x] Section `07 / Get In Touch`: Strip CTA minimalis menghubungkan ke `/about#contact`
 
 ### Fase 3: Pembangunan Halaman Work (`/work`)
+
 - [x] Buat page route `src/app/work/page.tsx`
-- [x] Section `01 / Work`: Header besar *"Selected work across products, systems, and experiments"*
+- [x] Section `01 / Work`: Header besar _"Selected work across products, systems, and experiments"_
 - [x] Section `02 / Selected`: Daftar studi kasus bernomor `P. 01` - `P. 06`
 - [x] Section `03 / Archived & Coursework`: Daftar baris ringkas repositori publik & proyek kuliah
 - [x] Section `04 / Work & Community Experience`: Timeline pengalaman dari CV (KOMPIS, Cafe Dewisri, HMIF, I/O)
@@ -104,6 +108,7 @@ Dokumen ini adalah acuan kerja dan pelacak progres (*checklist*) perombakan meny
 - [x] Section `06 / Get In Touch`: Strip CTA penutup
 
 ### Fase 4: Pembangunan Halaman About (`/about`)
+
 - [x] Buat page route `src/app/about/page.tsx`
 - [x] Section `01 / About Me`: Potret asli Vian + biografi terkurasi
 - [x] Section `02 / Curriculum Vitæ`: Tombol `[ Download Resume ]` mengunduh `/resume.pdf` + timeline pendidikan UNEJ IPK 3.84 & riwayat organisasi
@@ -112,6 +117,7 @@ Dokumen ini adalah acuan kerja dan pelacak progres (*checklist*) perombakan meny
 - [x] Section `05 / Contact Form`: Komponen formulir kontak lengkap 3-channel (`ContactSection`)
 
 ### Fase 5: Hapus Mode Malam & Redesain Uji Prediksi DenseNet (Anti-AI Slop)
+
 - [x] Hapus tema gelap (Dark Mode) secara total: website 100% Light Mode elegan & bersih (`#FAFAF8`), tanpa toggle tema malam
 - [x] Kunci `color-scheme: light;` pada `:root` dan `html` serta buang seluruh 300+ class `dark:` di seluruh komponen
 - [x] Hapus kartu redundant "Request CV" di ContactSection (unduh CV resmi terpusat langsung di halaman About `/resume.pdf`)
@@ -121,6 +127,7 @@ Dokumen ini adalah acuan kerja dan pelacak progres (*checklist*) perombakan meny
 - [x] Pastikan 0 kemunculan karakter em dash (`—`) di seluruh codebase
 
 ### Fase 6: Restrukturisasi & Modularisasi Folder Komponen
+
 - [x] Rapikan `src/components/` menjadi subdirektori terorganisir: `layout/`, `home/`, `work/`, `about/`, `shared/`
 - [x] Hapus file komponen mati yang tidak digunakan (`ThemeToggle`, `theme-provider`, `AboutSection`, `SkillsSection`, `CertificatesSection`, `ExperienceSection`, `ProjectsSection`)
 - [x] Jalankan audit linting ESLint (0 error, 0 warning)
@@ -128,6 +135,7 @@ Dokumen ini adalah acuan kerja dan pelacak progres (*checklist*) perombakan meny
 - [x] Buat commit Git dan push ke branch `main` GitHub untuk live deployment di `personalporto.myon.my.id`
 
 ### Fase 7: Pembangunan Halaman Today I Learned (/til)
+
 - [x] Rancang model data terstruktur `src/data/til-data.ts` untuk memfasilitasi pencatatan teknis harian yang menghasilkan commit nyata
 - [x] Bangun komponen interaktif `src/components/til/TilPageContent.tsx` dengan efek spotlight radial kursor, filter kategori dengan badge hitung, quick search dengan shortcut keyboard (/), dan kotak kode dengan copy to clipboard
 - [x] Buat rute halaman Next.js `src/app/til/page.tsx` dan tambahkan menu navigasi TIL di Navbar
@@ -136,6 +144,7 @@ Dokumen ini adalah acuan kerja dan pelacak progres (*checklist*) perombakan meny
 ---
 
 ## 📅 Catatan Log Harian (Audit Trail)
+
 - **2026-09-21:** Penyelarasan arsitektur portofolio dan verifikasi model data.
 - **2026-09-22:** Implementasi penuh 3-halaman (Home, Work, About) ala sandeep.design.
 - **2026-09-23:** Penyatuan master container max-w-6xl dan transisi fluid flow zoom layout.
@@ -149,3 +158,4 @@ Dokumen ini adalah acuan kerja dan pelacak progres (*checklist*) perombakan meny
 - **2026-10-03:** Verifikasi kontinuitas rute navigasi, implementasi Today I Learned page, dan audit responsivitas antarmuka.
 - **2026-10-04:** Penambahan catatan teknis PyTorch Mixed Precision Training (torch.cuda.amp) pada halaman TIL.
 - **2026-10-05:** Dokumentasi teknik interpretasi model CNN menggunakan Grad-CAM dan hook PyTorch pada halaman TIL.
+- **2026-10-06:** Implementasi pola REST API Idempotency Key dengan Redis atomic locks untuk transaksi data kritis pada halaman TIL.
